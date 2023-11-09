@@ -1,0 +1,126 @@
+export default {
+  el: {
+    cascader: {
+      loading: 'Laster',
+      noData: 'Ingen resultater',
+      noMatch: 'Ingen samsvarende resultater',
+      placeholder: 'Velg',
+    },
+    colorpicker: {
+      clear: 'Tøm',
+      confirm: 'OK',
+    },
+    datepicker: {
+      cancel: 'Avbryt',
+      clear: 'Tøm',
+      confirm: 'OK',
+      endDate: 'Sluttdato',
+      endTime: 'Sluttidspunkt',
+      month1: 'Januar',
+      month10: 'Oktober',
+      month11: 'November',
+      month12: 'Desember',
+      month2: 'Februar',
+      month3: 'Mars',
+      month4: 'April',
+      month5: 'Mai',
+      month6: 'Juni',
+      month7: 'Juli',
+      month8: 'August',
+      month9: 'September',
+      months: {
+        apr: 'Apr',
+        aug: 'Aug',
+        dec: 'Des',
+        feb: 'Feb',
+        jan: 'Jan',
+        jul: 'Jul',
+        jun: 'Jun',
+        mar: 'Mar',
+        may: 'Mai',
+        nov: 'Nov',
+        oct: 'Okt',
+        sep: 'Sep',
+      },
+      nextMonth: 'Neste Måned',
+      nextYear: 'Neste år',
+      now: 'Nå',
+      prevMonth: 'Forrige Måned',
+      prevYear: 'I fjor',
+      selectDate: 'Velg dato',
+      selectTime: 'Velg tidspunkt',
+      startDate: 'Startdato',
+      startTime: 'Starttidspunkt',
+      today: 'I dag',
+      week: 'uke',
+      weeks: {
+        fri: 'Fre',
+        mon: 'Man',
+        sat: 'Lør',
+        sun: 'Søn',
+        thu: 'Tor',
+        tue: 'Tir',
+        wed: 'Ons',
+      },
+      year: '',
+    },
+    image: {
+      error: 'FEILET',
+    },
+    messagebox: {
+      cancel: 'Avbryt',
+      confirm: 'OK',
+      error: 'Ugyldig input',
+    },
+    pageHeader: {
+      title: 'Tilbake',
+    },
+    pagination: {
+      currentPage: 'page {pager}', // to be translated
+      goto: 'Gå til',
+      next: 'Go to next page', // to be translated
+      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // to be translated
+      pageClassifier: '',
+      pagesize: '/side',
+      prev: 'Go to previous page', // to be translated
+      prevPages: 'Previous {pager} pages', // to be translated
+      total: 'Total {total}',
+    },
+    popconfirm: {
+      cancelButtonText: 'Nei',
+      confirmButtonText: 'Ja',
+    },
+    select: {
+      loading: 'Laster',
+      noData: 'Ingen resulater',
+      noMatch: 'Ingen samsvarende resulater',
+      placeholder: 'Velg',
+    },
+    table: {
+      clearFilter: 'Alle',
+      confirmFilter: 'Bekreft',
+      emptyText: 'Ingen Data',
+      resetFilter: 'Tilbakestill',
+      sumText: 'Sum',
+    },
+    transfer: {
+      filterPlaceholder: 'Skriv inn nøkkelord',
+      hasCheckedFormat: '{checked}/{total} valgt',
+      noCheckedFormat: '{total} gjenstander',
+      noData: 'Ingen data',
+      noMatch: 'Ingen samsvarende data',
+      titles: ['Liste 1', 'Liste 2'],
+    },
+    tree: {
+      emptyText: 'Ingen Data',
+    },
+    upload: {
+      continue: 'Fortsett',
+      delete: 'Slett',
+      deleteTip: 'trykk på x for å slette',
+      preview: 'Forhåndsvisning',
+    },
+  },
+  name: 'nb-no',
+}

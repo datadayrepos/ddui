@@ -1,0 +1,124 @@
+/* common */
+:root {
+  --aby-color-white: #ffffff;
+  --aby-color-black: #000000;
+}
+
+:root {
+  color-scheme: light;
+  /*--aby-color-primary-base: BLUEISH 
+	--aby-color-primary-base: #409eff;
+	--aby-color-primary-light-3: #79bbff;
+	--aby-color-primary-light-5: #a0cfff;
+	--aby-color-primary-light-7: #c6e2ff;
+	--aby-color-primary-light-8: #d9ecff;
+	--aby-color-primary-light-9: #ecf5ff;
+	--aby-color-primary-dark-2: #337ecc;
+	*/
+  /*--aby-color-primary-base: VIOLETISH 
+	--aby-color-primary-base: #9e51fc;
+	--aby-color-primary-light-3: #aa67fb;
+	--aby-color-primary-light-5: #b87eff;
+	--aby-color-primary-light-7: #bd87ff;
+	--aby-color-primary-light-8: #dabbff;
+	--aby-color-primary-light-9: #f4ecff;
+	--aby-color-primary-dark-2: #976FFC;
+*/
+  /*--aby-color-primary-base: PINKISH */
+  --aby-color-primary-base: #ec4899;
+  --aby-color-primary-light-3: #f05ca6;
+  --aby-color-primary-light-5: #ec77b1;
+  --aby-color-primary-light-7: #eb8fbd;
+  --aby-color-primary-light-8: #ecb5d0;
+  --aby-color-primary-light-9: #eec7da;
+  --aby-color-primary-dark-2: #b95b8a;
+
+  /*--aby-color-primary-base: ORANGISH 
+  --aby-color-primary-base: #ffb35d;
+  --aby-color-primary-light-3: #ffc17a;
+  --aby-color-primary-light-5: #ffcd95;
+  --aby-color-primary-light-7: #ffdbb3;
+  --aby-color-primary-light-8: #ffe6ca;
+  --aby-color-primary-light-9: #fff6eb;
+  --aby-color-primary-dark-2: #cab091;
+*/
+  --aby-color-success-base: #67c23a;
+  --aby-color-success-light-3: #95d475;
+  --aby-color-success-light-5: #b3e19d;
+  --aby-color-success-light-7: #d1edc4;
+  --aby-color-success-light-8: #e1f3d8;
+  --aby-color-success-light-9: #f0f9eb;
+  --aby-color-success-dark-2: #529b2e;
+  --aby-color-warning-base: #e6a23c;
+  --aby-color-warning-light-3: #eebe77;
+  --aby-color-warning-light-5: #f3d19e;
+  --aby-color-warning-light-7: #f8e3c5;
+  --aby-color-warning-light-8: #faecd8;
+  --aby-color-warning-light-9: #fdf6ec;
+  --aby-color-warning-dark-2: #b88230;
+  --aby-color-danger-base: #f56c6c;
+  --aby-color-danger-light-3: #f89898;
+  --aby-color-danger-light-5: #fab6b6;
+  --aby-color-danger-light-7: #fcd3d3;
+  --aby-color-danger-light-8: #fde2e2;
+  --aby-color-danger-light-9: #fef0f0;
+  --aby-color-danger-dark-2: #c45656;
+  --aby-color-error-base: #f56c6c;
+  --aby-color-error-light-3: #f89898;
+  --aby-color-error-light-5: #fab6b6;
+  --aby-color-error-light-7: #fcd3d3;
+  --aby-color-error-light-8: #fde2e2;
+  --aby-color-error-light-9: #fef0f0;
+  --aby-color-error-dark-2: #c45656;
+  --aby-color-info-base: #909399;
+  --aby-color-info-light-3: #b1b3b8;
+  --aby-color-info-light-5: #c8c9cc;
+  --aby-color-info-light-7: #dedfe0;
+  --aby-color-info-light-8: #e9e9eb;
+  --aby-color-info-light-9: #f4f4f5;
+  --aby-color-info-dark-2: #73767a;
+	  /* background-color */
+  --aby-bg-color-base: #ffffff;
+  --aby-bg-color-page: #f2f3f5;
+  --aby-bg-color-overlay: #ffffff;
+	/* text color*/
+  --aby-text-color-primary: #303133;
+  --aby-text-color-regular: #606266;
+  --aby-text-color-secondary: #909399;
+  --aby-text-color-placeholder: #a8abb2;
+  --aby-text-color-disabled: #c0c4cc;
+	 /* utils */
+  --aby-border-color: #dcdfe6;
+  --aby-border-color-light: #e4e7ed;
+  --aby-border-color-lighter: #ebeef5;
+  --aby-border-color-extra-light: #f2f6fc;
+  --aby-border-color-dark: #d4d7de;
+  --aby-border-color-darker: #cdd0d6;
+  --aby-fill-color: #f0f2f5;
+  --aby-fill-color-light: #f5f7fa;
+  --aby-fill-color-lighter: #fafafa;
+  --aby-fill-color-extra-light: #fafcff;
+  --aby-fill-color-dark: #ebedf0;
+  --aby-fill-color-darker: #e6e8eb;
+  --aby-fill-color-blank: #ffffff;
+  --aby-box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, 0.04),
+    0px 8px 20px rgba(0, 0, 0, 0.08);
+  --aby-box-shadow-light: 0px 0px 12px rgba(0, 0, 0, 0.12);
+  --aby-box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, 0.12);
+  --aby-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
+    0px 12px 32px rgba(0, 0, 0, 0.12), 0px 8px 16px -8px rgba(0, 0, 0, 0.16);
+  --aby-disabled-bg-color: var(--aby-fill-color-light);
+  --aby-disabled-text-color: var(--aby-text-color-placeholder);
+  --aby-disabled-border-color: var(--aby-border-color-light);
+  --aby-overlay-color: rgba(0, 0, 0, 0.8);
+  --aby-overlay-color-light: rgba(0, 0, 0, 0.7);
+  --aby-overlay-color-lighter: rgba(0, 0, 0, 0.5);
+  --aby-mask-color: rgba(255, 255, 255, 0.9);
+  --aby-mask-color-extra-light: rgba(255, 255, 255, 0.3);
+  --aby-border-width: 1px;
+  --aby-border-style: solid;
+  --aby-border-color-hover: var(--aby-text-color-disabled);
+  --aby-border: var(--aby-border-width) var(--aby-border-style)
+    var(--aby-border-color);
+  --aby-svg-monochrome-grey: var(--aby-border-color);
+}

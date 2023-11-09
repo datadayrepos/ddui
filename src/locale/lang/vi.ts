@@ -1,0 +1,127 @@
+export default {
+  el: {
+    cascader: {
+      loading: 'Đang tải',
+      noData: 'Không tìm thấy dữ liệu',
+      noMatch: 'Dữ liệu không phù hợp',
+      placeholder: 'Chọn',
+    },
+    colorpicker: {
+      clear: 'Xóa',
+      confirm: 'OK',
+    },
+    datepicker: {
+      cancel: 'Hủy',
+      clear: 'Xóa',
+      confirm: 'OK',
+      endDate: 'Ngày kết thúc',
+      endTime: 'Thời gian kết thúc',
+      month1: 'Tháng 1',
+      month10: 'Tháng 10',
+      month11: 'Tháng 11',
+      month12: 'Tháng 12',
+      month2: 'Tháng 2',
+      month3: 'Tháng 3',
+      month4: 'Tháng 4',
+      month5: 'Tháng 5',
+      month6: 'Tháng 6',
+      month7: 'Tháng 7',
+      month8: 'Tháng 8',
+      month9: 'Tháng 9',
+      months: {
+        apr: 'Th.4',
+        aug: 'Th.8',
+        dec: 'Th.12',
+        feb: 'Th.2',
+        jan: 'Th.1',
+        jul: 'Th.7',
+        jun: 'Th.6',
+        mar: 'Th.3',
+        may: 'Th.5',
+        nov: 'Th.11',
+        oct: 'Th.10',
+        sep: 'Th.9',
+      },
+      nextMonth: 'Tháng tới',
+      nextYear: 'Năm tới',
+      now: 'Hiện tại',
+      prevMonth: 'Tháng trước',
+      prevYear: 'Năm trước',
+      selectDate: 'Chọn ngày',
+      selectTime: 'Chọn giờ',
+      startDate: 'Ngày bắt đầu',
+      startTime: 'Thời gian bắt đầu',
+      today: 'Hôm nay',
+      // week: 'week',
+      weeks: {
+        fri: 'T6',
+        mon: 'T2',
+        sat: 'T7',
+        sun: 'CN',
+        thu: 'T5',
+        tue: 'T3',
+        wed: 'T4',
+      },
+      year: 'Năm',
+    },
+    image: {
+      error: 'LỖI',
+    },
+    messagebox: {
+      cancel: 'Hủy',
+      confirm: 'OK',
+      error: 'Dữ liệu không hợp lệ',
+      title: 'Thông báo',
+    },
+    pageHeader: {
+      title: 'Quay lại',
+    },
+    pagination: {
+      currentPage: 'page {pager}', // to be translated
+      goto: 'Nhảy tới',
+      next: 'Go to next page', // to be translated
+      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // to be translated
+      pageClassifier: '',
+      pagesize: '/trang',
+      prev: 'Go to previous page', // to be translated
+      prevPages: 'Previous {pager} pages', // to be translated
+      total: 'Tổng {total}',
+    },
+    popconfirm: {
+      cancelButtonText: 'Huỷ',
+      confirmButtonText: 'Ok',
+    },
+    select: {
+      loading: 'Đang tải',
+      noData: 'Không tìm thấy dữ liệu',
+      noMatch: 'Dữ liệu không phù hợp',
+      placeholder: 'Chọn',
+    },
+    table: {
+      clearFilter: 'Xóa hết',
+      confirmFilter: 'Xác nhận',
+      emptyText: 'Không có dữ liệu',
+      resetFilter: 'Làm mới',
+      sumText: 'Tổng',
+    },
+    transfer: {
+      filterPlaceholder: 'Nhập từ khóa',
+      hasCheckedFormat: '{checked}/{total} đã chọn ',
+      noCheckedFormat: '{total} mục',
+      noData: 'Không tìm thấy dữ liệu',
+      noMatch: 'Dữ liệu không phù hợp',
+      titles: ['Danh sách 1', 'Danh sách 2'],
+    },
+    tree: {
+      emptyText: 'Không có dữ liệu',
+    },
+    upload: {
+      continue: 'Tiếp tục',
+      delete: 'Xóa',
+      deleteTip: 'Nhấn xoá để xoá',
+      preview: 'Xem trước',
+    },
+  },
+  name: 'vi',
+}

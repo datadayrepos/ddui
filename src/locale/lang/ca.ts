@@ -1,0 +1,126 @@
+export default {
+  el: {
+    cascader: {
+      loading: 'Carregant',
+      noData: 'Sense Dades',
+      noMatch: 'No hi ha dades que coincideixin',
+      placeholder: 'Seleccionar',
+    },
+    colorpicker: {
+      clear: 'Netejar',
+      confirm: 'Confirmar',
+    },
+    datepicker: {
+      cancel: 'Cancel·lar',
+      clear: 'Netejar',
+      confirm: 'Confirmar',
+      endDate: 'Data Final',
+      endTime: 'Hora Final',
+      month1: 'Gener',
+      month10: 'Octubre',
+      month11: 'Novembre',
+      month12: 'Desembre',
+      month2: 'Febrer',
+      month3: 'Març',
+      month4: 'Abril',
+      month5: 'Maig',
+      month6: 'Juny',
+      month7: 'Juliol',
+      month8: 'Agost',
+      month9: 'Setembre',
+      months: {
+        apr: 'Abr',
+        aug: 'Ag',
+        dec: 'Des',
+        feb: 'Febr',
+        jan: 'Gen',
+        jul: 'Jul',
+        jun: 'Juny',
+        mar: 'Març',
+        may: 'Maig',
+        nov: 'Nov',
+        oct: 'Oct',
+        sep: 'Set',
+      },
+      nextMonth: 'Pròxim Mes',
+      nextYear: 'Pròxim Any',
+      now: 'Ara',
+      prevMonth: 'Mes anterior',
+      prevYear: 'Any anterior',
+      selectDate: 'Seleccionar data',
+      selectTime: 'Seleccionar hora',
+      startDate: 'Data Inici',
+      startTime: 'Hora Inici',
+      today: 'Avui',
+      // week: 'setmana',
+      weeks: {
+        fri: 'Dv',
+        mon: 'Dl',
+        sat: 'Ds',
+        sun: 'Dg',
+        thu: 'Dj',
+        tue: 'Dt',
+        wed: 'Dc',
+      },
+      year: '',
+    },
+    image: {
+      error: 'HA FALLAT',
+    },
+    messagebox: {
+      cancel: 'Cancel·lar',
+      confirm: 'Acceptar',
+      error: 'Entrada invàlida',
+    },
+    pageHeader: {
+      title: 'Tornar',
+    },
+    pagination: {
+      currentPage: 'page {pager}', // to be translated
+      goto: 'Anar a',
+      next: 'Go to next page', // to be translated
+      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // to be translated
+      pageClassifier: '',
+      pagesize: '/pàgina',
+      prev: 'Go to previous page', // to be translated
+      prevPages: 'Previous {pager} pages', // to be translated
+      total: 'Total {total}',
+    },
+    popconfirm: {
+      cancelButtonText: 'No',
+      confirmButtonText: 'Sí',
+    },
+    select: {
+      loading: 'Carregant',
+      noData: 'Sense Dades',
+      noMatch: 'No hi ha dades que coincideixin',
+      placeholder: 'Seleccionar',
+    },
+    table: {
+      clearFilter: 'Tot',
+      confirmFilter: 'Confirmar',
+      emptyText: 'Sense Dades',
+      resetFilter: 'Netejar',
+      sumText: 'Tot',
+    },
+    transfer: {
+      filterPlaceholder: 'Introdueix la paraula clau',
+      hasCheckedFormat: '{checked}/{total} seleccionats',
+      noCheckedFormat: '{total} ítems',
+      noData: 'Sense Dades',
+      noMatch: 'No hi ha dades que coincideixin',
+      titles: ['Llista 1', 'Llista 2'],
+    },
+    tree: {
+      emptyText: 'Sense Dades',
+    },
+    upload: {
+      continue: 'Continuar',
+      delete: 'Eliminar',
+      deleteTip: 'premi eliminar per descartar',
+      preview: 'Vista Prèvia',
+    },
+  },
+  name: 'ca',
+}

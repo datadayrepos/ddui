@@ -1,0 +1,127 @@
+export default {
+  el: {
+    cascader: {
+      loading: 'Ładowanie',
+      noData: 'Brak danych',
+      noMatch: 'Brak dopasowań',
+      placeholder: 'Wybierz',
+    },
+    colorpicker: {
+      clear: 'Wyczyść',
+      confirm: 'OK',
+    },
+    datepicker: {
+      cancel: 'Anuluj',
+      clear: 'Wyczyść',
+      confirm: 'OK',
+      endDate: 'Data końcowa',
+      endTime: 'Czas końcowa',
+      month1: 'styczeń',
+      month10: 'październik',
+      month11: 'listopad',
+      month12: 'grudzień',
+      month2: 'luty',
+      month3: 'marzec',
+      month4: 'kwiecień',
+      month5: 'maj',
+      month6: 'czerwiec',
+      month7: 'lipiec',
+      month8: 'sierpień',
+      month9: 'wrzesień',
+      months: {
+        apr: 'KWI',
+        aug: 'SIE',
+        dec: 'GRU',
+        feb: 'LUT',
+        jan: 'STY',
+        jul: 'LIP',
+        jun: 'CZE',
+        mar: 'MAR',
+        may: 'MAJ',
+        nov: 'LIS',
+        oct: 'PAŹ',
+        sep: 'WRZ',
+      },
+      nextMonth: 'Następny miesiąc',
+      nextYear: 'Następny rok',
+      now: 'Teraz',
+      prevMonth: 'Poprzedni miesiąc',
+      prevYear: 'Poprzedni rok',
+      selectDate: 'Wybierz datę',
+      selectTime: 'Wybierz godzinę',
+      startDate: 'Data początkowa',
+      startTime: 'Godzina początkowa',
+      today: 'Dzisiaj',
+      week: 'tydzień',
+      weeks: {
+        fri: 'pt.',
+        mon: 'pon.',
+        sat: 'sob.',
+        sun: 'niedz.',
+        thu: 'czw.',
+        tue: 'wt.',
+        wed: 'śr.',
+      },
+      year: 'rok',
+    },
+    image: {
+      error: 'BŁĄD',
+    },
+    messagebox: {
+      cancel: 'Anuluj',
+      confirm: 'OK',
+      error: 'Wiadomość zawiera niedozwolone znaki',
+      title: 'Wiadomość',
+    },
+    pageHeader: {
+      title: 'Wstecz',
+    },
+    pagination: {
+      currentPage: 'page {pager}', // to be translated
+      goto: 'Idź do',
+      next: 'Go to next page', // to be translated
+      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // to be translated
+      pageClassifier: '',
+      pagesize: '/stronę',
+      prev: 'Go to previous page', // to be translated
+      prevPages: 'Previous {pager} pages', // to be translated
+      total: 'Wszystkich {total}',
+    },
+    popconfirm: {
+      cancelButtonText: 'Nie',
+      confirmButtonText: 'Tak',
+    },
+    select: {
+      loading: 'Ładowanie',
+      noData: 'Brak danych',
+      noMatch: 'Brak dopasowań',
+      placeholder: 'Wybierz',
+    },
+    table: {
+      clearFilter: 'Wszystko',
+      confirmFilter: 'Potwierdź',
+      emptyText: 'Brak danych',
+      resetFilter: 'Resetuj',
+      sumText: 'Razem',
+    },
+    transfer: {
+      filterPlaceholder: 'Wpisz szukaną frazę',
+      hasCheckedFormat: 'wybranych: {checked}/{total}',
+      noCheckedFormat: 'razem: {total}',
+      noData: 'Brak danych',
+      noMatch: 'Brak dopasowań',
+      titles: ['Lista 1', 'Lista 2'],
+    },
+    tree: {
+      emptyText: 'Brak danych',
+    },
+    upload: {
+      continue: 'Kontynuuj',
+      delete: 'Kasuj',
+      deleteTip: 'kliknij kasuj aby usunąć',
+      preview: 'Podgląd',
+    },
+  },
+  name: 'pl',
+}

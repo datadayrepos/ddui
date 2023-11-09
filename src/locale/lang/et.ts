@@ -1,0 +1,127 @@
+export default {
+  el: {
+    cascader: {
+      loading: 'Laadimine',
+      noData: 'Andmed puuduvad',
+      noMatch: 'Sobivad andmed puuduvad',
+      placeholder: 'Vali',
+    },
+    colorpicker: {
+      clear: 'Tühjenda',
+      confirm: 'OK',
+    },
+    datepicker: {
+      cancel: 'Tühista',
+      clear: 'Tühjenda',
+      confirm: 'OK',
+      endDate: 'Lõpukuupäev',
+      endTime: 'Lõpuaeg',
+      month1: 'Jaanuar',
+      month10: 'Oktoober',
+      month11: 'November',
+      month12: 'Detsember',
+      month2: 'Veebruar',
+      month3: 'Märts',
+      month4: 'Aprill',
+      month5: 'Mai',
+      month6: 'Juuni',
+      month7: 'Juuli',
+      month8: 'August',
+      month9: 'September',
+      months: {
+        apr: 'Apr',
+        aug: 'Aug',
+        dec: 'Dets',
+        feb: 'Veeb',
+        jan: 'Jaan',
+        jul: 'Juul',
+        jun: 'Juun',
+        mar: 'Mär',
+        may: 'Mai',
+        nov: 'Nov',
+        oct: 'Okt',
+        sep: 'Sept',
+      },
+      nextMonth: 'Järgmine kuu',
+      nextYear: 'Järgmine aasta',
+      now: 'Praegu',
+      prevMonth: 'Eelmine kuu',
+      prevYear: 'Eelmine aasta',
+      selectDate: 'Vali kuupäev',
+      selectTime: 'Vali kellaaeg',
+      startDate: 'Alguskuupäev',
+      startTime: 'Algusaeg',
+      today: 'Täna',
+      // week: 'nädal',
+      weeks: {
+        fri: 'R',
+        mon: 'E',
+        sat: 'L',
+        sun: 'P',
+        thu: 'N',
+        tue: 'T',
+        wed: 'K',
+      },
+      year: '',
+    },
+    image: {
+      error: 'Ebaõnnestus',
+    },
+    messagebox: {
+      cancel: 'Tühista',
+      confirm: 'OK',
+      error: 'Vigane sisend',
+      title: 'Teade',
+    },
+    pageHeader: {
+      title: 'Tagasi',
+    },
+    pagination: {
+      currentPage: 'page {pager}', // to be translated
+      goto: 'Mine lehele',
+      next: 'Go to next page', // to be translated
+      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // to be translated
+      pageClassifier: '',
+      pagesize: '/page',
+      prev: 'Go to previous page', // to be translated
+      prevPages: 'Previous {pager} pages', // to be translated
+      total: 'Kokku {total}',
+    },
+    popconfirm: {
+      cancelButtonText: 'Ei',
+      confirmButtonText: 'Jah',
+    },
+    select: {
+      loading: 'Laadimine',
+      noData: 'Andmed puuduvad',
+      noMatch: 'Sobivad andmed puuduvad',
+      placeholder: 'Vali',
+    },
+    table: {
+      clearFilter: 'Kõik',
+      confirmFilter: 'Kinnita',
+      emptyText: 'Andmed puuduvad',
+      resetFilter: 'Taasta',
+      sumText: 'Summa',
+    },
+    transfer: {
+      filterPlaceholder: 'Sisesta märksõna',
+      hasCheckedFormat: '{checked}/{total} valitud',
+      noCheckedFormat: '{total} objekti',
+      noData: 'Andmed puuduvad',
+      noMatch: 'Sobivad andmed puuduvad',
+      titles: ['Loend 1', 'Loend 2'],
+    },
+    tree: {
+      emptyText: 'Andmed puuduvad',
+    },
+    upload: {
+      continue: 'Jätka',
+      delete: 'Kustuta',
+      deleteTip: 'Vajuta "Kustuta", et eemaldada',
+      preview: 'Eelvaate',
+    },
+  },
+  name: 'et',
+}

@@ -1,0 +1,127 @@
+export default {
+  el: {
+    cascader: {
+      loading: 'កំពុងផ្ទុក',
+      noData: 'គ្មានទិន្នន័យ',
+      noMatch: 'គ្មានទិន្នន័យដូច',
+      placeholder: 'ជ្រើសរើស',
+    },
+    colorpicker: {
+      clear: 'លុប',
+      confirm: 'យល់ព្រម',
+    },
+    datepicker: {
+      cancel: 'បោះបង់',
+      clear: 'លុប',
+      confirm: 'យល់ព្រម',
+      endDate: 'ថ្ងៃបញ្ចប់',
+      endTime: 'ម៉ោងបញ្ចប់',
+      month1: 'មករា',
+      month10: 'តុលា',
+      month11: 'វិច្ឆិកា',
+      month12: 'ធ្នូ',
+      month2: 'កុម្ភៈ',
+      month3: 'មីនា',
+      month4: 'មេសា',
+      month5: 'ឧសភា',
+      month6: 'មិថុនា',
+      month7: 'កក្កដា',
+      month8: 'សីហា',
+      month9: 'កញ្ញា',
+      months: {
+        apr: 'មេសា',
+        aug: 'សីហា',
+        dec: 'ធ្នូ',
+        feb: 'កុម្ភៈ',
+        jan: 'មករា',
+        jul: 'កក្កដា',
+        jun: 'មិថុនា',
+        mar: 'មីនា',
+        may: 'ឧសភា',
+        nov: 'វិច្ឆិកា',
+        oct: 'តុលា',
+        sep: 'កញ្ញា',
+      },
+      nextMonth: 'ខែក្រោយ',
+      nextYear: 'ឆ្នាំក្រោយ',
+      now: 'ឥឡូវ​នេះ',
+      prevMonth: 'ខែមុន',
+      prevYear: 'ឆ្នាំមុន',
+      selectDate: 'ជ្រើសរើសថ្ងៃ',
+      selectTime: 'ជ្រើសរើសម៉ោង',
+      startDate: 'ថ្ងៃចាប់ផ្តើម',
+      startTime: 'ម៉ោងចាប់ផ្តើម',
+      today: 'ថ្ងៃនេះ',
+      // week: 'សប្តាហ៍',
+      weeks: {
+        fri: 'សុក្រ',
+        mon: 'ចន្ទ',
+        sat: 'សៅរ៍',
+        sun: 'អាទិត្យ',
+        thu: 'ព្រហ',
+        tue: 'អង្គារ',
+        wed: 'ពុធ',
+      },
+      year: 'ឆ្នាំ',
+    },
+    image: {
+      error: 'មិនបានជោគជ័យ',
+    },
+    messagebox: {
+      cancel: 'បោះបង់',
+      confirm: 'យល់ព្រម',
+      error: 'ការបញ្ចូលមិនត្រូវបានអនុញ្ញាត',
+      title: 'សារ',
+    },
+    pageHeader: {
+      title: 'ត្រលប់ក្រោយ',
+    },
+    pagination: {
+      currentPage: 'page {pager}', // to be translated
+      goto: 'ទៅកាន់',
+      next: 'Go to next page', // to be translated
+      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // to be translated
+      pageClassifier: '',
+      pagesize: '/ទំព័រ',
+      prev: 'Go to previous page', // to be translated
+      prevPages: 'Previous {pager} pages', // to be translated
+      total: 'សរុប {total}',
+    },
+    popconfirm: {
+      cancelButtonText: 'មិនព្រម',
+      confirmButtonText: 'យល់ព្រម',
+    },
+    select: {
+      loading: 'កំពុងផ្ទុក',
+      noData: 'គ្មានទិន្នន័យ',
+      noMatch: 'គ្មានទិន្នន័យដូច',
+      placeholder: 'ជ្រើសរើស',
+    },
+    table: {
+      clearFilter: 'ទាំងអស់',
+      confirmFilter: 'យល់ព្រម',
+      emptyText: 'គ្មានទិន្នន័យ',
+      resetFilter: 'កំណត់ឡើងវិញ',
+      sumText: 'បូក',
+    },
+    transfer: {
+      filterPlaceholder: 'បញ្ចូលពាក្យ',
+      hasCheckedFormat: '{checked}/{total} បានជ្រើសយក',
+      noCheckedFormat: '{total} ធាតុ',
+      noData: 'គ្មានទិន្នន័យ',
+      noMatch: 'គ្មានទិន្នន័យដូច',
+      titles: ['បញ្ជី ១', 'បញ្ជី ២'],
+    },
+    tree: {
+      emptyText: 'គ្មានទិន្នន័យ',
+    },
+    upload: {
+      continue: 'បន្ត',
+      delete: 'លុប',
+      deleteTip: 'ចុចលុបដើម្បីដកចេញ',
+      preview: 'មើល',
+    },
+  },
+  name: 'km',
+}

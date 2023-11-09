@@ -1,16 +1,58 @@
 {
   "compilerOptions": {
+    "composite": true,
     "target": "es2020",
+    "jsx": "preserve",
+    "lib": ["ES2018", "DOM", "DOM.Iterable"],
+
+    "useDefineForClassFields": true,
+    "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     "rootDir": "src",
     "module": "ESNext",
     "moduleResolution": "node",
+    "paths": {
+      "/@/*": [
+        "src/*"
+      ],
+      "@/*": [
+        "src/*"
+      ],
+      "~/*": [
+        "src/*"
+      ],
+      "/#/*": [
+        "./types/*"
+      ]
+    },
+    "resolveJsonModule": true /* Enable importing .json files */, /* Specify a set of entries that re-map imports to additional lookup locations. */
+
+    "types": ["node"],
+    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */,
+    "checkJs": true /* Enable error reporting in type-checked JavaScript files. */,
     "strict": true,
+    "strictNullChecks": true /* When type checking, take into account `null` and `undefined`. */,
+    "noImplicitAny": false /* Raise error on expressions and declarations with an implied 'any' type. Enable error reporting for expressions and declarations with an implied `any` type.. */,
+    "noUnusedLocals": true /* Enable error reporting when a local variables aren't read. */,
+    "noUnusedParameters": true /* Raise an error when a function parameter isn't read.  Report errors on unused parameters.  */,
     "declaration": true,
     "declarationDir": "dist/types",
+    "importHelpers": true,
     "outDir": "dist",
+    "removeComments": true /* Do not emit comments to output. Disable emitting comments. */,
     "esModuleInterop": true,
+    "isolatedModules": true,
     "skipLibCheck": true
+
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "typings/env.d.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/dist",
+    "**/__tests__/**/*",
+    "**/gulpfile.ts",
+    "**/test-helper",
+    "packages/test-utils",
+    "**/*.md"
+  ]
 }

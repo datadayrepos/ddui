@@ -1,1 +1,1 @@
-const whatever=true
+const whatever = true

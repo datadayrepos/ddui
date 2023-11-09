@@ -1,0 +1,19 @@
+:root {
+	color-scheme: light;
+/*  --aby-color-primary-base: #409eff;*/
+  --aby-color-primary-base: #A961FF;
+	--aby-color-primary-light-1: #845EE6;
+	--aby-color-primary-light-2: #976FFC;
+	--aby-color-primary-light-3: #723D94;
+	--aby-color-primary-dark-2: #976FFC;
+}
+
+html.dark {
+	color-scheme: dark;
+/*  --aby-color-primary-base: #409eff;*/
+  --aby-color-primary-base: #A961FF;
+	--aby-color-primary-light-1: #845EE6;
+	--aby-color-primary-light-2: #976FFC;
+	--aby-color-primary-light-3: #723D94;
+	--aby-color-primary-dark-2: #976FFC;
+}

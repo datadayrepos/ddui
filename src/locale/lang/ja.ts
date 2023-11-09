@@ -1,0 +1,127 @@
+export default {
+  el: {
+    cascader: {
+      loading: 'ロード中',
+      noData: 'データなし',
+      noMatch: 'データなし',
+      placeholder: '選択してください',
+    },
+    colorpicker: {
+      clear: 'クリア',
+      confirm: 'OK',
+    },
+    datepicker: {
+      cancel: 'キャンセル',
+      clear: 'クリア',
+      confirm: 'OK',
+      endDate: '終了日',
+      endTime: '終了時間',
+      month1: '1月',
+      month10: '10月',
+      month11: '11月',
+      month12: '12月',
+      month2: '2月',
+      month3: '3月',
+      month4: '4月',
+      month5: '5月',
+      month6: '6月',
+      month7: '7月',
+      month8: '8月',
+      month9: '9月',
+      months: {
+        apr: '4月',
+        aug: '8月',
+        dec: '12月',
+        feb: '2月',
+        jan: '1月',
+        jul: '7月',
+        jun: '6月',
+        mar: '3月',
+        may: '5月',
+        nov: '11月',
+        oct: '10月',
+        sep: '9月',
+      },
+      nextMonth: '翌月',
+      nextYear: '翌年',
+      now: '現在',
+      prevMonth: '前月',
+      prevYear: '前年',
+      selectDate: '日付を選択',
+      selectTime: '時間を選択',
+      startDate: '開始日',
+      startTime: '開始時間',
+      today: '今日',
+      // week: '週次',
+      weeks: {
+        fri: '金',
+        mon: '月',
+        sat: '土',
+        sun: '日',
+        thu: '木',
+        tue: '火',
+        wed: '水',
+      },
+      year: '年',
+    },
+    image: {
+      error: '失敗',
+    },
+    messagebox: {
+      cancel: 'キャンセル',
+      confirm: 'OK',
+      error: '正しくない入力',
+      title: 'メッセージ',
+    },
+    pageHeader: {
+      title: '戻る',
+    },
+    pagination: {
+      currentPage: 'page {pager}', // to be translated
+      goto: '',
+      next: 'Go to next page', // to be translated
+      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // to be translated
+      pageClassifier: 'ページ目へ',
+      pagesize: '件/ページ',
+      prev: 'Go to previous page', // to be translated
+      prevPages: 'Previous {pager} pages', // to be translated
+      total: '総計 {total} 件',
+    },
+    popconfirm: {
+      cancelButtonText: 'いいえ',
+      confirmButtonText: 'はい',
+    },
+    select: {
+      loading: 'ロード中',
+      noData: 'データなし',
+      noMatch: 'データなし',
+      placeholder: '選択してください',
+    },
+    table: {
+      clearFilter: 'すべて',
+      confirmFilter: '確認',
+      emptyText: 'データなし',
+      resetFilter: '初期化',
+      sumText: '合計',
+    },
+    transfer: {
+      filterPlaceholder: 'キーワードを入力',
+      hasCheckedFormat: '{checked}/{total} を選択した',
+      noCheckedFormat: '総計 {total} 件',
+      noData: 'データなし',
+      noMatch: 'データなし',
+      titles: ['リスト 1', 'リスト 2'],
+    },
+    tree: {
+      emptyText: 'データなし',
+    },
+    upload: {
+      continue: '続行する',
+      delete: '削除する',
+      deleteTip: 'Delキーを押して削除する',
+      preview: 'プレビュー',
+    },
+  },
+  name: 'ja',
+}

@@ -1,0 +1,127 @@
+export default {
+  el: {
+    cascader: {
+      loading: 'Laden',
+      noData: 'Geen data',
+      noMatch: 'Geen overeenkomende resultaten',
+      placeholder: 'Selecteer',
+    },
+    colorpicker: {
+      clear: 'Wissen',
+      confirm: 'Bevestig',
+    },
+    datepicker: {
+      cancel: 'Annuleren',
+      clear: 'Legen',
+      confirm: 'Bevestig',
+      endDate: 'Einddatum',
+      endTime: 'Eindtijd',
+      month1: 'januari',
+      month10: 'oktober',
+      month11: 'november',
+      month12: 'december',
+      month2: 'februari',
+      month3: 'maart',
+      month4: 'april',
+      month5: 'mei',
+      month6: 'juni',
+      month7: 'juli',
+      month8: 'augustus',
+      month9: 'september',
+      months: {
+        apr: 'apr',
+        aug: 'aug',
+        dec: 'dec',
+        feb: 'feb',
+        jan: 'jan',
+        jul: 'jul',
+        jun: 'jun',
+        mar: 'maa',
+        may: 'mei',
+        nov: 'nov',
+        oct: 'okt',
+        sep: 'sep',
+      },
+      nextMonth: 'Volgende maand',
+      nextYear: 'Volgend jaar',
+      now: 'Nu',
+      prevMonth: 'Vorige maand',
+      prevYear: 'Vorig jaar',
+      selectDate: 'Selecteer datum',
+      selectTime: 'Selecteer tijd',
+      startDate: 'Startdatum',
+      startTime: 'Starttijd',
+      today: 'Vandaag',
+      // week: 'week',
+      weeks: {
+        fri: 'Vr',
+        mon: 'Ma',
+        sat: 'Za',
+        sun: 'Zo',
+        thu: 'Do',
+        tue: 'Di',
+        wed: 'Wo',
+      },
+      year: '',
+    },
+    image: {
+      error: 'MISLUKT',
+    },
+    messagebox: {
+      cancel: 'Annuleren',
+      confirm: 'Bevestig',
+      error: 'Ongeldige invoer',
+      title: 'Bericht',
+    },
+    pageHeader: {
+      title: 'Terug',
+    },
+    pagination: {
+      currentPage: 'page {pager}', // to be translated
+      goto: 'Ga naar',
+      next: 'Go to next page', // to be translated
+      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // to be translated
+      pageClassifier: '',
+      pagesize: '/pagina',
+      prev: 'Go to previous page', // to be translated
+      prevPages: 'Previous {pager} pages', // to be translated
+      total: 'Totaal {total}',
+    },
+    popconfirm: {
+      cancelButtonText: 'Nee',
+      confirmButtonText: 'Ja',
+    },
+    select: {
+      loading: 'Laden',
+      noData: 'Geen data',
+      noMatch: 'Geen overeenkomende resultaten',
+      placeholder: 'Selecteer',
+    },
+    table: {
+      clearFilter: 'Alles',
+      confirmFilter: 'Bevestigen',
+      emptyText: 'Geen data',
+      resetFilter: 'Reset',
+      sumText: 'Som',
+    },
+    transfer: {
+      filterPlaceholder: 'Geef zoekwoerd',
+      hasCheckedFormat: '{checked}/{total} geselecteerd',
+      noCheckedFormat: '{total} items',
+      noData: 'Geen data',
+      noMatch: 'Geen overeenkomende resultaten',
+      titles: ['Lijst 1', 'Lijst 2'],
+    },
+    tree: {
+      emptyText: 'Geen data',
+    },
+    upload: {
+      continue: 'Doorgaan',
+      delete: 'Verwijder',
+      deleteTip: 'Kies verwijder om te wissen',
+      preview: 'Voorbeeld',
+    },
+  },
+  name: 'nl',
+}
