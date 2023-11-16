@@ -29,6 +29,8 @@ import { useSpace } from './use-space'
 
 import type { Arrayable } from '/@/utils'
 
+import '../../../styles/components/el-space.css'
+
 export const spaceProps = buildProps({
   /**
    * @description Controls the alignment of items

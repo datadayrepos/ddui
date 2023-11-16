@@ -1,3 +1,9 @@
+<template>
+  <transition :name="ns.b()" v-on="on">
+    <slot />
+  </transition>
+</template>
+
 <script lang="ts" setup>
 import { useNamespace } from '/@/hooks'
 import type { RendererElement } from 'vue'
@@ -78,8 +84,4 @@ const on = {
 }
 </script>
 
-<template>
-  <transition :name="ns.b()" v-on="on">
-    <slot />
-  </transition>
-</template>
+<style lang="css" src="../../../styles/components/el-collapse-transition.css"></style>

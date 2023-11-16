@@ -1,24 +1,3 @@
-<script lang="ts" setup>
-import { computed } from 'vue'
-import { ElIcon } from '/@/components/icon'
-import { useNamespace } from '/@/hooks'
-import { timelineItemProps } from './timeline-item'
-
-defineOptions({
-  name: 'ElTimelineItem',
-})
-
-const props = defineProps(timelineItemProps)
-
-const ns = useNamespace('timeline-item')
-const defaultNodeKls = computed(() => [
-  ns.e('node'),
-  ns.em('node', props.size || ''),
-  ns.em('node', props.type || ''),
-  ns.is('hollow', props.hollow),
-])
-</script>
-
 <template>
   <li :class="[ns.b(), { [ns.e('center')]: center }]">
     <div :class="ns.e('tail')" />
@@ -58,3 +37,26 @@ const defaultNodeKls = computed(() => [
     </div>
   </li>
 </template>
+
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { ElIcon } from '/@/components/icon'
+import { useNamespace } from '/@/hooks'
+import { timelineItemProps } from './timeline-item'
+
+const props = defineProps(timelineItemProps)
+
+defineOptions({
+  name: 'ElTimelineItem',
+})
+
+const ns = useNamespace('timeline-item')
+const defaultNodeKls = computed(() => [
+  ns.e('node'),
+  ns.em('node', props.size || ''),
+  ns.em('node', props.type || ''),
+  ns.is('hollow', props.hollow),
+])
+</script>
+
+<style lang="css" src="../../../styles/components/el-timeline-item.css"></style>

@@ -1,3 +1,52 @@
+<template>
+  <ElPopper ref="popperRef" :role="role">
+    <ElTooltipTrigger
+      :disabled="disabled"
+      :trigger="trigger"
+      :trigger-keys="triggerKeys"
+      :virtual-ref="virtualRef"
+      :virtual-triggering="virtualTriggering"
+    >
+      <slot v-if="$slots.default" />
+    </ElTooltipTrigger>
+    <ElTooltipContent
+      ref="contentRef"
+      :aria-label="ariaLabel"
+      :boundaries-padding="boundariesPadding"
+      :content="content"
+      :disabled="disabled"
+      :effect="effect"
+      :enterable="enterable"
+      :fallback-placements="fallbackPlacements"
+      :hide-after="hideAfter"
+      :gpu-acceleration="gpuAcceleration"
+      :offset="offset"
+      :persistent="persistent"
+      :popper-class="popperClass"
+      :popper-style="popperStyle"
+      :placement="placement"
+      :popper-options="popperOptions"
+      :pure="pure"
+      :raw-content="rawContent"
+      :reference-el="referenceEl"
+      :trigger-target-el="triggerTargetEl"
+      :show-after="showAfter"
+      :strategy="strategy"
+      :teleported="teleported"
+      :transition="transition"
+      :virtual-triggering="virtualTriggering"
+      :z-index="zIndex"
+      :append-to="appendTo"
+    >
+      <slot name="content">
+        <span v-if="rawContent" v-html="content" />
+        <span v-else>{{ content }}</span>
+      </slot>
+      <ElPopperArrow v-if="showArrow" :arrow-offset="arrowOffset" />
+    </ElTooltipContent>
+  </ElPopper>
+</template>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -23,12 +72,13 @@ import ElTooltipTrigger from './trigger.vue'
 import ElTooltipContent from './content.vue'
 import type { PopperInstance } from '/@/components/popper'
 
+const props = defineProps(useTooltipProps)
+
+const emit = defineEmits(tooltipEmits)
+
 defineOptions({
   name: 'ElTooltip',
 })
-
-const props = defineProps(useTooltipProps)
-const emit = defineEmits(tooltipEmits)
 
 usePopperContainer()
 
@@ -143,52 +193,3 @@ defineExpose({
   hide,
 })
 </script>
-
-<template>
-  <ElPopper ref="popperRef" :role="role">
-    <ElTooltipTrigger
-      :disabled="disabled"
-      :trigger="trigger"
-      :trigger-keys="triggerKeys"
-      :virtual-ref="virtualRef"
-      :virtual-triggering="virtualTriggering"
-    >
-      <slot v-if="$slots.default" />
-    </ElTooltipTrigger>
-    <ElTooltipContent
-      ref="contentRef"
-      :aria-label="ariaLabel"
-      :boundaries-padding="boundariesPadding"
-      :content="content"
-      :disabled="disabled"
-      :effect="effect"
-      :enterable="enterable"
-      :fallback-placements="fallbackPlacements"
-      :hide-after="hideAfter"
-      :gpu-acceleration="gpuAcceleration"
-      :offset="offset"
-      :persistent="persistent"
-      :popper-class="popperClass"
-      :popper-style="popperStyle"
-      :placement="placement"
-      :popper-options="popperOptions"
-      :pure="pure"
-      :raw-content="rawContent"
-      :reference-el="referenceEl"
-      :trigger-target-el="triggerTargetEl"
-      :show-after="showAfter"
-      :strategy="strategy"
-      :teleported="teleported"
-      :transition="transition"
-      :virtual-triggering="virtualTriggering"
-      :z-index="zIndex"
-      :append-to="appendTo"
-    >
-      <slot name="content">
-        <span v-if="rawContent" v-html="content" />
-        <span v-else>{{ content }}</span>
-      </slot>
-      <ElPopperArrow v-if="showArrow" :arrow-offset="arrowOffset" />
-    </ElTooltipContent>
-  </ElPopper>
-</template>

@@ -1,3 +1,4 @@
+// eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
 import { reactive } from 'vue'
 import { hasOwn } from '/@/utils'

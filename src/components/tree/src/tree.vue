@@ -1,3 +1,41 @@
+<template>
+  <div
+    ref="el$"
+    :class="[
+      ns.b(),
+      ns.is('dragging', !!dragState.draggingNode),
+      ns.is('drop-not-allow', !dragState.allowDrop),
+      ns.is('drop-inner', dragState.dropType === 'inner'),
+      { [ns.m('highlight-current')]: highlightCurrent },
+    ]"
+    role="tree"
+  >
+    <ElTreeNode
+      v-for="child in root.childNodes"
+      :key="getNodeKey(child)"
+      :node="child"
+      :props="props"
+      :accordion="accordion"
+      :render-after-expand="renderAfterExpand"
+      :show-checkbox="showCheckbox"
+      :render-content="renderContent"
+      @node-expand="handleNodeExpand"
+    />
+    <div v-if="isEmpty" :class="ns.e('empty-block')">
+      <slot name="empty">
+        <span :class="ns.e('empty-text')">
+          {{ emptyText ?? t('el.tree.emptyText') }}
+        </span>
+      </slot>
+    </div>
+    <div
+      v-show="dragState.showDropIndicator"
+      ref="dropIndicator$"
+      :class="ns.e('drop-indicator')"
+    />
+  </div>
+</template>
+
 <script lang="ts">
 // @ts-nocheck
 import {
@@ -392,40 +430,4 @@ export default defineComponent({
 })
 </script>
 
-<template>
-  <div
-    ref="el$"
-    :class="[
-      ns.b(),
-      ns.is('dragging', !!dragState.draggingNode),
-      ns.is('drop-not-allow', !dragState.allowDrop),
-      ns.is('drop-inner', dragState.dropType === 'inner'),
-      { [ns.m('highlight-current')]: highlightCurrent },
-    ]"
-    role="tree"
-  >
-    <ElTreeNode
-      v-for="child in root.childNodes"
-      :key="getNodeKey(child)"
-      :node="child"
-      :props="props"
-      :accordion="accordion"
-      :render-after-expand="renderAfterExpand"
-      :show-checkbox="showCheckbox"
-      :render-content="renderContent"
-      @node-expand="handleNodeExpand"
-    />
-    <div v-if="isEmpty" :class="ns.e('empty-block')">
-      <slot name="empty">
-        <span :class="ns.e('empty-text')">
-          {{ emptyText ?? t('el.tree.emptyText') }}
-        </span>
-      </slot>
-    </div>
-    <div
-      v-show="dragState.showDropIndicator"
-      ref="dropIndicator$"
-      :class="ns.e('drop-indicator')"
-    />
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-tree.css"></style>

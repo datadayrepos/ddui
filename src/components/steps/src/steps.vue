@@ -1,3 +1,9 @@
+<template>
+  <div :class="[ns.b(), ns.m(simple ? 'simple' : direction)]">
+    <slot />
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { getCurrentInstance, provide, watch } from 'vue'
 import { CHANGE_EVENT } from '/@/constants'
@@ -6,12 +12,13 @@ import { stepsEmits, stepsProps } from './steps'
 
 import type { StepItemState } from './item.vue'
 
+const props = defineProps(stepsProps)
+
+const emit = defineEmits(stepsEmits)
+
 defineOptions({
   name: 'ElSteps',
 })
-
-const props = defineProps(stepsProps)
-const emit = defineEmits(stepsEmits)
 
 const ns = useNamespace('steps')
 const {
@@ -36,8 +43,4 @@ watch(
 )
 </script>
 
-<template>
-  <div :class="[ns.b(), ns.m(simple ? 'simple' : direction)]">
-    <slot />
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-steps.css"></style>

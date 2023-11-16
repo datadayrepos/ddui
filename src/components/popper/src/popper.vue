@@ -1,3 +1,7 @@
+<template>
+  <slot />
+</template>
+
 <script lang="ts" setup>
 import { computed, provide, ref } from 'vue'
 import type { Instance as PopperInstance } from '@datadayrepos/popperts'
@@ -6,12 +10,11 @@ import { popperProps } from './popper'
 
 import type { ElPopperInjectionContext } from './constants'
 
+const props = defineProps(popperProps)
 defineOptions({
   name: 'ElPopper',
   inheritAttrs: false,
 })
-const props = defineProps(popperProps)
-
 const triggerRef = ref<HTMLElement>()
 const popperInstanceRef = ref<PopperInstance>()
 const contentRef = ref<HTMLElement>()
@@ -46,6 +49,4 @@ defineExpose(popperProvides)
 provide(POPPER_INJECTION_KEY, popperProvides)
 </script>
 
-<template>
-  <slot />
-</template>
+<style lang="css" src="../../../styles/components/el-popper.css"></style>

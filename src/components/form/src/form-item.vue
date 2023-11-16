@@ -1,3 +1,41 @@
+<template>
+  <div
+    ref="formItemRef"
+    :class="formItemClasses"
+    :role="isGroup ? 'group' : undefined"
+    :aria-labelledby="isGroup ? labelId : undefined"
+  >
+    <FormLabelWrap
+      :is-auto-width="labelStyle.width === 'auto'"
+      :update-all="formContext?.labelWidth === 'auto'"
+    >
+      <component
+        :is="labelFor ? 'label' : 'div'"
+        v-if="hasLabel"
+        :id="labelId"
+        :for="labelFor"
+        :class="ns.e('label')"
+        :style="labelStyle"
+      >
+        <slot name="label" :label="currentLabel">
+          {{ currentLabel }}
+        </slot>
+      </component>
+    </FormLabelWrap>
+
+    <div :class="ns.e('content')" :style="contentStyle">
+      <slot />
+      <transition-group :name="`${ns.namespace.value}-zoom-in-top`">
+        <slot v-if="shouldShowError" name="error" :error="validateMessage">
+          <div :class="validateClasses">
+            {{ validateMessage }}
+          </div>
+        </slot>
+      </transition-group>
+    </div>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -14,7 +52,7 @@ import {
 } from 'vue'
 import AsyncValidator from '@datadayrepos/asyncvalidator'
 import { clone } from '@datadayrepos/lodashts'
-import { refDebounced } from '@datadayrepos/usevuecore'
+import { refDebounced } from '@datadayrepos/usevueshared'
 import {
   addUnit,
   ensureArray,
@@ -39,10 +77,10 @@ import type {
 } from './types'
 import type { FormItemValidateState } from './form-item'
 
+const props = defineProps(formItemProps)
 defineOptions({
   name: 'ElFormItem',
 })
-const props = defineProps(formItemProps)
 const slots = useSlots()
 
 const formContext = inject(formContextKey, undefined)
@@ -387,41 +425,3 @@ defineExpose({
   resetField,
 })
 </script>
-
-<template>
-  <div
-    ref="formItemRef"
-    :class="formItemClasses"
-    :role="isGroup ? 'group' : undefined"
-    :aria-labelledby="isGroup ? labelId : undefined"
-  >
-    <FormLabelWrap
-      :is-auto-width="labelStyle.width === 'auto'"
-      :update-all="formContext?.labelWidth === 'auto'"
-    >
-      <component
-        :is="labelFor ? 'label' : 'div'"
-        v-if="hasLabel"
-        :id="labelId"
-        :for="labelFor"
-        :class="ns.e('label')"
-        :style="labelStyle"
-      >
-        <slot name="label" :label="currentLabel">
-          {{ currentLabel }}
-        </slot>
-      </component>
-    </FormLabelWrap>
-
-    <div :class="ns.e('content')" :style="contentStyle">
-      <slot />
-      <transition-group :name="`${ns.namespace.value}-zoom-in-top`">
-        <slot v-if="shouldShowError" name="error" :error="validateMessage">
-          <div :class="validateClasses">
-            {{ validateMessage }}
-          </div>
-        </slot>
-      </transition-group>
-    </div>
-  </div>
-</template>

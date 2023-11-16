@@ -1,52 +1,3 @@
-<script lang="ts" setup>
-import { computed, ref } from 'vue'
-import ElButton from '/@/components/button'
-import ElIcon from '/@/components/icon'
-import ElTooltip from '/@/components/tooltip'
-import { useLocale, useNamespace } from '/@/hooks'
-import { addUnit } from '/@/utils'
-import { popconfirmEmits, popconfirmProps } from './popconfirm'
-
-import type { TooltipInstance } from '/@/components/tooltip'
-
-defineOptions({
-  name: 'ElPopconfirm',
-})
-
-const props = defineProps(popconfirmProps)
-const emit = defineEmits(popconfirmEmits)
-
-const { t } = useLocale()
-const ns = useNamespace('popconfirm')
-const tooltipRef = ref<TooltipInstance>()
-
-function hidePopper() {
-  tooltipRef.value?.onClose?.()
-}
-
-const style = computed(() => {
-  return {
-    width: addUnit(props.width),
-  }
-})
-
-function confirm(e: MouseEvent) {
-  emit('confirm', e)
-  hidePopper()
-}
-function cancel(e: MouseEvent) {
-  emit('cancel', e)
-  hidePopper()
-}
-
-const finalConfirmButtonText = computed(
-  () => props.confirmButtonText || t('el.popconfirm.confirmButtonText'),
-)
-const finalCancelButtonText = computed(
-  () => props.cancelButtonText || t('el.popconfirm.cancelButtonText'),
-)
-</script>
-
 <template>
   <ElTooltip
     ref="tooltipRef"
@@ -97,3 +48,55 @@ const finalCancelButtonText = computed(
     </template>
   </ElTooltip>
 </template>
+
+<script lang="ts" setup>
+import { computed, ref } from 'vue'
+import ElButton from '/@/components/button'
+import ElIcon from '/@/components/icon'
+import ElTooltip from '/@/components/tooltip'
+import { useLocale, useNamespace } from '/@/hooks'
+import { addUnit } from '/@/utils'
+import { popconfirmEmits, popconfirmProps } from './popconfirm'
+
+import type { TooltipInstance } from '/@/components/tooltip'
+
+const props = defineProps(popconfirmProps)
+
+const emit = defineEmits(popconfirmEmits)
+
+defineOptions({
+  name: 'ElPopconfirm',
+})
+
+const { t } = useLocale()
+const ns = useNamespace('popconfirm')
+const tooltipRef = ref<TooltipInstance>()
+
+function hidePopper() {
+  tooltipRef.value?.onClose?.()
+}
+
+const style = computed(() => {
+  return {
+    width: addUnit(props.width),
+  }
+})
+
+function confirm(e: MouseEvent) {
+  emit('confirm', e)
+  hidePopper()
+}
+function cancel(e: MouseEvent) {
+  emit('cancel', e)
+  hidePopper()
+}
+
+const finalConfirmButtonText = computed(
+  () => props.confirmButtonText || t('el.popconfirm.confirmButtonText'),
+)
+const finalCancelButtonText = computed(
+  () => props.cancelButtonText || t('el.popconfirm.cancelButtonText'),
+)
+</script>
+
+<style lang="css" src="../../../styles/components/el-popconfirm.css"></style>

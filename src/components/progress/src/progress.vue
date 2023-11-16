@@ -227,3 +227,5 @@ function getCurrentColor(percentage: number) {
   }
 }
 </script>
+
+<style lang="css" src="../../../styles/components/el-progress.css"></style>

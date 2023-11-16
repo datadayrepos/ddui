@@ -1,21 +1,3 @@
-<script lang="ts" setup>
-import { computed } from 'vue'
-import { useNamespace } from '/@/hooks'
-import type { CSSProperties } from 'vue'
-import { dividerProps } from './divider'
-
-defineOptions({
-  name: 'ElDivider',
-})
-const props = defineProps(dividerProps)
-const ns = useNamespace('divider')
-const dividerStyle = computed(() => {
-  return ns.cssVar({
-    'border-style': props.borderStyle,
-  }) as CSSProperties
-})
-</script>
-
 <template>
   <div
     :class="[ns.b(), ns.m(direction)]"
@@ -30,3 +12,23 @@ const dividerStyle = computed(() => {
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { useNamespace } from '/@/hooks'
+import type { CSSProperties } from 'vue'
+import { dividerProps } from './divider'
+
+const props = defineProps(dividerProps)
+defineOptions({
+  name: 'ElDivider',
+})
+const ns = useNamespace('divider')
+const dividerStyle = computed(() => {
+  return ns.cssVar({
+    'border-style': props.borderStyle,
+  }) as CSSProperties
+})
+</script>
+
+<style lang="css" src="../../../styles/components/el-divider.css"></style>

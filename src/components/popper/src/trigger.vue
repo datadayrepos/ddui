@@ -1,3 +1,16 @@
+<template>
+  <ElOnlyChild
+    v-if="!virtualTriggering"
+    v-bind="$attrs"
+    :aria-controls="ariaControls"
+    :aria-describedby="ariaDescribedby"
+    :aria-expanded="ariaExpanded"
+    :aria-haspopup="ariaHaspopup"
+  >
+    <slot />
+  </ElOnlyChild>
+</template>
+
 <script lang="ts" setup>
 import { computed, inject, onBeforeUnmount, onMounted, watch } from 'vue'
 import { isNil } from '@datadayrepos/lodashts'
@@ -9,12 +22,12 @@ import type { WatchStopHandle } from 'vue'
 import { POPPER_INJECTION_KEY } from './constants'
 import { popperTriggerProps } from './trigger'
 
+const props = defineProps(popperTriggerProps)
+
 defineOptions({
   name: 'ElPopperTrigger',
   inheritAttrs: false,
 })
-
-const props = defineProps(popperTriggerProps)
 
 const { role, triggerRef } = inject(POPPER_INJECTION_KEY, undefined)!
 
@@ -129,16 +142,3 @@ defineExpose({
   triggerRef,
 })
 </script>
-
-<template>
-  <ElOnlyChild
-    v-if="!virtualTriggering"
-    v-bind="$attrs"
-    :aria-controls="ariaControls"
-    :aria-describedby="ariaDescribedby"
-    :aria-expanded="ariaExpanded"
-    :aria-haspopup="ariaHaspopup"
-  >
-    <slot />
-  </ElOnlyChild>
-</template>

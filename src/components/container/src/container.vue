@@ -1,12 +1,15 @@
+<template>
+  <section :class="[ns.b(), ns.is('vertical', isVertical)]">
+    <slot />
+  </section>
+</template>
+
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue'
 import { useNamespace } from '/@/hooks'
 
 import type { Component, VNode } from 'vue'
 
-defineOptions({
-  name: 'ElContainer',
-})
 const props = defineProps({
   /**
    * @description layout direction for child elements
@@ -14,6 +17,9 @@ const props = defineProps({
   direction: {
     type: String,
   },
+})
+defineOptions({
+  name: 'ElContainer',
 })
 const slots = useSlots()
 
@@ -38,8 +44,4 @@ const isVertical = computed(() => {
 })
 </script>
 
-<template>
-  <section :class="[ns.b(), ns.is('vertical', isVertical)]">
-    <slot />
-  </section>
-</template>
+<style lang="css" src="../../../styles/components/el-container.css"></style>

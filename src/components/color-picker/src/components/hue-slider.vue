@@ -1,3 +1,17 @@
+<template>
+  <div :class="[ns.b(), ns.is('vertical', vertical)]">
+    <div ref="bar" :class="ns.e('bar')" @click="handleClick" />
+    <div
+      ref="thumb"
+      :class="ns.e('thumb')"
+      :style="{
+        left: `${thumbLeft}px`,
+        top: `${thumbTop}px`,
+      }"
+    />
+  </div>
+</template>
+
 <script lang="ts">
 import {
   computed,
@@ -158,17 +172,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<template>
-  <div :class="[ns.b(), ns.is('vertical', vertical)]">
-    <div ref="bar" :class="ns.e('bar')" @click="handleClick" />
-    <div
-      ref="thumb"
-      :class="ns.e('thumb')"
-      :style="{
-        left: `${thumbLeft}px`,
-        top: `${thumbTop}px`,
-      }"
-    />
-  </div>
-</template>

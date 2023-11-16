@@ -1,12 +1,15 @@
+<template>
+  <aside :class="ns.b()" :style="style">
+    <slot />
+  </aside>
+</template>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useNamespace } from '/@/hooks'
 
 import type { CSSProperties } from 'vue'
 
-defineOptions({
-  name: 'ElAside',
-})
 const props = defineProps({
   /**
    * @description width of the side section
@@ -16,7 +19,9 @@ const props = defineProps({
     default: null,
   },
 })
-
+defineOptions({
+  name: 'ElAside',
+})
 const ns = useNamespace('aside')
 const style = computed(
   () =>
@@ -24,8 +29,4 @@ const style = computed(
 )
 </script>
 
-<template>
-  <aside :class="ns.b()" :style="style">
-    <slot />
-  </aside>
-</template>
+<style lang="css" src="../../../styles/components/el-aside.css"></style>

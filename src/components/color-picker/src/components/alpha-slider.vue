@@ -1,3 +1,10 @@
+<template>
+  <div :class="rootKls">
+    <div ref="bar" :class="barKls" :style="barStyle" @click="handleClick" />
+    <div ref="thumb" :class="thumbKls" :style="thumbStyle" />
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { alphaSliderProps } from '../props/alpha-slider'
 import {
@@ -5,11 +12,11 @@ import {
   useAlphaSliderDOM,
 } from '../composables/use-alpha-slider'
 
+const props = defineProps(alphaSliderProps)
+
 defineOptions({
   name: COMPONENT_NAME,
 })
-
-const props = defineProps(alphaSliderProps)
 
 const COMPONENT_NAME = 'ElColorAlphaSlider'
 
@@ -40,10 +47,3 @@ defineExpose({
   thumb,
 })
 </script>
-
-<template>
-  <div :class="rootKls">
-    <div ref="bar" :class="barKls" :style="barStyle" @click="handleClick" />
-    <div ref="thumb" :class="thumbKls" :style="thumbStyle" />
-  </div>
-</template>

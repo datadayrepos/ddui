@@ -75,7 +75,7 @@ interface TableColumn<T> extends ComponentInternalInstance {
   columnConfig: Ref<Partial<TableColumnCtx<T>>>
 }
 
-export type { Filters, FilterMethods, TableColumnCtx, TableColumn, ValueOf }
+export type { CI, Filters, FilterMethods, TableColumnCtx, TableColumn, ValueOf }
 
 export default {
   align: String,

@@ -1,3 +1,14 @@
+<template>
+  <Thumb :move="moveX" :ratio="ratioX" :size="width" :always="always" />
+  <Thumb
+    :move="moveY"
+    :ratio="ratioY"
+    :size="height"
+    vertical
+    :always="always"
+  />
+</template>
+
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { GAP } from './util'
@@ -23,14 +34,3 @@ defineExpose({
   handleScroll,
 })
 </script>
-
-<template>
-  <Thumb :move="moveX" :ratio="ratioX" :size="width" :always="always" />
-  <Thumb
-    :move="moveY"
-    :ratio="ratioY"
-    :size="height"
-    vertical
-    :always="always"
-  />
-</template>

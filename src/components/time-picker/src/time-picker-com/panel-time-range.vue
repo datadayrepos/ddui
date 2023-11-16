@@ -1,3 +1,72 @@
+<template>
+  <div
+    v-if="actualVisible"
+    :class="[nsTime.b('range-picker'), nsPicker.b('panel')]"
+  >
+    <div :class="nsTime.be('range-picker', 'content')">
+      <div :class="nsTime.be('range-picker', 'cell')">
+        <div :class="nsTime.be('range-picker', 'header')">
+          {{ t('el.datepicker.startTime') }}
+        </div>
+        <div :class="startContainerKls">
+          <TimeSpinner
+            ref="minSpinner"
+            role="start"
+            :show-seconds="showSeconds"
+            :am-pm-mode="amPmMode"
+            :arrow-control="arrowControl"
+            :spinner-date="startTime"
+            :disabled-hours="disabledHours_"
+            :disabled-minutes="disabledMinutes_"
+            :disabled-seconds="disabledSeconds_"
+            @change="handleMinChange"
+            @set-option="onSetOption"
+            @select-range="setMinSelectionRange"
+          />
+        </div>
+      </div>
+      <div :class="nsTime.be('range-picker', 'cell')">
+        <div :class="nsTime.be('range-picker', 'header')">
+          {{ t('el.datepicker.endTime') }}
+        </div>
+        <div :class="endContainerKls">
+          <TimeSpinner
+            ref="maxSpinner"
+            role="end"
+            :show-seconds="showSeconds"
+            :am-pm-mode="amPmMode"
+            :arrow-control="arrowControl"
+            :spinner-date="endTime"
+            :disabled-hours="disabledHours_"
+            :disabled-minutes="disabledMinutes_"
+            :disabled-seconds="disabledSeconds_"
+            @change="handleMaxChange"
+            @set-option="onSetOption"
+            @select-range="setMaxSelectionRange"
+          />
+        </div>
+      </div>
+    </div>
+    <div :class="nsTime.be('panel', 'footer')">
+      <button
+        type="button"
+        class="cancel" :class="[nsTime.be('panel', 'btn')]"
+        @click="handleCancel()"
+      >
+        {{ t('el.datepicker.cancel') }}
+      </button>
+      <button
+        type="button"
+        class="confirm" :class="[nsTime.be('panel', 'btn')]"
+        :disabled="btnConfirmDisabled"
+        @click="handleConfirm()"
+      >
+        {{ t('el.datepicker.confirm') }}
+      </button>
+    </div>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { computed, inject, ref, unref } from 'vue'
 import dayjs from 'dayjs'
@@ -239,72 +308,3 @@ emit('set-picker-option', ['handleKeydownInput', handleKeydown])
 emit('set-picker-option', ['getDefaultValue', getDefaultValue])
 emit('set-picker-option', ['getRangeAvailableTime', getRangeAvailableTime])
 </script>
-
-<template>
-  <div
-    v-if="actualVisible"
-    :class="[nsTime.b('range-picker'), nsPicker.b('panel')]"
-  >
-    <div :class="nsTime.be('range-picker', 'content')">
-      <div :class="nsTime.be('range-picker', 'cell')">
-        <div :class="nsTime.be('range-picker', 'header')">
-          {{ t('el.datepicker.startTime') }}
-        </div>
-        <div :class="startContainerKls">
-          <TimeSpinner
-            ref="minSpinner"
-            role="start"
-            :show-seconds="showSeconds"
-            :am-pm-mode="amPmMode"
-            :arrow-control="arrowControl"
-            :spinner-date="startTime"
-            :disabled-hours="disabledHours_"
-            :disabled-minutes="disabledMinutes_"
-            :disabled-seconds="disabledSeconds_"
-            @change="handleMinChange"
-            @set-option="onSetOption"
-            @select-range="setMinSelectionRange"
-          />
-        </div>
-      </div>
-      <div :class="nsTime.be('range-picker', 'cell')">
-        <div :class="nsTime.be('range-picker', 'header')">
-          {{ t('el.datepicker.endTime') }}
-        </div>
-        <div :class="endContainerKls">
-          <TimeSpinner
-            ref="maxSpinner"
-            role="end"
-            :show-seconds="showSeconds"
-            :am-pm-mode="amPmMode"
-            :arrow-control="arrowControl"
-            :spinner-date="endTime"
-            :disabled-hours="disabledHours_"
-            :disabled-minutes="disabledMinutes_"
-            :disabled-seconds="disabledSeconds_"
-            @change="handleMaxChange"
-            @set-option="onSetOption"
-            @select-range="setMaxSelectionRange"
-          />
-        </div>
-      </div>
-    </div>
-    <div :class="nsTime.be('panel', 'footer')">
-      <button
-        type="button"
-        class="cancel" :class="[nsTime.be('panel', 'btn')]"
-        @click="handleCancel()"
-      >
-        {{ t('el.datepicker.cancel') }}
-      </button>
-      <button
-        type="button"
-        class="confirm" :class="[nsTime.be('panel', 'btn')]"
-        :disabled="btnConfirmDisabled"
-        @click="handleConfirm()"
-      >
-        {{ t('el.datepicker.confirm') }}
-      </button>
-    </div>
-  </div>
-</template>

@@ -1,3 +1,22 @@
+<template>
+  <ElPopperTrigger
+    :id="id"
+    :virtual-ref="virtualRef"
+    :open="open"
+    :virtual-triggering="virtualTriggering"
+    :class="ns.e('trigger')"
+    @blur="onBlur"
+    @click="onClick"
+    @contextmenu="onContextMenu"
+    @focus="onFocus"
+    @mouseenter="onMouseenter"
+    @mouseleave="onMouseleave"
+    @keydown="onKeydown"
+  >
+    <slot />
+  </ElPopperTrigger>
+</template>
+
 <script lang="ts" setup>
 import { inject, ref, toRef, unref } from 'vue'
 import { ElPopperTrigger } from '/@/components/popper'
@@ -8,11 +27,11 @@ import { useTooltipTriggerProps } from './trigger'
 import { whenTrigger } from './utils'
 import type { OnlyChildExpose } from '/@/components/slot'
 
+const props = defineProps(useTooltipTriggerProps)
+
 defineOptions({
   name: 'ElTooltipTrigger',
 })
-
-const props = defineProps(useTooltipTriggerProps)
 
 const ns = useNamespace('tooltip')
 const { controlled, id, open, onOpen, onClose, onToggle } = inject(
@@ -80,22 +99,3 @@ defineExpose({
   triggerRef,
 })
 </script>
-
-<template>
-  <ElPopperTrigger
-    :id="id"
-    :virtual-ref="virtualRef"
-    :open="open"
-    :virtual-triggering="virtualTriggering"
-    :class="ns.e('trigger')"
-    @blur="onBlur"
-    @click="onClick"
-    @contextmenu="onContextMenu"
-    @focus="onFocus"
-    @mouseenter="onMouseenter"
-    @mouseleave="onMouseleave"
-    @keydown="onKeydown"
-  >
-    <slot />
-  </ElPopperTrigger>
-</template>

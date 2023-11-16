@@ -9,6 +9,8 @@ import { VERTICAL } from './defaults'
 import type { ExtractPropTypes, StyleValue } from 'vue'
 import type { GridItemKeyGetter, ItemSize } from './types'
 
+import '../../../styles/components/el-virtual-list.css'
+
 const itemSize = buildProp({
   required: true,
   type: definePropType<number | ItemSize>([Number, Function]),

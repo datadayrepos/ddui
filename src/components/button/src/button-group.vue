@@ -1,13 +1,19 @@
+<template>
+  <div :class="`${ns.b('group')}`">
+    <slot />
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { provide, reactive, toRef } from 'vue'
 import { useNamespace } from '/@/hooks'
 import { buttonGroupProps } from './button-group'
 import { buttonGroupContextKey } from './constants'
 
+const props = defineProps(buttonGroupProps)
 defineOptions({
   name: 'ElButtonGroup',
 })
-const props = defineProps(buttonGroupProps)
 provide(
   buttonGroupContextKey,
   reactive({
@@ -18,8 +24,4 @@ provide(
 const ns = useNamespace('button')
 </script>
 
-<template>
-  <div :class="`${ns.b('group')}`">
-    <slot />
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-button-group.css"></style>

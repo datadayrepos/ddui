@@ -1,32 +1,3 @@
-<script lang="ts" setup>
-import { computed, ref } from 'vue'
-import { useLocale, useNamespace } from '/@/hooks'
-import ElInput from '/@/components/input'
-import { usePagination } from '../usePagination'
-import { paginationJumperProps } from './jumper'
-
-defineOptions({
-  name: 'ElPaginationJumper',
-})
-
-defineProps(paginationJumperProps)
-const { t } = useLocale()
-const ns = useNamespace('pagination')
-const { pageCount, disabled, currentPage, changeEvent } = usePagination()
-const userInput = ref<number | string>()
-const innerValue = computed(() => userInput.value ?? currentPage?.value)
-
-function handleInput(val: number | string) {
-  userInput.value = val ? +val : ''
-}
-
-function handleChange(val: number | string) {
-  val = Math.trunc(+val)
-  changeEvent?.(val)
-  userInput.value = undefined
-}
-</script>
-
 <template>
   <span :class="ns.e('jump')" :disabled="disabled">
     <span :class="[ns.e('goto')]">{{ t('el.pagination.goto') }}</span>
@@ -48,3 +19,33 @@ function handleChange(val: number | string) {
     }}</span>
   </span>
 </template>
+
+<script lang="ts" setup>
+import { computed, ref } from 'vue'
+import { useLocale, useNamespace } from '/@/hooks'
+import ElInput from '/@/components/input'
+import { usePagination } from '../usePagination'
+import { paginationJumperProps } from './jumper'
+
+defineProps(paginationJumperProps)
+
+defineOptions({
+  name: 'ElPaginationJumper',
+})
+
+const { t } = useLocale()
+const ns = useNamespace('pagination')
+const { pageCount, disabled, currentPage, changeEvent } = usePagination()
+const userInput = ref<number | string>()
+const innerValue = computed(() => userInput.value ?? currentPage?.value)
+
+function handleInput(val: number | string) {
+  userInput.value = val ? +val : ''
+}
+
+function handleChange(val: number | string) {
+  val = Math.trunc(+val)
+  changeEvent?.(val)
+  userInput.value = undefined
+}
+</script>

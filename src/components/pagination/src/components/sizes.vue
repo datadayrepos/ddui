@@ -1,3 +1,24 @@
+<template>
+  <span :class="ns.e('sizes')">
+    <ElSelect
+      :model-value="innerPageSize"
+      :disabled="disabled"
+      :popper-class="popperClass"
+      :size="size"
+      :teleported="teleported"
+      :validate-event="false"
+      @change="handleChange"
+    >
+      <ElOption
+        v-for="item in innerPageSizes"
+        :key="item"
+        :value="item"
+        :label="item + t('el.pagination.pagesize')"
+      />
+    </ElSelect>
+  </span>
+</template>
+
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { isEqual } from '@datadayrepos/lodashts'
@@ -6,12 +27,14 @@ import { useLocale, useNamespace } from '/@/hooks'
 import { usePagination } from '../usePagination'
 import { paginationSizesProps } from './sizes'
 
+const props = defineProps(paginationSizesProps)
+
+const emit = defineEmits(['page-size-change'])
+
 defineOptions({
   name: 'ElPaginationSizes',
 })
 
-const props = defineProps(paginationSizesProps)
-const emit = defineEmits(['page-size-change'])
 const { t } = useLocale()
 const ns = useNamespace('pagination')
 const pagination = usePagination()
@@ -46,24 +69,3 @@ function handleChange(val: number) {
   }
 }
 </script>
-
-<template>
-  <span :class="ns.e('sizes')">
-    <ElSelect
-      :model-value="innerPageSize"
-      :disabled="disabled"
-      :popper-class="popperClass"
-      :size="size"
-      :teleported="teleported"
-      :validate-event="false"
-      @change="handleChange"
-    >
-      <ElOption
-        v-for="item in innerPageSizes"
-        :key="item"
-        :value="item"
-        :label="item + t('el.pagination.pagesize')"
-      />
-    </ElSelect>
-  </span>
-</template>

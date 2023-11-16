@@ -1,27 +1,3 @@
-<script lang="ts" setup>
-import { computed } from 'vue'
-import { useLocale, useNamespace } from '/@/hooks'
-import { addUnit } from '/@/utils'
-import type { CSSProperties } from 'vue'
-import ImgEmpty from './img-empty.vue'
-import { emptyProps } from './empty'
-
-defineOptions({
-  name: 'ElEmpty',
-})
-
-const props = defineProps(emptyProps)
-
-const { t } = useLocale()
-const ns = useNamespace('empty')
-const emptyDescription = computed(
-  () => props.description || t('el.table.emptyText'),
-)
-const imageStyle = computed<CSSProperties>(() => ({
-  width: addUnit(props.imageSize),
-}))
-</script>
-
 <template>
   <div :class="ns.b()">
     <div :class="ns.e('image')" :style="imageStyle">
@@ -41,3 +17,29 @@ const imageStyle = computed<CSSProperties>(() => ({
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { useLocale, useNamespace } from '/@/hooks'
+import { addUnit } from '/@/utils'
+import type { CSSProperties } from 'vue'
+import ImgEmpty from './img-empty.vue'
+import { emptyProps } from './empty'
+
+const props = defineProps(emptyProps)
+
+defineOptions({
+  name: 'ElEmpty',
+})
+
+const { t } = useLocale()
+const ns = useNamespace('empty')
+const emptyDescription = computed(
+  () => props.description || t('el.table.emptyText'),
+)
+const imageStyle = computed<CSSProperties>(() => ({
+  width: addUnit(props.imageSize),
+}))
+</script>
+
+<style lang="css" src="../../../styles/components/el-empty.css"></style>

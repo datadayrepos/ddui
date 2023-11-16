@@ -1,3 +1,20 @@
+<template>
+  <li
+    v-show="visible"
+    :id="id"
+    :class="containerKls"
+    role="option"
+    :aria-disabled="isDisabled || undefined"
+    :aria-selected="itemSelected"
+    @mouseenter="hoverItem"
+    @click.stop="selectOptionClick"
+  >
+    <slot>
+      <span>{{ currentLabel }}</span>
+    </slot>
+  </li>
+</template>
+
 <script lang="ts">
 // @ts-nocheck
 import {
@@ -41,15 +58,6 @@ export default defineComponent({
     const ns = useNamespace('select')
     const id = useId()
 
-    const containerKls = computed(() => [
-      ns.be('dropdown', 'item'),
-      ns.is('disabled', unref(isDisabled)),
-      {
-        selected: unref(itemSelected),
-        hover: unref(hover),
-      },
-    ])
-
     const states = reactive({
       index: -1,
       groupDisabled: false,
@@ -62,6 +70,15 @@ export default defineComponent({
       = useOption(props, states)
 
     const { visible, hover } = toRefs(states)
+
+    const containerKls = computed(() => [
+      ns.be('dropdown', 'item'),
+      ns.is('disabled', unref(isDisabled)),
+      {
+        selected: unref(itemSelected),
+        hover: unref(hover),
+      },
+    ])
 
     const vm = getCurrentInstance().proxy
 
@@ -105,19 +122,4 @@ export default defineComponent({
 })
 </script>
 
-<template>
-  <li
-    v-show="visible"
-    :id="id"
-    :class="containerKls"
-    role="option"
-    :aria-disabled="isDisabled || undefined"
-    :aria-selected="itemSelected"
-    @mouseenter="hoverItem"
-    @click.stop="selectOptionClick"
-  >
-    <slot>
-      <span>{{ currentLabel }}</span>
-    </slot>
-  </li>
-</template>
+<style lang="css" src="../../../styles/components/el-option-item.css"></style>

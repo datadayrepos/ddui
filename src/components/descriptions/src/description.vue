@@ -1,3 +1,33 @@
+<template>
+  <div :class="descriptionKls">
+    <div
+      v-if="title || extra || $slots.title || $slots.extra"
+      :class="ns.e('header')"
+    >
+      <div :class="ns.e('title')">
+        <slot name="title">
+          {{ title }}
+        </slot>
+      </div>
+      <div :class="ns.e('extra')">
+        <slot name="extra">
+          {{ extra }}
+        </slot>
+      </div>
+    </div>
+
+    <div :class="ns.e('body')">
+      <table :class="[ns.e('table'), ns.is('bordered', border)]">
+        <tbody>
+          <template v-for="(row, _index) in getRows()" :key="_index">
+            <ElDescriptionsRow :row="row" />
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { computed, provide, useSlots } from 'vue'
 import { flattedChildren } from '/@/utils'
@@ -10,11 +40,11 @@ import { descriptionProps } from './description'
 import type { IDescriptionsInject } from './descriptions.type'
 import type { DescriptionItemVNode } from './description-item'
 
+const props = defineProps(descriptionProps)
+
 defineOptions({
   name: 'ElDescriptions',
 })
-
-const props = defineProps(descriptionProps)
 
 const ns = useNamespace('descriptions')
 
@@ -83,32 +113,4 @@ function getRows() {
 }
 </script>
 
-<template>
-  <div :class="descriptionKls">
-    <div
-      v-if="title || extra || $slots.title || $slots.extra"
-      :class="ns.e('header')"
-    >
-      <div :class="ns.e('title')">
-        <slot name="title">
-          {{ title }}
-        </slot>
-      </div>
-      <div :class="ns.e('extra')">
-        <slot name="extra">
-          {{ extra }}
-        </slot>
-      </div>
-    </div>
-
-    <div :class="ns.e('body')">
-      <table :class="[ns.e('table'), ns.is('bordered', border)]">
-        <tbody>
-          <template v-for="(row, _index) in getRows()" :key="_index">
-            <ElDescriptionsRow :row="row" />
-          </template>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-descriptions.css"></style>

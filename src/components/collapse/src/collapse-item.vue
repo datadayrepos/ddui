@@ -75,3 +75,5 @@ defineExpose({
   isActive,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-collapse-item.css"></style>

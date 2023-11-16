@@ -1,3 +1,13 @@
+<template>
+  <ElRovingFocusCollectionItem
+    :id="id"
+    :focusable="focusable"
+    :active="active"
+  >
+    <slot />
+  </ElRovingFocusCollectionItem>
+</template>
+
 <script lang="ts">
 import {
   computed,
@@ -140,13 +150,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<template>
-  <ElRovingFocusCollectionItem
-    :id="id"
-    :focusable="focusable"
-    :active="active"
-  >
-    <slot />
-  </ElRovingFocusCollectionItem>
-</template>

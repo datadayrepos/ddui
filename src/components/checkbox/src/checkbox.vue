@@ -1,53 +1,3 @@
-<script lang="ts" setup>
-import { computed, useSlots } from 'vue'
-import { useNamespace } from '/@/hooks'
-import { checkboxEmits, checkboxProps } from './checkbox'
-import { useCheckbox } from './composables'
-
-defineOptions({
-  name: 'ElCheckbox',
-})
-
-const props = defineProps(checkboxProps)
-defineEmits(checkboxEmits)
-const slots = useSlots()
-
-const {
-  inputId,
-  isLabeledByFormItem,
-  isChecked,
-  isDisabled,
-  isFocused,
-  checkboxSize,
-  hasOwnLabel,
-  model,
-  handleChange,
-  onClickRoot,
-} = useCheckbox(props, slots)
-
-const ns = useNamespace('checkbox')
-
-const compKls = computed(() => {
-  return [
-    ns.b(),
-    ns.m(checkboxSize.value),
-    ns.is('disabled', isDisabled.value),
-    ns.is('bordered', props.border),
-    ns.is('checked', isChecked.value),
-  ]
-})
-
-const spanKls = computed(() => {
-  return [
-    ns.e('input'),
-    ns.is('disabled', isDisabled.value),
-    ns.is('checked', isChecked.value),
-    ns.is('indeterminate', props.indeterminate),
-    ns.is('focus', isFocused.value),
-  ]
-})
-</script>
-
 <template>
   <component
     :is="!hasOwnLabel && isLabeledByFormItem ? 'span' : 'label'"
@@ -97,3 +47,57 @@ const spanKls = computed(() => {
     </span>
   </component>
 </template>
+
+<script lang="ts" setup>
+import { computed, useSlots } from 'vue'
+import { useNamespace } from '/@/hooks'
+import { checkboxEmits, checkboxProps } from './checkbox'
+import { useCheckbox } from './composables'
+
+const props = defineProps(checkboxProps)
+
+defineEmits(checkboxEmits)
+
+defineOptions({
+  name: 'ElCheckbox',
+})
+
+const slots = useSlots()
+
+const {
+  inputId,
+  isLabeledByFormItem,
+  isChecked,
+  isDisabled,
+  isFocused,
+  checkboxSize,
+  hasOwnLabel,
+  model,
+  handleChange,
+  onClickRoot,
+} = useCheckbox(props, slots)
+
+const ns = useNamespace('checkbox')
+
+const compKls = computed(() => {
+  return [
+    ns.b(),
+    ns.m(checkboxSize.value),
+    ns.is('disabled', isDisabled.value),
+    ns.is('bordered', props.border),
+    ns.is('checked', isChecked.value),
+  ]
+})
+
+const spanKls = computed(() => {
+  return [
+    ns.e('input'),
+    ns.is('disabled', isDisabled.value),
+    ns.is('checked', isChecked.value),
+    ns.is('indeterminate', props.indeterminate),
+    ns.is('focus', isFocused.value),
+  ]
+})
+</script>
+
+<style lang="css" src="../../../styles/components/el-checkbox.css"></style>

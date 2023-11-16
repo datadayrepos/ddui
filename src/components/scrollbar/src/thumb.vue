@@ -1,3 +1,21 @@
+<template>
+  <transition :name="ns.b('fade')">
+    <div
+      v-show="always || visible"
+      ref="instance"
+      :class="[ns.e('bar'), ns.is(bar.key)]"
+      @mousedown="clickTrackHandler"
+    >
+      <div
+        ref="thumb"
+        :class="ns.e('thumb')"
+        :style="thumbStyle"
+        @mousedown="clickThumbHandler"
+      />
+    </div>
+  </transition>
+</template>
+
 <script lang="ts" setup>
 import { computed, inject, onBeforeUnmount, ref, toRef } from 'vue'
 import { useEventListener } from '@datadayrepos/usevuecore'
@@ -156,21 +174,3 @@ useEventListener(
   mouseLeaveScrollbarHandler,
 )
 </script>
-
-<template>
-  <transition :name="ns.b('fade')">
-    <div
-      v-show="always || visible"
-      ref="instance"
-      :class="[ns.e('bar'), ns.is(bar.key)]"
-      @mousedown="clickTrackHandler"
-    >
-      <div
-        ref="thumb"
-        :class="ns.e('thumb')"
-        :style="thumbStyle"
-        @mousedown="clickThumbHandler"
-      />
-    </div>
-  </transition>
-</template>

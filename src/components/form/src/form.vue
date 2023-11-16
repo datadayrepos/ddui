@@ -1,3 +1,9 @@
+<template>
+  <form :class="formClasses">
+    <slot />
+  </form>
+</template>
+
 <script lang="ts" setup>
 import { computed, provide, reactive, toRefs, watch } from 'vue'
 import { debugWarn, isFunction } from '/@/utils'
@@ -17,12 +23,13 @@ import type {
 } from './types'
 import type { FormItemProp } from './form-item'
 
-defineOptions({
-  name: COMPONENT_NAME,
-})
 const props = defineProps(formProps)
 const emit = defineEmits(formEmits)
 const COMPONENT_NAME = 'ElForm'
+defineOptions({
+  name: COMPONENT_NAME,
+})
+
 const fields: FormItemContext[] = []
 
 const formSize = useFormSize()
@@ -194,8 +201,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <form :class="formClasses">
-    <slot />
-  </form>
-</template>
+<style lang="css" src="../../../styles/components/el-form.css"></style>

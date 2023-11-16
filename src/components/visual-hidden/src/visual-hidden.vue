@@ -1,13 +1,19 @@
+<template>
+  <span v-bind="$attrs" :style="computedStyle">
+    <slot />
+  </span>
+</template>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { StyleValue } from 'vue'
 import { visualHiddenProps } from './visual-hidden'
 
+const props = defineProps(visualHiddenProps)
+
 defineOptions({
   name: 'ElVisuallyHidden',
 })
-
-const props = defineProps(visualHiddenProps)
 
 const computedStyle = computed<StyleValue>(() => {
   return [
@@ -27,9 +33,3 @@ const computedStyle = computed<StyleValue>(() => {
   ]
 })
 </script>
-
-<template>
-  <span v-bind="$attrs" :style="computedStyle">
-    <slot />
-  </span>
-</template>

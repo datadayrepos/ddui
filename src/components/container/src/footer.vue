@@ -1,12 +1,15 @@
+<template>
+  <footer :class="ns.b()" :style="style">
+    <slot />
+  </footer>
+</template>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useNamespace } from '/@/hooks'
 
 import type { CSSProperties } from 'vue'
 
-defineOptions({
-  name: 'ElFooter',
-})
 const props = defineProps({
   /**
    * @description height of the footer
@@ -16,7 +19,9 @@ const props = defineProps({
     default: null,
   },
 })
-
+defineOptions({
+  name: 'ElFooter',
+})
 const ns = useNamespace('footer')
 
 const style = computed(
@@ -27,8 +32,4 @@ const style = computed(
 )
 </script>
 
-<template>
-  <footer :class="ns.b()" :style="style">
-    <slot />
-  </footer>
-</template>
+<style lang="css" src="../../../styles/components/el-footer.css"></style>

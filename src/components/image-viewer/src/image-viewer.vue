@@ -389,3 +389,5 @@ defineExpose({
   setActiveItem,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-image-viewer.css"></style>

@@ -1,144 +1,3 @@
-<script lang="ts" setup>
-import { computed, provide, reactive, toRefs } from 'vue'
-import ElInputNumber from '/@/components/input-number'
-import { useFormItemInputId, useFormSize } from '/@/components/form'
-import { useLocale, useNamespace } from '/@/hooks'
-import { sliderContextKey } from './constants'
-import { sliderEmits, sliderProps } from './slider'
-import SliderButton from './button.vue'
-import SliderMarker from './marker'
-import {
-  useLifecycle,
-  useMarks,
-  useSlide,
-  useStops,
-  useWatch,
-} from './composables'
-import type { SliderInitData } from './slider'
-
-defineOptions({
-  name: 'ElSlider',
-})
-
-const props = defineProps(sliderProps)
-const emit = defineEmits(sliderEmits)
-
-const ns = useNamespace('slider')
-const { t } = useLocale()
-
-const initData = reactive<SliderInitData>({
-  firstValue: 0,
-  secondValue: 0,
-  oldValue: 0,
-  dragging: false,
-  sliderSize: 1,
-})
-
-const {
-  elFormItem,
-  slider,
-  firstButton,
-  secondButton,
-  sliderDisabled,
-  minValue,
-  maxValue,
-  runwayStyle,
-  barStyle,
-  resetSize,
-  emitChange,
-  onSliderWrapperPrevent,
-  onSliderClick,
-  onSliderDown,
-  setFirstValue,
-  setSecondValue,
-} = useSlide(props, initData, emit)
-
-const { stops, getStopStyle } = useStops(props, initData, minValue, maxValue)
-
-const { inputId, isLabeledByFormItem } = useFormItemInputId(props, {
-  formItemContext: elFormItem,
-})
-
-const sliderWrapperSize = useFormSize()
-const sliderInputSize = computed(
-  () => props.inputSize || sliderWrapperSize.value,
-)
-
-const groupLabel = computed<string>(() => {
-  return (
-    props.label
-    || t('el.slider.defaultLabel', {
-      min: props.min,
-      max: props.max,
-    })
-  )
-})
-
-const firstButtonLabel = computed<string>(() => {
-  if (props.range)
-    return props.rangeStartLabel || t('el.slider.defaultRangeStartLabel')
-  else
-    return groupLabel.value
-})
-
-const firstValueText = computed<string>(() => {
-  return props.formatValueText
-    ? props.formatValueText(firstValue.value)
-    : `${firstValue.value}`
-})
-
-const secondButtonLabel = computed<string>(() => {
-  return props.rangeEndLabel || t('el.slider.defaultRangeEndLabel')
-})
-
-const secondValueText = computed<string>(() => {
-  return props.formatValueText
-    ? props.formatValueText(secondValue.value)
-    : `${secondValue.value}`
-})
-
-const sliderKls = computed(() => [
-  ns.b(),
-  ns.m(sliderWrapperSize.value),
-  ns.is('vertical', props.vertical),
-  { [ns.m('with-input')]: props.showInput },
-])
-
-const markList = useMarks(props)
-
-useWatch(props, initData, minValue, maxValue, emit, elFormItem!)
-
-const precision = computed(() => {
-  const precisions = [props.min, props.max, props.step].map((item) => {
-    const decimal = `${item}`.split('.')[1]
-    return decimal ? decimal.length : 0
-  })
-  return Math.max.apply(null, precisions)
-})
-
-const { sliderWrapper } = useLifecycle(props, initData, resetSize)
-
-const { firstValue, secondValue, sliderSize } = toRefs(initData)
-
-function updateDragging(val: boolean) {
-  initData.dragging = val
-}
-
-provide(sliderContextKey, {
-  ...toRefs(props),
-  sliderSize,
-  disabled: sliderDisabled,
-  precision,
-  emitChange,
-  resetSize,
-  updateDragging,
-})
-
-defineExpose({
-  onSliderClick,
-})
-</script>
-
 <template>
   <div
     :id="range ? inputId : undefined"
@@ -247,3 +106,147 @@ defineExpose({
     />
   </div>
 </template>
+
+<script lang="ts" setup>
+import { computed, provide, reactive, toRefs } from 'vue'
+import ElInputNumber from '/@/components/input-number'
+import { useFormItemInputId, useFormSize } from '/@/components/form'
+import { useLocale, useNamespace } from '/@/hooks'
+import { sliderContextKey } from './constants'
+import { sliderEmits, sliderProps } from './slider'
+import SliderButton from './button.vue'
+import SliderMarker from './marker'
+import {
+  useLifecycle,
+  useMarks,
+  useSlide,
+  useStops,
+  useWatch,
+} from './composables'
+import type { SliderInitData } from './slider'
+
+const props = defineProps(sliderProps)
+
+const emit = defineEmits(sliderEmits)
+
+defineOptions({
+  name: 'ElSlider',
+})
+
+const ns = useNamespace('slider')
+const { t } = useLocale()
+
+const initData = reactive<SliderInitData>({
+  firstValue: 0,
+  secondValue: 0,
+  oldValue: 0,
+  dragging: false,
+  sliderSize: 1,
+})
+
+const {
+  elFormItem,
+  slider,
+  firstButton,
+  secondButton,
+  sliderDisabled,
+  minValue,
+  maxValue,
+  runwayStyle,
+  barStyle,
+  resetSize,
+  emitChange,
+  onSliderWrapperPrevent,
+  onSliderClick,
+  onSliderDown,
+  setFirstValue,
+  setSecondValue,
+} = useSlide(props, initData, emit)
+
+const { stops, getStopStyle } = useStops(props, initData, minValue, maxValue)
+
+const { inputId, isLabeledByFormItem } = useFormItemInputId(props, {
+  formItemContext: elFormItem,
+})
+
+const sliderWrapperSize = useFormSize()
+const sliderInputSize = computed(
+  () => props.inputSize || sliderWrapperSize.value,
+)
+
+const groupLabel = computed<string>(() => {
+  return (
+    props.label
+    || t('el.slider.defaultLabel', {
+      min: props.min,
+      max: props.max,
+    })
+  )
+})
+
+const { firstValue, secondValue, sliderSize } = toRefs(initData)
+
+const firstButtonLabel = computed<string>(() => {
+  if (props.range)
+    return props.rangeStartLabel || t('el.slider.defaultRangeStartLabel')
+  else
+    return groupLabel.value
+})
+
+const firstValueText = computed<string>(() => {
+  return props.formatValueText
+    ? props.formatValueText(firstValue.value)
+    : `${firstValue.value}`
+})
+
+const secondButtonLabel = computed<string>(() => {
+  return props.rangeEndLabel || t('el.slider.defaultRangeEndLabel')
+})
+
+const secondValueText = computed<string>(() => {
+  return props.formatValueText
+    ? props.formatValueText(secondValue.value)
+    : `${secondValue.value}`
+})
+
+const sliderKls = computed(() => [
+  ns.b(),
+  ns.m(sliderWrapperSize.value),
+  ns.is('vertical', props.vertical),
+  { [ns.m('with-input')]: props.showInput },
+])
+
+const markList = useMarks(props)
+
+useWatch(props, initData, minValue, maxValue, emit, elFormItem!)
+
+const precision = computed(() => {
+  const precisions = [props.min, props.max, props.step].map((item) => {
+    const decimal = `${item}`.split('.')[1]
+    return decimal ? decimal.length : 0
+  })
+  return Math.max.apply(null, precisions)
+})
+
+const { sliderWrapper } = useLifecycle(props, initData, resetSize)
+
+function updateDragging(val: boolean) {
+  initData.dragging = val
+}
+
+provide(sliderContextKey, {
+  ...toRefs(props),
+  sliderSize,
+  disabled: sliderDisabled,
+  precision,
+  emitChange,
+  resetSize,
+  updateDragging,
+})
+
+defineExpose({
+  onSliderClick,
+})
+</script>
+
+<style lang="css" src="../../../styles/components/el-slider.css"></style>

@@ -26,12 +26,10 @@ import { useBackTop } from './use-backtop'
 const props = defineProps(backtopProps)
 
 const emit = defineEmits(backtopEmits)
-
+const COMPONENT_NAME = 'ElBacktop'
 defineOptions({
   name: COMPONENT_NAME,
 })
-
-const COMPONENT_NAME = 'ElBacktop'
 
 const ns = useNamespace('backtop')
 
@@ -42,3 +40,5 @@ const backTopStyle = computed(() => ({
   bottom: `${props.bottom}px`,
 }))
 </script>
+
+<style lang="css" src="../../../styles/components/el-backtop.css"></style>

@@ -1,15 +1,29 @@
+<template>
+  <a
+    :class="linkKls"
+    :href="disabled || !href ? undefined : href"
+    @click="handleClick"
+  >
+    <ElIcon v-if="icon"><component :is="icon" /></ElIcon>
+    <span v-if="$slots.default" :class="ns.e('inner')">
+      <slot />
+    </span>
+
+    <slot v-if="$slots.icon" name="icon" />
+  </a>
+</template>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { ElIcon } from '/@/components/icon'
 import { useNamespace } from '/@/hooks'
 import { linkEmits, linkProps } from './link'
 
+const props = defineProps(linkProps)
+const emit = defineEmits(linkEmits)
 defineOptions({
   name: 'ElLink',
 })
-const props = defineProps(linkProps)
-const emit = defineEmits(linkEmits)
-
 const ns = useNamespace('link')
 
 const linkKls = computed(() => [
@@ -25,17 +39,4 @@ function handleClick(event: MouseEvent) {
 }
 </script>
 
-<template>
-  <a
-    :class="linkKls"
-    :href="disabled || !href ? undefined : href"
-    @click="handleClick"
-  >
-    <ElIcon v-if="icon"><component :is="icon" /></ElIcon>
-    <span v-if="$slots.default" :class="ns.e('inner')">
-      <slot />
-    </span>
-
-    <slot v-if="$slots.icon" name="icon" />
-  </a>
-</template>
+<style lang="css" src="../../../styles/components/el-link.css"></style>

@@ -34,6 +34,8 @@ import { useMenuCssVar } from './use-menu-css-var'
 
 import type { MenuItemClicked, MenuProvider, SubMenuProvider } from './types'
 
+import '../../../styles/components/el-menu.css'
+
 export const menuProps = buildProps({
   activeTextColor: String,
   backgroundColor: String,

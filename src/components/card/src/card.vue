@@ -1,16 +1,3 @@
-<script lang="ts" setup>
-import { useNamespace } from '/@/hooks'
-import { cardProps } from './card'
-
-defineOptions({
-  name: 'ElCard',
-})
-
-defineProps(cardProps)
-
-const ns = useNamespace('card')
-</script>
-
 <template>
   <div :class="[ns.b(), ns.is(`${shadow}-shadow`)]">
     <div v-if="$slots.header || header" :class="ns.e('header')">
@@ -23,3 +10,18 @@ const ns = useNamespace('card')
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { useNamespace } from '/@/hooks'
+import { cardProps } from './card'
+
+defineProps(cardProps)
+
+defineOptions({
+  name: 'ElCard',
+})
+
+const ns = useNamespace('card')
+</script>
+
+<style lang="css" src="../../../styles/components/el-card.css"></style>

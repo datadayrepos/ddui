@@ -1,5 +1,17 @@
+<template>
+  <ul v-show="visible" :class="ns.be('group', 'wrap')">
+    <li :class="ns.be('group', 'title')">
+      {{ label }}
+    </li>
+    <li>
+      <ul :class="ns.b('group')">
+        <slot />
+      </ul>
+    </li>
+  </ul>
+</template>
+
 <script lang="ts">
-// @ts-nocheck
 import {
   defineComponent,
   getCurrentInstance,
@@ -44,10 +56,6 @@ export default defineComponent({
 
     const select = inject(selectKey)
 
-    onMounted(() => {
-      children.value = flattedChildren(instance.subTree)
-    })
-
     // get all instances of options
     const flattedChildren = (node) => {
       const children = []
@@ -67,6 +75,10 @@ export default defineComponent({
       return children
     }
 
+    onMounted(() => {
+      children.value = flattedChildren(instance?.subTree)
+    })
+
     const { groupQueryChange } = toRaw(select)
     watch(
       groupQueryChange,
@@ -84,15 +96,4 @@ export default defineComponent({
 })
 </script>
 
-<template>
-  <ul v-show="visible" :class="ns.be('group', 'wrap')">
-    <li :class="ns.be('group', 'title')">
-      {{ label }}
-    </li>
-    <li>
-      <ul :class="ns.b('group')">
-        <slot />
-      </ul>
-    </li>
-  </ul>
-</template>
+<style lang="css" src="../../../styles/components/el-option-group.css"></style>

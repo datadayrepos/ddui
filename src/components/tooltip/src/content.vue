@@ -53,12 +53,12 @@ import { ElPopperContent } from '/@/components/popper'
 import { TOOLTIP_INJECTION_KEY } from './constants'
 import { useTooltipContentProps } from './content'
 
+const props = defineProps(useTooltipContentProps)
+
 defineOptions({
   name: 'ElTooltipContent',
   inheritAttrs: false,
 })
-
-const props = defineProps(useTooltipContentProps)
 
 const { selector } = usePopperContainerId()
 const ns = useNamespace('tooltip')

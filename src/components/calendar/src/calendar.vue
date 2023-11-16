@@ -1,51 +1,3 @@
-<script lang="ts" setup>
-import { computed } from 'vue'
-import { ElButton, ElButtonGroup } from '/@/components/button'
-import { useLocale, useNamespace } from '/@/hooks'
-
-import DateTable from './date-table.vue'
-import { useCalendar } from './use-calendar'
-import { calendarEmits, calendarProps } from './calendar'
-
-defineOptions({
-  name: COMPONENT_NAME,
-})
-
-const props = defineProps(calendarProps)
-
-const emit = defineEmits(calendarEmits)
-
-const ns = useNamespace('calendar')
-
-const COMPONENT_NAME = 'ElCalendar'
-const {
-  calculateValidatedDateRange,
-  date,
-  pickDay,
-  realSelectedDay,
-  selectDate,
-  validatedRange,
-} = useCalendar(props, emit, COMPONENT_NAME)
-
-const { t } = useLocale()
-
-const i18nDate = computed(() => {
-  const pickedMonth = `el.datepicker.month${date.value.format('M')}`
-  return `${date.value.year()} ${t('el.datepicker.year')} ${t(pickedMonth)}`
-})
-
-defineExpose({
-  /** @description currently selected date */
-  selectedDay: realSelectedDay,
-  /** @description select a specific date */
-  pickDay,
-  /** @description select date */
-  selectDate,
-  /** @description Calculate the validate date range according to the start and end dates */
-  calculateValidatedDateRange,
-})
-</script>
-
 <template>
   <div :class="ns.b()">
     <div :class="ns.e('header')">
@@ -100,3 +52,52 @@ defineExpose({
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { ElButton, ElButtonGroup } from '/@/components/button'
+import { useLocale, useNamespace } from '/@/hooks'
+
+import DateTable from './date-table.vue'
+import { useCalendar } from './use-calendar'
+import { calendarEmits, calendarProps } from './calendar'
+
+const props = defineProps(calendarProps)
+
+const emit = defineEmits(calendarEmits)
+const COMPONENT_NAME = 'ElCalendar'
+defineOptions({
+  name: COMPONENT_NAME,
+})
+
+const ns = useNamespace('calendar')
+
+const {
+  calculateValidatedDateRange,
+  date,
+  pickDay,
+  realSelectedDay,
+  selectDate,
+  validatedRange,
+} = useCalendar(props, emit, COMPONENT_NAME)
+
+const { t } = useLocale()
+
+const i18nDate = computed(() => {
+  const pickedMonth = `el.datepicker.month${date.value.format('M')}`
+  return `${date.value.year()} ${t('el.datepicker.year')} ${t(pickedMonth)}`
+})
+
+defineExpose({
+  /** @description currently selected date */
+  selectedDay: realSelectedDay,
+  /** @description select a specific date */
+  pickDay,
+  /** @description select date */
+  selectDate,
+  /** @description Calculate the validate date range according to the start and end dates */
+  calculateValidatedDateRange,
+})
+</script>
+
+<style lang="css" src="../../../styles/components/el-calendar.css"></style>

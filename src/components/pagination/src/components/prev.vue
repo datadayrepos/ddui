@@ -1,23 +1,3 @@
-<script lang="ts" setup>
-import { computed } from 'vue'
-import { useLocale } from '/@/hooks'
-import { ElIcon } from '/@/components/icon'
-import { paginationPrevEmits, paginationPrevProps } from './prev'
-
-defineOptions({
-  name: 'ElPaginationPrev',
-})
-
-const props = defineProps(paginationPrevProps)
-defineEmits(paginationPrevEmits)
-
-const { t } = useLocale()
-
-const internalDisabled = computed(
-  () => props.disabled || props.currentPage <= 1,
-)
-</script>
-
 <template>
   <button
     type="button"
@@ -33,3 +13,24 @@ const internalDisabled = computed(
     </ElIcon>
   </button>
 </template>
+
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { useLocale } from '/@/hooks'
+import { ElIcon } from '/@/components/icon'
+import { paginationPrevEmits, paginationPrevProps } from './prev'
+
+const props = defineProps(paginationPrevProps)
+
+defineEmits(paginationPrevEmits)
+
+defineOptions({
+  name: 'ElPaginationPrev',
+})
+
+const { t } = useLocale()
+
+const internalDisabled = computed(
+  () => props.disabled || props.currentPage <= 1,
+)
+</script>

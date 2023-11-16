@@ -31,6 +31,8 @@ import TabNav from './tab-nav'
 import type { TabNavInstance } from './tab-nav'
 import type { TabsPaneContext } from './constants'
 
+import '../../../styles/components/el-tabs.css'
+
 export type TabPaneName = string | number
 
 export const tabsProps = buildProps({

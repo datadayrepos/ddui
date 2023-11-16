@@ -76,6 +76,8 @@ import {
   ref,
   watch,
 } from 'vue'
+
+// eslint-disable-next-line vue/prefer-import-from-vue
 import { isPromise } from '@vue/shared'
 import { addUnit, debugWarn, isBoolean, throwError } from '/@/utils'
 import ElIcon from '/@/components/icon'
@@ -97,10 +99,11 @@ import { switchEmits, switchProps } from './switch'
 
 const props = defineProps(switchProps)
 const emit = defineEmits(switchEmits)
+const COMPONENT_NAME = 'ElSwitch'
 defineOptions({
   name: COMPONENT_NAME,
 })
-const COMPONENT_NAME = 'ElSwitch'
+
 const vm = getCurrentInstance()!
 const { formItem } = useFormItem()
 const switchSize = useFormSize()
@@ -136,6 +139,12 @@ const switchDisabled = useFormDisabled(computed(() => props.loading))
 const isControlled = ref(props.modelValue !== false)
 const input = ref<HTMLInputElement>()
 const core = ref<HTMLSpanElement>()
+
+const actualValue = computed(() => {
+  return isControlled.value ? props.modelValue : props.value
+})
+
+const checked = computed(() => actualValue.value === props.activeValue)
 
 const switchKls = computed(() => [
   ns.b(),
@@ -173,12 +182,6 @@ watch(
     isControlled.value = false
   },
 )
-
-const actualValue = computed(() => {
-  return isControlled.value ? props.modelValue : props.value
-})
-
-const checked = computed(() => actualValue.value === props.activeValue)
 
 if (![props.activeValue, props.inactiveValue].includes(actualValue.value)) {
   emit(UPDATE_MODEL_EVENT, props.inactiveValue)
@@ -268,3 +271,5 @@ defineExpose({
   checked,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-switch.css"></style>

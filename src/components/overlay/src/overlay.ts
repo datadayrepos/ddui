@@ -5,6 +5,8 @@ import { useNamespace, useSameTarget } from '/@/hooks'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { ZIndexProperty } from '/@/csstype'
 
+import '../../../styles/components/el-overlay.css'
+
 export const overlayProps = buildProps({
   customMaskEvent: {
     default: false,

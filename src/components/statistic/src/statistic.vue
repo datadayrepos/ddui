@@ -1,14 +1,40 @@
+<template>
+  <div :class="ns.b()">
+    <div v-if="$slots.title || title" :class="ns.e('head')">
+      <slot name="title">
+        {{ title }}
+      </slot>
+    </div>
+    <div :class="ns.e('content')">
+      <div v-if="$slots.prefix || prefix" :class="ns.e('prefix')">
+        <slot name="prefix">
+          <span>{{ prefix }}</span>
+        </slot>
+      </div>
+      <span :class="ns.e('number')" :style="valueStyle">
+        {{ displayValue }}
+      </span>
+      <div v-if="$slots.suffix || suffix" :class="ns.e('suffix')">
+        <slot name="suffix">
+          <span>{{ suffix }}</span>
+        </slot>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useNamespace } from '/@/hooks'
 import { isFunction, isNumber } from '/@/utils'
 import { statisticProps } from './statistic'
 
+const props = defineProps(statisticProps)
+
 defineOptions({
   name: 'ElStatistic',
 })
 
-const props = defineProps(statisticProps)
 const ns = useNamespace('statistic')
 
 const displayValue = computed(() => {
@@ -37,27 +63,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <div :class="ns.b()">
-    <div v-if="$slots.title || title" :class="ns.e('head')">
-      <slot name="title">
-        {{ title }}
-      </slot>
-    </div>
-    <div :class="ns.e('content')">
-      <div v-if="$slots.prefix || prefix" :class="ns.e('prefix')">
-        <slot name="prefix">
-          <span>{{ prefix }}</span>
-        </slot>
-      </div>
-      <span :class="ns.e('number')" :style="valueStyle">
-        {{ displayValue }}
-      </span>
-      <div v-if="$slots.suffix || suffix" :class="ns.e('suffix')">
-        <slot name="suffix">
-          <span>{{ suffix }}</span>
-        </slot>
-      </div>
-    </div>
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-statistic.css"></style>

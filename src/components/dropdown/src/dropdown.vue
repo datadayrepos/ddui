@@ -1,5 +1,99 @@
+<template>
+  <div :class="[ns.b(), ns.is('disabled', disabled)]">
+    <ElTooltip
+      ref="popperRef"
+      :role="role"
+      :effect="effect"
+      :fallback-placements="['bottom', 'top']"
+      :popper-options="popperOptions"
+      :gpu-acceleration="false"
+      :hide-after="trigger === 'hover' ? hideTimeout : 0"
+      :manual-mode="true"
+      :placement="placement"
+      :popper-class="[ns.e('popper'), popperClass]"
+      :reference-element="referenceElementRef?.$el"
+      :trigger="trigger"
+      :trigger-keys="triggerKeys"
+      :trigger-target-el="contentRef"
+      :show-after="trigger === 'hover' ? showTimeout : 0"
+      :stop-popper-mouse-event="false"
+      :virtual-ref="triggeringElementRef"
+      :virtual-triggering="splitButton"
+      :disabled="disabled"
+      :transition="`${ns.namespace.value}-zoom-in-top`"
+      :teleported="teleported"
+      pure
+      persistent
+      @before-show="handleBeforeShowTooltip"
+      @show="handleShowTooltip"
+      @before-hide="handleBeforeHideTooltip"
+    >
+      <template #content>
+        <ElScrollbar
+          ref="scrollbar"
+          :wrap-style="wrapStyle"
+          tag="div"
+          :view-class="ns.e('list')"
+        >
+          <ElRovingFocusGroup
+            :loop="loop"
+            :current-tab-id="currentTabId"
+            orientation="horizontal"
+            @current-tab-id-change="handleCurrentTabIdChange"
+            @entry-focus="handleEntryFocus"
+          >
+            <ElDropdownCollection>
+              <slot name="dropdown" />
+            </ElDropdownCollection>
+          </ElRovingFocusGroup>
+        </ElScrollbar>
+      </template>
+      <template v-if="!splitButton" #default>
+        <ElOnlyChild
+          :id="triggerId"
+          ref="triggeringElementRef"
+          role="button"
+          :tabindex="tabindex"
+        >
+          <slot name="default" />
+        </ElOnlyChild>
+      </template>
+    </ElTooltip>
+    <template v-if="splitButton">
+      <ElButtonGroup>
+        <ElButton
+          ref="referenceElementRef"
+          v-bind="buttonProps"
+          :size="dropdownSize"
+          :type="type"
+          :disabled="disabled"
+          :tabindex="tabindex"
+          @click="handlerMainButtonClick"
+        >
+          <slot name="default" />
+        </ElButton>
+        <ElButton
+          :id="triggerId"
+          ref="triggeringElementRef"
+          v-bind="buttonProps"
+          role="button"
+          :size="dropdownSize"
+          :type="type"
+          :class="ns.e('caret-button')"
+          :disabled="disabled"
+          :tabindex="tabindex"
+          :aria-label="t('el.dropdown.toggleDropdown')"
+        >
+          <ElIcon :class="ns.e('icon')">
+            <ArrowDown />
+          </ElIcon>
+        </ElButton>
+      </ElButtonGroup>
+    </template>
+  </div>
+</template>
+
 <script lang="ts">
-// @ts-nocheck
 import {
   computed,
   defineComponent,
@@ -223,97 +317,4 @@ export default defineComponent({
 })
 </script>
 
-<template>
-  <div :class="[ns.b(), ns.is('disabled', disabled)]">
-    <ElTooltip
-      ref="popperRef"
-      :role="role"
-      :effect="effect"
-      :fallback-placements="['bottom', 'top']"
-      :popper-options="popperOptions"
-      :gpu-acceleration="false"
-      :hide-after="trigger === 'hover' ? hideTimeout : 0"
-      :manual-mode="true"
-      :placement="placement"
-      :popper-class="[ns.e('popper'), popperClass]"
-      :reference-element="referenceElementRef?.$el"
-      :trigger="trigger"
-      :trigger-keys="triggerKeys"
-      :trigger-target-el="contentRef"
-      :show-after="trigger === 'hover' ? showTimeout : 0"
-      :stop-popper-mouse-event="false"
-      :virtual-ref="triggeringElementRef"
-      :virtual-triggering="splitButton"
-      :disabled="disabled"
-      :transition="`${ns.namespace.value}-zoom-in-top`"
-      :teleported="teleported"
-      pure
-      persistent
-      @before-show="handleBeforeShowTooltip"
-      @show="handleShowTooltip"
-      @before-hide="handleBeforeHideTooltip"
-    >
-      <template #content>
-        <ElScrollbar
-          ref="scrollbar"
-          :wrap-style="wrapStyle"
-          tag="div"
-          :view-class="ns.e('list')"
-        >
-          <ElRovingFocusGroup
-            :loop="loop"
-            :current-tab-id="currentTabId"
-            orientation="horizontal"
-            @current-tab-id-change="handleCurrentTabIdChange"
-            @entry-focus="handleEntryFocus"
-          >
-            <ElDropdownCollection>
-              <slot name="dropdown" />
-            </ElDropdownCollection>
-          </ElRovingFocusGroup>
-        </ElScrollbar>
-      </template>
-      <template v-if="!splitButton" #default>
-        <ElOnlyChild
-          :id="triggerId"
-          ref="triggeringElementRef"
-          role="button"
-          :tabindex="tabindex"
-        >
-          <slot name="default" />
-        </ElOnlyChild>
-      </template>
-    </ElTooltip>
-    <template v-if="splitButton">
-      <ElButtonGroup>
-        <ElButton
-          ref="referenceElementRef"
-          v-bind="buttonProps"
-          :size="dropdownSize"
-          :type="type"
-          :disabled="disabled"
-          :tabindex="tabindex"
-          @click="handlerMainButtonClick"
-        >
-          <slot name="default" />
-        </ElButton>
-        <ElButton
-          :id="triggerId"
-          ref="triggeringElementRef"
-          v-bind="buttonProps"
-          role="button"
-          :size="dropdownSize"
-          :type="type"
-          :class="ns.e('caret-button')"
-          :disabled="disabled"
-          :tabindex="tabindex"
-          :aria-label="t('el.dropdown.toggleDropdown')"
-        >
-          <ElIcon :class="ns.e('icon')">
-            <ArrowDown />
-          </ElIcon>
-        </ElButton>
-      </ElButtonGroup>
-    </template>
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-dropdown.css"></style>

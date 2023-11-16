@@ -17,6 +17,8 @@ import { useGlobalComponentSettings } from '/@/components/config-provider'
 import type { UseNamespaceReturn } from '/@/hooks'
 import type { LoadingOptionsResolved } from './types'
 
+import '../../../styles/components/el-loading.css'
+
 export function createLoadingComponent(options: LoadingOptionsResolved) {
   let afterLeaveTimer: number
   // IMPORTANT NOTE: this is only a hacking way to expose the injections on an

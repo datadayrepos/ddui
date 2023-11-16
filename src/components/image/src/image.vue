@@ -1,3 +1,52 @@
+<template>
+  <div ref="container" :class="[ns.b(), $attrs.class]" :style="containerStyle">
+    <slot v-if="hasLoadError" name="error">
+      <div :class="ns.e('error')">
+        {{ t('el.image.error') }}
+      </div>
+    </slot>
+    <template v-else>
+      <img
+        v-if="imageSrc !== undefined"
+        v-bind="attrs"
+        :src="imageSrc"
+        :loading="loading"
+        :style="imageStyle"
+        :class="imageKls"
+        @click="clickHandler"
+        @load="handleLoad"
+        @error="handleError"
+      >
+      <div v-if="isLoading" :class="ns.e('wrapper')">
+        <slot name="placeholder">
+          <div :class="ns.e('placeholder')" />
+        </slot>
+      </div>
+    </template>
+    <template v-if="preview">
+      <ImageViewer
+        v-if="showViewer"
+        :z-index="zIndex"
+        :initial-index="imageIndex"
+        :infinite="infinite"
+        :zoom-rate="zoomRate"
+        :min-scale="minScale"
+        :max-scale="maxScale"
+        :url-list="previewSrcList"
+        :hide-on-click-modal="hideOnClickModal"
+        :teleported="previewTeleported"
+        :close-on-press-escape="closeOnPressEscape"
+        @close="closeViewer"
+        @switch="switchViewer"
+      >
+        <div v-if="$slots.viewer">
+          <slot name="viewer" />
+        </div>
+      </ImageViewer>
+    </template>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -7,7 +56,9 @@ import {
   useAttrs as useRawAttrs,
   watch,
 } from 'vue'
-import { useEventListener, useThrottleFn } from '@datadayrepos/usevuecore'
+import { useEventListener } from '@datadayrepos/usevuecore'
+import { useThrottleFn } from '@datadayrepos/usevueshared'
+
 import { useAttrs, useLocale, useNamespace } from '/@/hooks'
 import ImageViewer from '/@/components/image-viewer'
 import {
@@ -20,13 +71,14 @@ import {
 import type { CSSProperties, StyleValue } from 'vue'
 import { imageEmits, imageProps } from './image'
 
+const props = defineProps(imageProps)
+
+const emit = defineEmits(imageEmits)
+
 defineOptions({
   name: 'ElImage',
   inheritAttrs: false,
 })
-
-const props = defineProps(imageProps)
-const emit = defineEmits(imageEmits)
 
 let prevOverflow = ''
 
@@ -214,51 +266,4 @@ onMounted(() => {
 })
 </script>
 
-<template>
-  <div ref="container" :class="[ns.b(), $attrs.class]" :style="containerStyle">
-    <slot v-if="hasLoadError" name="error">
-      <div :class="ns.e('error')">
-        {{ t('el.image.error') }}
-      </div>
-    </slot>
-    <template v-else>
-      <img
-        v-if="imageSrc !== undefined"
-        v-bind="attrs"
-        :src="imageSrc"
-        :loading="loading"
-        :style="imageStyle"
-        :class="imageKls"
-        @click="clickHandler"
-        @load="handleLoad"
-        @error="handleError"
-      >
-      <div v-if="isLoading" :class="ns.e('wrapper')">
-        <slot name="placeholder">
-          <div :class="ns.e('placeholder')" />
-        </slot>
-      </div>
-    </template>
-    <template v-if="preview">
-      <ImageViewer
-        v-if="showViewer"
-        :z-index="zIndex"
-        :initial-index="imageIndex"
-        :infinite="infinite"
-        :zoom-rate="zoomRate"
-        :min-scale="minScale"
-        :max-scale="maxScale"
-        :url-list="previewSrcList"
-        :hide-on-click-modal="hideOnClickModal"
-        :teleported="previewTeleported"
-        :close-on-press-escape="closeOnPressEscape"
-        @close="closeViewer"
-        @switch="switchViewer"
-      >
-        <div v-if="$slots.viewer">
-          <slot name="viewer" />
-        </div>
-      </ImageViewer>
-    </template>
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-image.css"></style>

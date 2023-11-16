@@ -1,3 +1,22 @@
+<template>
+  <div :class="ns.b()">
+    <div :class="ns.e('colors')">
+      <div
+        v-for="(item, index) in rgbaColors"
+        :key="colors[index]"
+        :class="[
+          ns.e('color-selector'),
+          ns.is('alpha', item._alpha < 100),
+          { selected: item.selected },
+        ]"
+        @click="handleSelect(index)"
+      >
+        <div :style="{ backgroundColor: item.value }" />
+      </div>
+    </div>
+  </div>
+</template>
+
 <script lang="ts">
 import { defineComponent, inject, ref, watch, watchEffect } from 'vue'
 import { useNamespace } from '/@/hooks'
@@ -62,22 +81,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<template>
-  <div :class="ns.b()">
-    <div :class="ns.e('colors')">
-      <div
-        v-for="(item, index) in rgbaColors"
-        :key="colors[index]"
-        :class="[
-          ns.e('color-selector'),
-          ns.is('alpha', item._alpha < 100),
-          { selected: item.selected },
-        ]"
-        @click="handleSelect(index)"
-      >
-        <div :style="{ backgroundColor: item.value }" />
-      </div>
-    </div>
-  </div>
-</template>

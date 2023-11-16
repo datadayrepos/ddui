@@ -1,6 +1,53 @@
+<template>
+  <transition
+    :name="ns.b('fade')"
+    @before-leave="onClose"
+    @after-leave="$emit('destroy')"
+  >
+    <div
+      v-show="visible"
+      :id="id"
+      ref="messageRef"
+      :class="[
+        ns.b(),
+        { [ns.m(type)]: type && !icon },
+        ns.is('center', center),
+        ns.is('closable', showClose),
+        customClass,
+      ]"
+      :style="customStyle"
+      role="alert"
+      @mouseenter="clearTimer"
+      @mouseleave="startTimer"
+    >
+      <ElBadge
+        v-if="repeatNum > 1"
+        :value="repeatNum"
+        :type="badgeType"
+        :class="ns.e('badge')"
+      />
+      <ElIcon v-if="iconComponent" :class="[ns.e('icon'), typeClass]">
+        <component :is="iconComponent" />
+      </ElIcon>
+      <slot>
+        <p v-if="!dangerouslyUseHTMLString" :class="ns.e('content')">
+          {{ message }}
+        </p>
+        <!-- Caution here, message could've been compromised, never use user's input as message -->
+        <p v-else :class="ns.e('content')" v-html="message" />
+      </slot>
+      <ElIcon v-if="showClose" :class="ns.e('closeBtn')" @click.stop="close">
+        <Close />
+      </ElIcon>
+    </div>
+  </transition>
+</template>
+
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from 'vue'
-import { useEventListener, useResizeObserver, useTimeoutFn } from '@datadayrepos/usevuecore'
+import { useEventListener, useResizeObserver } from '@datadayrepos/usevuecore'
+import { useTimeoutFn } from '@datadayrepos/usevueshared'
+
 import { TypeComponents, TypeComponentsMap } from '/@/utils'
 import { EVENT_CODE } from '/@/constants'
 import ElBadge from '/@/components/badge'
@@ -11,13 +58,13 @@ import { messageEmits, messageProps } from './message'
 import { getLastOffset, getOffsetOrSpace } from './instance'
 import type { BadgeProps } from '/@/components/badge'
 
-defineOptions({
-  name: 'ElMessage',
-})
-
 const props = defineProps(messageProps)
 
 defineEmits(messageEmits)
+
+defineOptions({
+  name: 'ElMessage',
+})
 
 const { Close } = TypeComponents
 
@@ -101,47 +148,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <transition
-    :name="ns.b('fade')"
-    @before-leave="onClose"
-    @after-leave="$emit('destroy')"
-  >
-    <div
-      v-show="visible"
-      :id="id"
-      ref="messageRef"
-      :class="[
-        ns.b(),
-        { [ns.m(type)]: type && !icon },
-        ns.is('center', center),
-        ns.is('closable', showClose),
-        customClass,
-      ]"
-      :style="customStyle"
-      role="alert"
-      @mouseenter="clearTimer"
-      @mouseleave="startTimer"
-    >
-      <ElBadge
-        v-if="repeatNum > 1"
-        :value="repeatNum"
-        :type="badgeType"
-        :class="ns.e('badge')"
-      />
-      <ElIcon v-if="iconComponent" :class="[ns.e('icon'), typeClass]">
-        <component :is="iconComponent" />
-      </ElIcon>
-      <slot>
-        <p v-if="!dangerouslyUseHTMLString" :class="ns.e('content')">
-          {{ message }}
-        </p>
-        <!-- Caution here, message could've been compromised, never use user's input as message -->
-        <p v-else :class="ns.e('content')" v-html="message" />
-      </slot>
-      <ElIcon v-if="showClose" :class="ns.e('closeBtn')" @click.stop="close">
-        <Close />
-      </ElIcon>
-    </div>
-  </transition>
-</template>
+<style lang="css" src="../../../styles/components/el-message.css"></style>

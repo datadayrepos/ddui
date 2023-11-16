@@ -1,3 +1,37 @@
+<template>
+  <div ref="scrollbarRef" :class="ns.b()">
+    <div
+      ref="wrapRef"
+      :class="wrapKls"
+      :style="wrapStyle"
+      @scroll="handleScroll"
+    >
+      <component
+        :is="tag"
+        :id="id"
+        ref="resizeRef"
+        :class="resizeKls"
+        :style="viewStyle"
+        :role="role"
+        :aria-label="ariaLabel"
+        :aria-orientation="ariaOrientation"
+      >
+        <slot />
+      </component>
+    </div>
+    <template v-if="!native">
+      <Bar
+        ref="barRef"
+        :height="sizeHeight"
+        :width="sizeWidth"
+        :always="always"
+        :ratio-x="ratioX"
+        :ratio-y="ratioY"
+      />
+    </template>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -19,15 +53,14 @@ import { scrollbarContextKey } from './constants'
 import { scrollbarEmits, scrollbarProps } from './scrollbar'
 import type { BarInstance } from './bar'
 
-defineOptions({
-  name: COMPONENT_NAME,
-})
-
 const props = defineProps(scrollbarProps)
 
 const emit = defineEmits(scrollbarEmits)
-
 const COMPONENT_NAME = 'ElScrollbar'
+
+defineOptions({
+  name: COMPONENT_NAME,
+})
 
 const ns = useNamespace('scrollbar')
 
@@ -188,36 +221,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <div ref="scrollbarRef" :class="ns.b()">
-    <div
-      ref="wrapRef"
-      :class="wrapKls"
-      :style="wrapStyle"
-      @scroll="handleScroll"
-    >
-      <component
-        :is="tag"
-        :id="id"
-        ref="resizeRef"
-        :class="resizeKls"
-        :style="viewStyle"
-        :role="role"
-        :aria-label="ariaLabel"
-        :aria-orientation="ariaOrientation"
-      >
-        <slot />
-      </component>
-    </div>
-    <template v-if="!native">
-      <Bar
-        ref="barRef"
-        :height="sizeHeight"
-        :width="sizeWidth"
-        :always="always"
-        :ratio-x="ratioX"
-        :ratio-y="ratioY"
-      />
-    </template>
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-scrollbar.css"></style>

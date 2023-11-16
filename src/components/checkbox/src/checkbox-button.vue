@@ -1,51 +1,3 @@
-<script lang="ts" setup>
-import { computed, inject, useSlots } from 'vue'
-import { useNamespace } from '/@/hooks'
-import type { CSSProperties } from 'vue'
-import { checkboxGroupContextKey } from './constants'
-import { useCheckbox } from './composables'
-import { checkboxEmits, checkboxProps } from './checkbox'
-
-defineOptions({
-  name: 'ElCheckboxButton',
-})
-
-const props = defineProps(checkboxProps)
-defineEmits(checkboxEmits)
-const slots = useSlots()
-
-const {
-  isFocused,
-  isChecked,
-  isDisabled,
-  checkboxButtonSize,
-  model,
-  handleChange,
-} = useCheckbox(props, slots)
-const checkboxGroup = inject(checkboxGroupContextKey, undefined)
-const ns = useNamespace('checkbox')
-
-const activeStyle = computed<CSSProperties>(() => {
-  const fillValue = checkboxGroup?.fill?.value ?? ''
-  return {
-    backgroundColor: fillValue,
-    borderColor: fillValue,
-    color: checkboxGroup?.textColor?.value ?? '',
-    boxShadow: fillValue ? `-1px 0 0 0 ${fillValue}` : undefined,
-  }
-})
-
-const labelKls = computed(() => {
-  return [
-    ns.b('button'),
-    ns.bm('button', checkboxButtonSize.value),
-    ns.is('disabled', isDisabled.value),
-    ns.is('checked', isChecked.value),
-    ns.is('focus', isFocused.value),
-  ]
-})
-</script>
-
 <template>
   <label :class="labelKls">
     <input
@@ -87,3 +39,55 @@ const labelKls = computed(() => {
     </span>
   </label>
 </template>
+
+<script lang="ts" setup>
+import { computed, inject, useSlots } from 'vue'
+import { useNamespace } from '/@/hooks'
+import type { CSSProperties } from 'vue'
+import { checkboxGroupContextKey } from './constants'
+import { useCheckbox } from './composables'
+import { checkboxEmits, checkboxProps } from './checkbox'
+
+const props = defineProps(checkboxProps)
+
+defineEmits(checkboxEmits)
+
+defineOptions({
+  name: 'ElCheckboxButton',
+})
+
+const slots = useSlots()
+
+const {
+  isFocused,
+  isChecked,
+  isDisabled,
+  checkboxButtonSize,
+  model,
+  handleChange,
+} = useCheckbox(props, slots)
+const checkboxGroup = inject(checkboxGroupContextKey, undefined)
+const ns = useNamespace('checkbox')
+
+const activeStyle = computed<CSSProperties>(() => {
+  const fillValue = checkboxGroup?.fill?.value ?? ''
+  return {
+    backgroundColor: fillValue,
+    borderColor: fillValue,
+    color: checkboxGroup?.textColor?.value ?? '',
+    boxShadow: fillValue ? `-1px 0 0 0 ${fillValue}` : undefined,
+  }
+})
+
+const labelKls = computed(() => {
+  return [
+    ns.b('button'),
+    ns.bm('button', checkboxButtonSize.value),
+    ns.is('disabled', isDisabled.value),
+    ns.is('checked', isChecked.value),
+    ns.is('focus', isFocused.value),
+  ]
+})
+</script>
+
+<style lang="css" src="../../../styles/components/el-checkbox-button.css"></style>

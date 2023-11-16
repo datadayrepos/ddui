@@ -1,13 +1,18 @@
+<template>
+  <div :class="rootKls">
+    <slot />
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { collapseEmits, collapseProps } from './collapse'
 import { useCollapse, useCollapseDOM } from './use-collapse'
 
+const props = defineProps(collapseProps)
+const emit = defineEmits(collapseEmits)
 defineOptions({
   name: 'ElCollapse',
 })
-const props = defineProps(collapseProps)
-const emit = defineEmits(collapseEmits)
-
 const { activeNames, setActiveNames } = useCollapse(props, emit)
 
 const { rootKls } = useCollapseDOM()
@@ -20,8 +25,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <div :class="rootKls">
-    <slot />
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-collapse.css"></style>

@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import {
   Fragment,
   computed,
@@ -19,6 +20,8 @@ import useWatcher from './watcher-helper'
 import useRender from './render-helper'
 import defaultProps from './defaults'
 import type { TableColumn, TableColumnCtx } from './defaults'
+
+import '../../../../styles/components/el-table-column.css'
 
 let columnIdSeed = 1
 

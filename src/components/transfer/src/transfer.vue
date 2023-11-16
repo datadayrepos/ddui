@@ -165,3 +165,5 @@ defineExpose({
   rightPanel,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-transfer.css"></style>

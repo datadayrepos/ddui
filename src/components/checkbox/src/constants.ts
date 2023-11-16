@@ -1,7 +1,7 @@
 import type { InjectionKey, ToRefs, WritableComputedRef } from 'vue'
 import type { CheckboxGroupProps } from './checkbox-group'
 
-type CheckboxGroupContext = {
+export type CheckboxGroupContext = {
   modelValue?: WritableComputedRef<any>
   changeEvent?: (...args: any) => any
 } & ToRefs<

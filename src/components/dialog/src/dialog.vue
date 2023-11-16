@@ -1,89 +1,3 @@
-<script lang="ts" setup>
-import { computed, provide, ref, useSlots } from 'vue'
-import { ElOverlay } from '/@/components/overlay'
-import { useDeprecated, useNamespace, useSameTarget } from '/@/hooks'
-import ElFocusTrap from '/@/components/focus-trap'
-import ElDialogContent from './dialog-content.vue'
-import { dialogInjectionKey } from './constants'
-import { dialogEmits, dialogProps } from './dialog'
-import { useDialog } from './use-dialog'
-
-defineOptions({
-  name: 'ElDialog',
-  inheritAttrs: false,
-})
-
-const props = defineProps(dialogProps)
-defineEmits(dialogEmits)
-const slots = useSlots()
-
-useDeprecated(
-  {
-    scope: 'el-dialog',
-    from: 'the title slot',
-    replacement: 'the header slot',
-    version: '3.0.0',
-    ref: 'https://element-plus.org/en-US/component/dialog.html#slots',
-  },
-  computed(() => !!slots.title),
-)
-
-useDeprecated(
-  {
-    scope: 'el-dialog',
-    from: 'custom-class',
-    replacement: 'class',
-    version: '2.3.0',
-    ref: 'https://element-plus.org/en-US/component/dialog.html#attributes',
-    type: 'Attribute',
-  },
-  computed(() => !!props.customClass),
-)
-
-const ns = useNamespace('dialog')
-const dialogRef = ref<HTMLElement>()
-const headerRef = ref<HTMLElement>()
-const dialogContentRef = ref()
-
-const {
-  visible,
-  titleId,
-  bodyId,
-  style,
-  overlayDialogStyle,
-  rendered,
-  zIndex,
-  afterEnter,
-  afterLeave,
-  beforeLeave,
-  handleClose,
-  onModalClick,
-  onOpenAutoFocus,
-  onCloseAutoFocus,
-  onCloseRequested,
-  onFocusoutPrevented,
-} = useDialog(props, dialogRef)
-
-provide(dialogInjectionKey, {
-  dialogRef,
-  headerRef,
-  bodyId,
-  ns,
-  rendered,
-  style,
-})
-
-const overlayEvent = useSameTarget(onModalClick)
-
-const draggable = computed(() => props.draggable && !props.fullscreen)
-
-defineExpose({
-  /** @description whether the dialog is visible */
-  visible,
-  dialogContentRef,
-})
-</script>
-
 <template>
   <teleport to="body" :disabled="!appendToBody">
     <transition
@@ -156,3 +70,93 @@ defineExpose({
     </transition>
   </teleport>
 </template>
+
+<script lang="ts" setup>
+import { computed, provide, ref, useSlots } from 'vue'
+import { ElOverlay } from '/@/components/overlay'
+import { useDeprecated, useNamespace, useSameTarget } from '/@/hooks'
+import ElFocusTrap from '/@/components/focus-trap'
+import ElDialogContent from './dialog-content.vue'
+import { dialogInjectionKey } from './constants'
+import { dialogEmits, dialogProps } from './dialog'
+import { useDialog } from './use-dialog'
+
+const props = defineProps(dialogProps)
+
+defineEmits(dialogEmits)
+
+defineOptions({
+  name: 'ElDialog',
+  inheritAttrs: false,
+})
+
+const slots = useSlots()
+
+useDeprecated(
+  {
+    scope: 'el-dialog',
+    from: 'the title slot',
+    replacement: 'the header slot',
+    version: '3.0.0',
+    ref: 'https://element-plus.org/en-US/component/dialog.html#slots',
+  },
+  computed(() => !!slots.title),
+)
+
+useDeprecated(
+  {
+    scope: 'el-dialog',
+    from: 'custom-class',
+    replacement: 'class',
+    version: '2.3.0',
+    ref: 'https://element-plus.org/en-US/component/dialog.html#attributes',
+    type: 'Attribute',
+  },
+  computed(() => !!props.customClass),
+)
+
+const ns = useNamespace('dialog')
+const dialogRef = ref<HTMLElement>()
+const headerRef = ref<HTMLElement>()
+const dialogContentRef = ref()
+
+const {
+  visible,
+  titleId,
+  bodyId,
+  style,
+  overlayDialogStyle,
+  rendered,
+  zIndex,
+  afterEnter,
+  afterLeave,
+  beforeLeave,
+  handleClose,
+  onModalClick,
+  onOpenAutoFocus,
+  onCloseAutoFocus,
+  onCloseRequested,
+  onFocusoutPrevented,
+} = useDialog(props, dialogRef)
+
+provide(dialogInjectionKey, {
+  dialogRef,
+  headerRef,
+  bodyId,
+  ns,
+  rendered,
+  style,
+})
+
+const overlayEvent = useSameTarget(onModalClick)
+
+const draggable = computed(() => props.draggable && !props.fullscreen)
+
+defineExpose({
+  /** @description whether the dialog is visible */
+  visible,
+  dialogContentRef,
+})
+</script>
+
+<style lang="css" src="../../../styles/components/el-dialog.css"></style>

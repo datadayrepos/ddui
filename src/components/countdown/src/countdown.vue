@@ -1,3 +1,18 @@
+<template>
+  <ElStatistic
+    :value="rawValue"
+    :title="title"
+    :prefix="prefix"
+    :suffix="suffix"
+    :value-style="valueStyle"
+    :formatter="formatter"
+  >
+    <template v-for="(_, name) in $slots" #[name]>
+      <slot :name="name" />
+    </template>
+  </ElStatistic>
+</template>
+
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { ElStatistic } from '/@/components/statistic'
@@ -5,12 +20,13 @@ import { cAF, rAF } from '/@/utils'
 import { countdownEmits, countdownProps } from './countdown'
 import { formatTime, getTime } from './utils'
 
+const props = defineProps(countdownProps)
+
+const emit = defineEmits(countdownEmits)
+
 defineOptions({
   name: 'ElCountdown',
 })
-
-const props = defineProps(countdownProps)
-const emit = defineEmits(countdownEmits)
 
 let timer: ReturnType<typeof rAF> | undefined
 const rawValue = ref(getTime(props.value) - Date.now())
@@ -66,17 +82,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <ElStatistic
-    :value="rawValue"
-    :title="title"
-    :prefix="prefix"
-    :suffix="suffix"
-    :value-style="valueStyle"
-    :formatter="formatter"
-  >
-    <template v-for="(_, name) in $slots" #[name]>
-      <slot :name="name" />
-    </template>
-  </ElStatistic>
-</template>
+<style lang="css" src="../../../styles/components/el-statistic.css"></style>

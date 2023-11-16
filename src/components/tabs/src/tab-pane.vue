@@ -1,3 +1,17 @@
+<template>
+  <div
+    v-if="shouldBeRender"
+    v-show="active"
+    :id="`pane-${paneName}`"
+    :class="ns.b()"
+    role="tabpanel"
+    :aria-hidden="!active"
+    :aria-labelledby="`tab-${paneName}`"
+  >
+    <slot />
+  </div>
+</template>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -10,17 +24,19 @@ import {
   useSlots,
   watch,
 } from 'vue'
-import { eagerComputed } from '@datadayrepos/usevuecore'
+import { eagerComputed } from '@datadayrepos/usevueshared'
 import { throwError } from '/@/utils'
 import { useNamespace } from '/@/hooks'
 import { tabsRootContextKey } from './constants'
 import { tabPaneProps } from './tab-pane'
 
+const props = defineProps(tabPaneProps)
+
+const COMPONENT_NAME = 'ElTabPane'
+
 defineOptions({
   name: COMPONENT_NAME,
 })
-const props = defineProps(tabPaneProps)
-const COMPONENT_NAME = 'ElTabPane'
 const instance = getCurrentInstance()!
 const slots = useSlots()
 
@@ -64,17 +80,3 @@ onUnmounted(() => {
   tabsRoot.unregisterPane(pane.uid)
 })
 </script>
-
-<template>
-  <div
-    v-if="shouldBeRender"
-    v-show="active"
-    :id="`pane-${paneName}`"
-    :class="ns.b()"
-    role="tabpanel"
-    :aria-hidden="!active"
-    :aria-labelledby="`tab-${paneName}`"
-  >
-    <slot />
-  </div>
-</template>

@@ -189,7 +189,10 @@
 
 <script lang="ts" setup>
 import { computed, nextTick, onMounted, ref, useAttrs, watch } from 'vue'
+
+// eslint-disable-next-line vue/prefer-import-from-vue
 import { isPromise } from '@vue/shared'
+
 import { cloneDeep, debounce } from '@datadayrepos/lodashts'
 import { useCssVar, useResizeObserver } from '@datadayrepos/usevuecore'
 import ElCascaderPanel from '/@/components/cascader-panel'
@@ -230,6 +233,7 @@ import type {
 
 const props = defineProps(cascaderProps)
 const emit = defineEmits(cascaderEmits)
+const COMPONENT_NAME = 'ElCascader'
 defineOptions({
   name: COMPONENT_NAME,
 })
@@ -249,7 +253,6 @@ const popperOptions: Partial<Options> = {
     },
   ],
 }
-const COMPONENT_NAME = 'ElCascader'
 
 const attrs = useAttrs()
 
@@ -726,3 +729,5 @@ defineExpose({
   contentRef,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-cascader.css"></style>

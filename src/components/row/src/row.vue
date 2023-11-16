@@ -1,3 +1,9 @@
+<template>
+  <component :is="tag" :class="rowKls" :style="style">
+    <slot />
+  </component>
+</template>
+
 <script setup lang="ts">
 import { computed, provide } from 'vue'
 import { useNamespace } from '/@/hooks'
@@ -5,11 +11,11 @@ import type { CSSProperties } from 'vue'
 import { rowContextKey } from './constants'
 import { rowProps } from './row'
 
+const props = defineProps(rowProps)
+
 defineOptions({
   name: 'ElRow',
 })
-
-const props = defineProps(rowProps)
 
 const ns = useNamespace('row')
 const gutter = computed(() => props.gutter)
@@ -34,8 +40,4 @@ const rowKls = computed(() => [
 ])
 </script>
 
-<template>
-  <component :is="tag" :class="rowKls" :style="style">
-    <slot />
-  </component>
-</template>
+<style lang="css" src="../../../styles/components/el-row.css"></style>

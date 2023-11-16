@@ -137,3 +137,5 @@ defineExpose({
   updateRoot,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-affix.css"></style>

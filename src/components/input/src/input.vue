@@ -206,6 +206,11 @@ const containerAttrs = computed(() => {
   return comboBoxAttrs
 })
 
+const nsInput = useNamespace('input')
+const nsTextarea = useNamespace('textarea')
+const inputSize = useFormSize()
+const inputDisabled = useFormDisabled()
+
 const containerKls = computed(() => [
   props.type === 'textarea' ? nsTextarea.b() : nsInput.b(),
   nsInput.m(inputSize.value),
@@ -238,10 +243,6 @@ const { form, formItem } = useFormItem()
 const { inputId } = useFormItemInputId(props, {
   formItemContext: formItem,
 })
-const inputSize = useFormSize()
-const inputDisabled = useFormDisabled()
-const nsInput = useNamespace('input')
-const nsTextarea = useNamespace('textarea')
 
 const input = shallowRef<HTMLInputElement>()
 const textarea = shallowRef<HTMLTextAreaElement>()
@@ -362,6 +363,7 @@ function resizeTextarea() {
 
     nextTick(() => {
       // NOTE: Force repaint to make sure the style set above is applied.
+      // eslint-disable-next-line no-unused-expressions
       textarea.value!.offsetHeight
       textareaCalcStyle.value = textareaStyle
     })
@@ -552,3 +554,5 @@ defineExpose({
   resizeTextarea,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-input.css"></style>

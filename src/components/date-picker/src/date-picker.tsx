@@ -20,6 +20,8 @@ import { datePickerProps } from './props/date-picker'
 import { getPanel } from './panel-utils'
 import type { DatePickerExpose } from './instance'
 
+import '../../../styles/components/el-date-picker.css'
+
 dayjs.extend(localeData)
 dayjs.extend(advancedFormat)
 dayjs.extend(customParseFormat)

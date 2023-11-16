@@ -337,3 +337,5 @@ defineExpose({
   blur,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-input-number.css"></style>

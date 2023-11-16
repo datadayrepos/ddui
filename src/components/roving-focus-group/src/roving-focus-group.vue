@@ -1,3 +1,11 @@
+<template>
+  <ElFocusGroupCollection>
+    <ElRovingFocusGroupImpl v-bind="$attrs">
+      <slot />
+    </ElRovingFocusGroupImpl>
+  </ElFocusGroupCollection>
+</template>
+
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ElRovingFocusGroupImpl from './roving-focus-group-impl.vue'
@@ -11,11 +19,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<template>
-  <ElFocusGroupCollection>
-    <ElRovingFocusGroupImpl v-bind="$attrs">
-      <slot />
-    </ElRovingFocusGroupImpl>
-  </ElFocusGroupCollection>
-</template>

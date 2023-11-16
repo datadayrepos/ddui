@@ -1,29 +1,3 @@
-<script lang="ts" setup>
-import { computed } from 'vue'
-import { useNamespace } from '/@/hooks'
-import { IconComponentMap, IconMap, resultProps } from './result'
-
-defineOptions({
-  name: 'ElResult',
-})
-
-const props = defineProps(resultProps)
-
-const ns = useNamespace('result')
-
-const resultIcon = computed(() => {
-  const icon = props.icon
-  const iconClass = icon && IconMap[icon] ? IconMap[icon] : 'icon-info'
-  const iconComponent
-    = IconComponentMap[iconClass] || IconComponentMap['icon-info']
-
-  return {
-    class: iconClass,
-    component: iconComponent,
-  }
-})
-</script>
-
 <template>
   <div :class="ns.b()">
     <div :class="ns.e('icon')">
@@ -50,3 +24,31 @@ const resultIcon = computed(() => {
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { useNamespace } from '/@/hooks'
+import { IconComponentMap, IconMap, resultProps } from './result'
+
+const props = defineProps(resultProps)
+
+defineOptions({
+  name: 'ElResult',
+})
+
+const ns = useNamespace('result')
+
+const resultIcon = computed(() => {
+  const icon = props.icon
+  const iconClass = icon && IconMap[icon] ? IconMap[icon] : 'icon-info'
+  const iconComponent
+    = IconComponentMap[iconClass] || IconComponentMap['icon-info']
+
+  return {
+    class: iconClass,
+    component: iconComponent,
+  }
+})
+</script>
+
+<style lang="css" src="../../../styles/components/el-result.css"></style>

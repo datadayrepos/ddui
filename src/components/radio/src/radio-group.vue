@@ -1,3 +1,16 @@
+<template>
+  <div
+    :id="groupId"
+    ref="radioGroupRef"
+    :class="ns.b('group')"
+    role="radiogroup"
+    :aria-label="!isLabeledByFormItem ? label || 'radio-group' : undefined"
+    :aria-labelledby="isLabeledByFormItem ? formItem!.labelId : undefined"
+  >
+    <slot />
+  </div>
+</template>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -18,12 +31,13 @@ import { radioGroupKey } from './constants'
 
 import type { RadioGroupProps } from './radio-group'
 
+const props = defineProps(radioGroupProps)
+
+const emit = defineEmits(radioGroupEmits)
+
 defineOptions({
   name: 'ElRadioGroup',
 })
-
-const props = defineProps(radioGroupProps)
-const emit = defineEmits(radioGroupEmits)
 
 const ns = useNamespace('radio')
 const radioId = useId()
@@ -68,15 +82,4 @@ watch(
 )
 </script>
 
-<template>
-  <div
-    :id="groupId"
-    ref="radioGroupRef"
-    :class="ns.b('group')"
-    role="radiogroup"
-    :aria-label="!isLabeledByFormItem ? label || 'radio-group' : undefined"
-    :aria-labelledby="isLabeledByFormItem ? formItem!.labelId : undefined"
-  >
-    <slot />
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-radio-group.css"></style>

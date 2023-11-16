@@ -1,20 +1,30 @@
+<template>
+  <div
+    :class="[ns.b('dragger'), ns.is('dragover', dragover)]"
+    @drop.prevent="onDrop"
+    @dragover.prevent="onDragover"
+    @dragleave.prevent="dragover = false"
+  >
+    <slot />
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { inject, ref } from 'vue'
 import { useNamespace } from '/@/hooks'
 import { useFormDisabled } from '/@/components/form'
-import { throwError } from '@element-plus/utils/error'
+import { throwError } from '/@/utils/error'
 import { uploadContextKey } from './constants'
 import { uploadDraggerEmits, uploadDraggerProps } from './upload-dragger'
+
+defineProps(uploadDraggerProps)
+const emit = defineEmits(uploadDraggerEmits)
+
+const COMPONENT_NAME = 'ElUploadDrag'
 
 defineOptions({
   name: COMPONENT_NAME,
 })
-
-defineProps(uploadDraggerProps)
-
-const emit = defineEmits(uploadDraggerEmits)
-
-const COMPONENT_NAME = 'ElUploadDrag'
 
 const uploaderContext = inject(uploadContextKey)
 if (!uploaderContext) {
@@ -72,14 +82,3 @@ function onDragover() {
     dragover.value = true
 }
 </script>
-
-<template>
-  <div
-    :class="[ns.b('dragger'), ns.is('dragover', dragover)]"
-    @drop.prevent="onDrop"
-    @dragover.prevent="onDragover"
-    @dragleave.prevent="dragover = false"
-  >
-    <slot />
-  </div>
-</template>

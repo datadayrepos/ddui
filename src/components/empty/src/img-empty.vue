@@ -1,14 +1,3 @@
-<script lang="ts" setup>
-import { useId, useNamespace } from '/@/hooks'
-
-defineOptions({
-  name: 'ImgEmpty',
-})
-
-const ns = useNamespace('empty')
-const id = useId()
-</script>
-
 <template>
   <svg
     viewBox="0 0 79 86"
@@ -136,3 +125,14 @@ const id = useId()
     </g>
   </svg>
 </template>
+
+<script lang="ts" setup>
+import { useId, useNamespace } from '/@/hooks'
+
+defineOptions({
+  name: 'ImgEmpty',
+})
+
+const ns = useNamespace('empty')
+const id = useId()
+</script>

@@ -1,3 +1,35 @@
+<template>
+  <ElSelect
+    ref="select"
+    :model-value="value"
+    :disabled="_disabled"
+    :clearable="clearable"
+    :clear-icon="clearIcon"
+    :size="size"
+    :effect="effect"
+    :placeholder="placeholder"
+    default-first-option
+    :filterable="editable"
+    @update:model-value="(event) => $emit('update:modelValue', event)"
+    @change="(event) => $emit('change', event)"
+    @blur="(event) => $emit('blur', event)"
+    @focus="(event) => $emit('focus', event)"
+  >
+    <ElOption
+      v-for="item in items"
+      :key="item.value"
+      :label="item.value"
+      :value="item.value"
+      :disabled="item.disabled"
+    />
+    <template #prefix>
+      <ElIcon v-if="prefixIcon" :class="nsInput.e('prefix-icon')">
+        <component :is="prefixIcon" />
+      </ElIcon>
+    </template>
+  </ElSelect>
+</template>
+
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import dayjs from 'dayjs'
@@ -9,13 +41,13 @@ import { useLocale, useNamespace } from '/@/hooks'
 import { timeSelectProps } from './time-select'
 import { compareTime, formatTime, nextTime, parseTime } from './utils'
 
-defineOptions({
-  name: 'ElTimeSelect',
-})
-
 const props = defineProps(timeSelectProps)
 
 defineEmits(['change', 'blur', 'focus', 'update:modelValue'])
+
+defineOptions({
+  name: 'ElTimeSelect',
+})
 
 dayjs.extend(customParseFormat)
 
@@ -94,34 +126,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <ElSelect
-    ref="select"
-    :model-value="value"
-    :disabled="_disabled"
-    :clearable="clearable"
-    :clear-icon="clearIcon"
-    :size="size"
-    :effect="effect"
-    :placeholder="placeholder"
-    default-first-option
-    :filterable="editable"
-    @update:model-value="(event) => $emit('update:modelValue', event)"
-    @change="(event) => $emit('change', event)"
-    @blur="(event) => $emit('blur', event)"
-    @focus="(event) => $emit('focus', event)"
-  >
-    <ElOption
-      v-for="item in items"
-      :key="item.value"
-      :label="item.value"
-      :value="item.value"
-      :disabled="item.disabled"
-    />
-    <template #prefix>
-      <ElIcon v-if="prefixIcon" :class="nsInput.e('prefix-icon')">
-        <component :is="prefixIcon" />
-      </ElIcon>
-    </template>
-  </ElSelect>
-</template>
+<style lang="css" src="../../../styles/components/el-time-select.css"></style>

@@ -217,3 +217,5 @@ const stepItemState = reactive({
 
 parent.addStep(stepItemState)
 </script>
+
+<style lang="css" src="../../../styles/components/el-step.css"></style>

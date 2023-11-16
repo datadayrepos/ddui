@@ -24,6 +24,8 @@ import { selectV2InjectionKey } from './token'
 
 import type { Option, OptionItemProps } from './select.types'
 
+import '../../../styles/components/el-select-dropdown-v2.css'
+
 export default defineComponent({
   name: 'ElSelectDropdown',
 

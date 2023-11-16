@@ -1,3 +1,13 @@
+<template>
+  <component
+    :is="tag"
+    :class="textKls"
+    :style="{ '-webkit-line-clamp': lineClamp }"
+  >
+    <slot />
+  </component>
+</template>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useNamespace } from '/@/hooks'
@@ -5,11 +15,11 @@ import { useFormSize } from '/@/components/form'
 import { isUndefined } from '/@/utils'
 import { textProps } from './text'
 
+const props = defineProps(textProps)
+
 defineOptions({
   name: 'ElText',
 })
-
-const props = defineProps(textProps)
 
 const textSize = useFormSize()
 const ns = useNamespace('text')
@@ -23,12 +33,4 @@ const textKls = computed(() => [
 ])
 </script>
 
-<template>
-  <component
-    :is="tag"
-    :class="textKls"
-    :style="{ '-webkit-line-clamp': lineClamp }"
-  >
-    <slot />
-  </component>
-</template>
+<style lang="css" src="../../../styles/components/el-text.css"></style>

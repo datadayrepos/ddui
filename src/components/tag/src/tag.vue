@@ -66,3 +66,5 @@ function handleClick(event: MouseEvent) {
   emit('click', event)
 }
 </script>
+
+<style lang="css" src="../../../styles/components/el-tag.css"></style>

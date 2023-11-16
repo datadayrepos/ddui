@@ -1,3 +1,44 @@
+<template>
+  <div
+    :class="[ns.b(), { [ns.m('highlight-current')]: highlightCurrent }]"
+    role="tree"
+  >
+    <FixedSizeList
+      v-if="isNotEmpty"
+      :class-name="ns.b('virtual-list')"
+      :data="flattenTree"
+      :total="flattenTree.length"
+      :height="height"
+      :item-size="treeNodeSize"
+      :perf-mode="perfMode"
+    >
+      <template #default="{ data, index, style }">
+        <ElTreeNode
+          :key="data[index].key"
+          :style="style"
+          :node="data[index]"
+          :expanded="isExpanded(data[index])"
+          :show-checkbox="showCheckbox"
+          :checked="isChecked(data[index])"
+          :indeterminate="isIndeterminate(data[index])"
+          :item-size="treeNodeSize"
+          :disabled="isDisabled(data[index])"
+          :current="isCurrent(data[index])"
+          :hidden-expand-icon="isForceHiddenExpandIcon(data[index])"
+          @click="handleNodeClick"
+          @toggle="toggleExpand"
+          @check="handleNodeCheck"
+        />
+      </template>
+    </FixedSizeList>
+    <div v-else :class="ns.e('empty-block')">
+      <span :class="ns.e('empty-text')">{{
+        emptyText ?? t('el.tree.emptyText')
+      }}</span>
+    </div>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { computed, getCurrentInstance, provide, useSlots } from 'vue'
 import { useLocale, useNamespace } from '/@/hooks'
@@ -7,12 +48,13 @@ import { useTree } from './composables/useTree'
 import ElTreeNode from './tree-node.vue'
 import { ROOT_TREE_INJECTION_KEY, treeEmits, treeProps } from './virtual-tree'
 
+const props = defineProps(treeProps)
+
+const emit = defineEmits(treeEmits)
+
 defineOptions({
   name: 'ElTreeV2',
 })
-
-const props = defineProps(treeProps)
-const emit = defineEmits(treeEmits)
 
 const slots = useSlots()
 
@@ -79,44 +121,3 @@ defineExpose({
   setExpandedKeys,
 })
 </script>
-
-<template>
-  <div
-    :class="[ns.b(), { [ns.m('highlight-current')]: highlightCurrent }]"
-    role="tree"
-  >
-    <FixedSizeList
-      v-if="isNotEmpty"
-      :class-name="ns.b('virtual-list')"
-      :data="flattenTree"
-      :total="flattenTree.length"
-      :height="height"
-      :item-size="treeNodeSize"
-      :perf-mode="perfMode"
-    >
-      <template #default="{ data, index, style }">
-        <ElTreeNode
-          :key="data[index].key"
-          :style="style"
-          :node="data[index]"
-          :expanded="isExpanded(data[index])"
-          :show-checkbox="showCheckbox"
-          :checked="isChecked(data[index])"
-          :indeterminate="isIndeterminate(data[index])"
-          :item-size="treeNodeSize"
-          :disabled="isDisabled(data[index])"
-          :current="isCurrent(data[index])"
-          :hidden-expand-icon="isForceHiddenExpandIcon(data[index])"
-          @click="handleNodeClick"
-          @toggle="toggleExpand"
-          @check="handleNodeCheck"
-        />
-      </template>
-    </FixedSizeList>
-    <div v-else :class="ns.e('empty-block')">
-      <span :class="ns.e('empty-text')">{{
-        emptyText ?? t('el.tree.emptyText')
-      }}</span>
-    </div>
-  </div>
-</template>

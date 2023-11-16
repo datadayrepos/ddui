@@ -1,3 +1,42 @@
+<template>
+  <transition :name="transitionName">
+    <div v-if="actualVisible || visible" :class="ns.b('panel')">
+      <div :class="[ns.be('panel', 'content'), { 'has-seconds': showSeconds }]">
+        <TimeSpinner
+          ref="spinner"
+          :role="datetimeRole || 'start'"
+          :arrow-control="arrowControl"
+          :show-seconds="showSeconds"
+          :am-pm-mode="amPmMode"
+          :spinner-date="parsedValue as any"
+          :disabled-hours="disabledHours"
+          :disabled-minutes="disabledMinutes"
+          :disabled-seconds="disabledSeconds"
+          @change="handleChange"
+          @set-option="onSetOption"
+          @select-range="setSelectionRange"
+        />
+      </div>
+      <div :class="ns.be('panel', 'footer')">
+        <button
+          type="button"
+          class="cancel" :class="[ns.be('panel', 'btn')]"
+          @click="handleCancel"
+        >
+          {{ t('el.datepicker.cancel') }}
+        </button>
+        <button
+          type="button"
+          class="confirm" :class="[ns.be('panel', 'btn')]"
+          @click="handleConfirm()"
+        >
+          {{ t('el.datepicker.confirm') }}
+        </button>
+      </div>
+    </div>
+  </transition>
+</template>
+
 <script lang="ts" setup>
 import { computed, inject, ref } from 'vue'
 import dayjs from 'dayjs'
@@ -139,42 +178,3 @@ emit('set-picker-option', ['handleKeydownInput', handleKeydown])
 emit('set-picker-option', ['getRangeAvailableTime', getRangeAvailableTime])
 emit('set-picker-option', ['getDefaultValue', getDefaultValue])
 </script>
-
-<template>
-  <transition :name="transitionName">
-    <div v-if="actualVisible || visible" :class="ns.b('panel')">
-      <div :class="[ns.be('panel', 'content'), { 'has-seconds': showSeconds }]">
-        <TimeSpinner
-          ref="spinner"
-          :role="datetimeRole || 'start'"
-          :arrow-control="arrowControl"
-          :show-seconds="showSeconds"
-          :am-pm-mode="amPmMode"
-          :spinner-date="parsedValue as any"
-          :disabled-hours="disabledHours"
-          :disabled-minutes="disabledMinutes"
-          :disabled-seconds="disabledSeconds"
-          @change="handleChange"
-          @set-option="onSetOption"
-          @select-range="setSelectionRange"
-        />
-      </div>
-      <div :class="ns.be('panel', 'footer')">
-        <button
-          type="button"
-          class="cancel" :class="[ns.be('panel', 'btn')]"
-          @click="handleCancel"
-        >
-          {{ t('el.datepicker.cancel') }}
-        </button>
-        <button
-          type="button"
-          class="confirm" :class="[ns.be('panel', 'btn')]"
-          @click="handleConfirm()"
-        >
-          {{ t('el.datepicker.confirm') }}
-        </button>
-      </div>
-    </div>
-  </transition>
-</template>

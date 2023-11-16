@@ -1,5 +1,35 @@
+<template>
+  <div
+    :class="[ns.b(), ns.m(listType), ns.is('drag', drag)]"
+    tabindex="0"
+    @click="handleClick"
+    @keydown.self.enter.space="handleKeydown"
+  >
+    <template v-if="drag">
+      <UploadDragger :disabled="disabled" @file="uploadFiles">
+        <slot />
+      </UploadDragger>
+    </template>
+    <template v-else>
+      <slot />
+    </template>
+    <input
+      ref="inputRef"
+      :class="ns.e('input')"
+      :name="name"
+      :multiple="multiple"
+      :accept="accept"
+      type="file"
+      @change="handleChange"
+      @click.stop
+    >
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { shallowRef } from 'vue'
+
+// eslint-disable-next-line vue/prefer-import-from-vue
 import { isPlainObject } from '@vue/shared'
 import { cloneDeep, isEqual } from '@datadayrepos/lodashts'
 import { useNamespace } from '/@/hooks'
@@ -17,12 +47,13 @@ import type {
   UploadRequestOptions,
 } from './upload'
 
+const props = defineProps(uploadContentProps)
+
 defineOptions({
   name: 'ElUploadContent',
   inheritAttrs: false,
 })
 
-const props = defineProps(uploadContentProps)
 const ns = useNamespace('upload')
 const disabled = useFormDisabled()
 
@@ -191,31 +222,3 @@ defineExpose({
   upload,
 })
 </script>
-
-<template>
-  <div
-    :class="[ns.b(), ns.m(listType), ns.is('drag', drag)]"
-    tabindex="0"
-    @click="handleClick"
-    @keydown.self.enter.space="handleKeydown"
-  >
-    <template v-if="drag">
-      <UploadDragger :disabled="disabled" @file="uploadFiles">
-        <slot />
-      </UploadDragger>
-    </template>
-    <template v-else>
-      <slot />
-    </template>
-    <input
-      ref="inputRef"
-      :class="ns.e('input')"
-      :name="name"
-      :multiple="multiple"
-      :accept="accept"
-      type="file"
-      @change="handleChange"
-      @click.stop
-    >
-  </div>
-</template>

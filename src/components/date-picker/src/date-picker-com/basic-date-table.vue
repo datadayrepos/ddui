@@ -1,48 +1,3 @@
-<script lang="ts" setup>
-import {
-  basicDateTableEmits,
-  basicDateTableProps,
-} from '../props/basic-date-table'
-import {
-  useBasicDateTable,
-  useBasicDateTableDOM,
-} from '../composables/use-basic-date-table'
-import ElDatePickerCell from './basic-cell-render'
-
-const props = defineProps(basicDateTableProps)
-const emit = defineEmits(basicDateTableEmits)
-
-const {
-  WEEKS,
-  rows,
-  tbodyRef,
-  currentCellRef,
-
-  focus,
-  isCurrent,
-  isWeekActive,
-  isSelectedCell,
-
-  handlePickDate,
-  handleMouseUp,
-  handleMouseDown,
-  handleMouseMove,
-  handleFocus,
-} = useBasicDateTable(props, emit)
-const { tableLabel, tableKls, weekLabel, getCellClasses, getRowKls, t }
-  = useBasicDateTableDOM(props, {
-    isCurrent,
-    isWeekActive,
-  })
-
-defineExpose({
-  /**
-   * @description focus on current cell
-   */
-  focus,
-})
-</script>
-
 <template>
   <table
     :aria-label="tableLabel"
@@ -90,3 +45,48 @@ defineExpose({
     </tbody>
   </table>
 </template>
+
+<script lang="ts" setup>
+import {
+  basicDateTableEmits,
+  basicDateTableProps,
+} from '../props/basic-date-table'
+import {
+  useBasicDateTable,
+  useBasicDateTableDOM,
+} from '../composables/use-basic-date-table'
+import ElDatePickerCell from './basic-cell-render'
+
+const props = defineProps(basicDateTableProps)
+const emit = defineEmits(basicDateTableEmits)
+
+const {
+  WEEKS,
+  rows,
+  tbodyRef,
+  currentCellRef,
+
+  focus,
+  isCurrent,
+  isWeekActive,
+  isSelectedCell,
+
+  handlePickDate,
+  handleMouseUp,
+  handleMouseDown,
+  handleMouseMove,
+  handleFocus,
+} = useBasicDateTable(props, emit)
+const { tableLabel, tableKls, weekLabel, getCellClasses, getRowKls, t }
+  = useBasicDateTableDOM(props, {
+    isCurrent,
+    isWeekActive,
+  })
+
+defineExpose({
+  /**
+   * @description focus on current cell
+   */
+  focus,
+})
+</script>

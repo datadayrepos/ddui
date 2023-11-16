@@ -1,3 +1,16 @@
+<template>
+  <component
+    :is="tag"
+    :id="groupId"
+    :class="ns.b('group')"
+    role="group"
+    :aria-label="!isLabeledByFormItem ? label || 'checkbox-group' : undefined"
+    :aria-labelledby="isLabeledByFormItem ? formItem?.labelId : undefined"
+  >
+    <slot />
+  </component>
+</template>
+
 <script lang="ts" setup>
 import { computed, nextTick, provide, toRefs, watch } from 'vue'
 import { pick } from '@datadayrepos/lodashts'
@@ -6,16 +19,19 @@ import { debugWarn } from '/@/utils'
 import { useNamespace } from '/@/hooks'
 import { useFormItem, useFormItemInputId } from '/@/components/form'
 import { checkboxGroupEmits, checkboxGroupProps } from './checkbox-group'
+import type { CheckboxGroupContext } from './constants'
 import { checkboxGroupContextKey } from './constants'
 
 import type { CheckboxGroupValueType } from './checkbox-group'
+
+const props = defineProps(checkboxGroupProps)
+
+const emit = defineEmits(checkboxGroupEmits)
 
 defineOptions({
   name: 'ElCheckboxGroup',
 })
 
-const props = defineProps(checkboxGroupProps)
-const emit = defineEmits(checkboxGroupEmits)
 const ns = useNamespace('checkbox')
 
 const { formItem } = useFormItem()
@@ -47,7 +63,7 @@ provide(checkboxGroupContextKey, {
     'validateEvent',
     'fill',
     'textColor',
-  ]),
+  ]) as CheckboxGroupContext,
   modelValue,
   changeEvent,
 })
@@ -61,15 +77,4 @@ watch(
 )
 </script>
 
-<template>
-  <component
-    :is="tag"
-    :id="groupId"
-    :class="ns.b('group')"
-    role="group"
-    :aria-label="!isLabeledByFormItem ? label || 'checkbox-group' : undefined"
-    :aria-labelledby="isLabeledByFormItem ? formItem?.labelId : undefined"
-  >
-    <slot />
-  </component>
-</template>
+<style lang="css" src="../../../styles/components/el-checkbox-group.css"></style>

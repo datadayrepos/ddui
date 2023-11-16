@@ -15,3 +15,5 @@ defineOptions({
 })
 const ns = useNamespace('skeleton')
 </script>
+
+<style lang="css" src="../../../styles/components/el-skeleton-item.css"></style>

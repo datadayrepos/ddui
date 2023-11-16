@@ -1,3 +1,24 @@
+<template>
+  <div
+    :class="ns.b()"
+    :style="{
+      backgroundColor: background,
+    }"
+  >
+    <div :class="ns.e('white')" />
+    <div :class="ns.e('black')" />
+    <div
+      :class="ns.e('cursor')"
+      :style="{
+        top: `${cursorTop}px`,
+        left: `${cursorLeft}px`,
+      }"
+    >
+      <div />
+    </div>
+  </div>
+</template>
+
 <script lang="ts">
 import {
   computed,
@@ -107,24 +128,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<template>
-  <div
-    :class="ns.b()"
-    :style="{
-      backgroundColor: background,
-    }"
-  >
-    <div :class="ns.e('white')" />
-    <div :class="ns.e('black')" />
-    <div
-      :class="ns.e('cursor')"
-      :style="{
-        top: `${cursorTop}px`,
-        left: `${cursorLeft}px`,
-      }"
-    >
-      <div />
-    </div>
-  </div>
-</template>

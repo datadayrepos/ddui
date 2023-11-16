@@ -1,3 +1,60 @@
+<template>
+  <div
+    :id="inputId"
+    :class="[rateClasses, ns.is('disabled', rateDisabled)]"
+    role="slider"
+    :aria-label="!isLabeledByFormItem ? label || 'rating' : undefined"
+    :aria-labelledby="
+      isLabeledByFormItem ? formItemContext?.labelId : undefined
+    "
+    :aria-valuenow="currentValue"
+    :aria-valuetext="text || undefined"
+    aria-valuemin="0"
+    :aria-valuemax="max"
+    tabindex="0"
+    :style="rateStyles"
+    @keydown="handleKey"
+  >
+    <span
+      v-for="(item, key) in max"
+      :key="key"
+      :class="ns.e('item')"
+      @mousemove="setCurrentValue(item, $event)"
+      @mouseleave="resetCurrentValue"
+      @click="selectValue(item)"
+    >
+      <ElIcon
+        :class="[
+          ns.e('icon'),
+          { hover: hoverIndex === item },
+          ns.is('active', item <= currentValue),
+        ]"
+      >
+        <template v-if="!showDecimalIcon(item)">
+          <component :is="activeComponent" v-show="item <= currentValue" />
+          <component :is="voidComponent" v-show="!(item <= currentValue)" />
+        </template>
+        <template v-if="showDecimalIcon(item)">
+          <component :is="voidComponent" :class="[ns.em('decimal', 'box')]" />
+          <ElIcon
+            :style="decimalStyle"
+            :class="[ns.e('icon'), ns.e('decimal')]"
+          >
+            <component :is="decimalIconComponent" />
+          </ElIcon>
+        </template>
+      </ElIcon>
+    </span>
+    <span
+      v-if="showText || showScore"
+      :class="ns.e('text')"
+      :style="{ color: textColor }"
+    >
+      {{ text }}
+    </span>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { computed, inject, markRaw, ref, watch } from 'vue'
 import { EVENT_CODE, UPDATE_MODEL_EVENT } from '/@/constants'
@@ -14,13 +71,13 @@ import type { CSSProperties, Component } from 'vue'
 import { rateEmits, rateProps } from './rate'
 import type { iconPropType } from '/@/utils'
 
-defineOptions({
-  name: 'ElRate',
-})
-
 const props = defineProps(rateProps)
 
 const emit = defineEmits(rateEmits)
+
+defineOptions({
+  name: 'ElRate',
+})
 
 function getValueFromMap<T>(
   value: number,
@@ -255,59 +312,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <div
-    :id="inputId"
-    :class="[rateClasses, ns.is('disabled', rateDisabled)]"
-    role="slider"
-    :aria-label="!isLabeledByFormItem ? label || 'rating' : undefined"
-    :aria-labelledby="
-      isLabeledByFormItem ? formItemContext?.labelId : undefined
-    "
-    :aria-valuenow="currentValue"
-    :aria-valuetext="text || undefined"
-    aria-valuemin="0"
-    :aria-valuemax="max"
-    tabindex="0"
-    :style="rateStyles"
-    @keydown="handleKey"
-  >
-    <span
-      v-for="(item, key) in max"
-      :key="key"
-      :class="ns.e('item')"
-      @mousemove="setCurrentValue(item, $event)"
-      @mouseleave="resetCurrentValue"
-      @click="selectValue(item)"
-    >
-      <ElIcon
-        :class="[
-          ns.e('icon'),
-          { hover: hoverIndex === item },
-          ns.is('active', item <= currentValue),
-        ]"
-      >
-        <template v-if="!showDecimalIcon(item)">
-          <component :is="activeComponent" v-show="item <= currentValue" />
-          <component :is="voidComponent" v-show="!(item <= currentValue)" />
-        </template>
-        <template v-if="showDecimalIcon(item)">
-          <component :is="voidComponent" :class="[ns.em('decimal', 'box')]" />
-          <ElIcon
-            :style="decimalStyle"
-            :class="[ns.e('icon'), ns.e('decimal')]"
-          >
-            <component :is="decimalIconComponent" />
-          </ElIcon>
-        </template>
-      </ElIcon>
-    </span>
-    <span
-      v-if="showText || showScore"
-      :class="ns.e('text')"
-      :style="{ color: textColor }"
-    >
-      {{ text }}
-    </span>
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-rate.css"></style>

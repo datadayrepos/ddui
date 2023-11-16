@@ -1,49 +1,3 @@
-<script lang="ts" setup>
-import { useNamespace } from '/@/hooks'
-import { dateTableEmits, dateTableProps } from './date-table'
-import { useDateTable } from './use-date-table'
-
-import type { CalendarDateCell } from './date-table'
-
-defineOptions({
-  name: 'DateTable',
-})
-
-const props = defineProps(dateTableProps)
-const emit = defineEmits(dateTableEmits)
-
-const {
-  isInRange,
-  now,
-  rows,
-  weekDays,
-  getFormattedDate,
-  handlePickDay,
-  getSlotData,
-} = useDateTable(props, emit)
-
-const nsTable = useNamespace('calendar-table')
-const nsDay = useNamespace('calendar-day')
-
-function getCellClass({ text, type }: CalendarDateCell) {
-  const classes: string[] = [type]
-  if (type === 'current') {
-    const date = getFormattedDate(text, type)
-    if (date.isSame(props.selectedDay, 'day'))
-      classes.push(nsDay.is('selected'))
-
-    if (date.isSame(now, 'day'))
-      classes.push(nsDay.is('today'))
-  }
-  return classes
-}
-
-defineExpose({
-  /** @description toggle date panel */
-  getFormattedDate,
-})
-</script>
-
 <template>
   <table
     :class="[nsTable.b(), nsTable.is('range', isInRange)]"
@@ -81,3 +35,50 @@ defineExpose({
     </tbody>
   </table>
 </template>
+
+<script lang="ts" setup>
+import { useNamespace } from '/@/hooks'
+import { dateTableEmits, dateTableProps } from './date-table'
+import { useDateTable } from './use-date-table'
+
+import type { CalendarDateCell } from './date-table'
+
+const props = defineProps(dateTableProps)
+
+const emit = defineEmits(dateTableEmits)
+
+defineOptions({
+  name: 'DateTable',
+})
+
+const {
+  isInRange,
+  now,
+  rows,
+  weekDays,
+  getFormattedDate,
+  handlePickDay,
+  getSlotData,
+} = useDateTable(props, emit)
+
+const nsTable = useNamespace('calendar-table')
+const nsDay = useNamespace('calendar-day')
+
+function getCellClass({ text, type }: CalendarDateCell) {
+  const classes: string[] = [type]
+  if (type === 'current') {
+    const date = getFormattedDate(text, type)
+    if (date.isSame(props.selectedDay, 'day'))
+      classes.push(nsDay.is('selected'))
+
+    if (date.isSame(now, 'day'))
+      classes.push(nsDay.is('today'))
+  }
+  return classes
+}
+
+defineExpose({
+  /** @description toggle date panel */
+  getFormattedDate,
+})
+</script>

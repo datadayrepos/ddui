@@ -1,43 +1,3 @@
-<script lang="ts" setup>
-import { computed, ref, useSlots } from 'vue'
-import { ElIcon } from '/@/components/icon'
-import { TypeComponents, TypeComponentsMap } from '/@/utils'
-import { useNamespace } from '/@/hooks'
-import { alertEmits, alertProps } from './alert'
-
-defineOptions({
-  name: 'ElAlert',
-})
-
-const props = defineProps(alertProps)
-
-const emit = defineEmits(alertEmits)
-
-const { Close } = TypeComponents
-
-const slots = useSlots()
-
-const ns = useNamespace('alert')
-
-const visible = ref(true)
-
-const iconComponent = computed(() => TypeComponentsMap[props.type])
-
-const iconClass = computed(() => [
-  ns.e('icon'),
-  { [ns.is('big')]: !!props.description || !!slots.default },
-])
-
-const isBoldTitle = computed(() => {
-  return { [ns.is('bold')]: props.description || slots.default }
-})
-
-function close(evt: MouseEvent) {
-  visible.value = false
-  emit('close', evt)
-}
-</script>
-
 <template>
   <transition :name="ns.b('fade')">
     <div
@@ -77,3 +37,45 @@ function close(evt: MouseEvent) {
     </div>
   </transition>
 </template>
+
+<script lang="ts" setup>
+import { computed, ref, useSlots } from 'vue'
+import { ElIcon } from '/@/components/icon'
+import { TypeComponents, TypeComponentsMap } from '/@/utils'
+import { useNamespace } from '/@/hooks'
+import { alertEmits, alertProps } from './alert'
+
+const props = defineProps(alertProps)
+
+const emit = defineEmits(alertEmits)
+
+defineOptions({
+  name: 'ElAlert',
+})
+
+const { Close } = TypeComponents
+
+const slots = useSlots()
+
+const ns = useNamespace('alert')
+
+const visible = ref(true)
+
+const iconComponent = computed(() => TypeComponentsMap[props.type])
+
+const iconClass = computed(() => [
+  ns.e('icon'),
+  { [ns.is('big')]: !!props.description || !!slots.default },
+])
+
+const isBoldTitle = computed(() => {
+  return { [ns.is('bold')]: props.description || slots.default }
+})
+
+function close(evt: MouseEvent) {
+  visible.value = false
+  emit('close', evt)
+}
+</script>
+
+<style lang="css" src="../../../styles/components/el-alert.css"></style>

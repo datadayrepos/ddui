@@ -1,37 +1,3 @@
-<script lang="ts" setup>
-import { computed, useSlots } from 'vue'
-import { ElIcon } from '/@/components/icon'
-import { ElDivider } from '/@/components/divider'
-
-import { useLocale, useNamespace } from '/@/hooks'
-import { pageHeaderEmits, pageHeaderProps } from './page-header'
-
-defineOptions({
-  name: 'ElPageHeader',
-})
-
-defineProps(pageHeaderProps)
-const emit = defineEmits(pageHeaderEmits)
-const slots = useSlots()
-
-const { t } = useLocale()
-const ns = useNamespace('page-header')
-const kls = computed(() => {
-  return [
-    ns.b(),
-    {
-      [ns.m('has-breadcrumb')]: !!slots.breadcrumb,
-      [ns.m('has-extra')]: !!slots.extra,
-      [ns.is('contentful')]: !!slots.default,
-    },
-  ]
-})
-
-function handleClick() {
-  emit('back')
-}
-</script>
-
 <template>
   <div :class="kls">
     <div v-if="$slots.breadcrumb" :class="ns.e('breadcrumb')">
@@ -80,3 +46,41 @@ function handleClick() {
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { computed, useSlots } from 'vue'
+import { ElIcon } from '/@/components/icon'
+import { ElDivider } from '/@/components/divider'
+
+import { useLocale, useNamespace } from '/@/hooks'
+import { pageHeaderEmits, pageHeaderProps } from './page-header'
+
+defineProps(pageHeaderProps)
+
+const emit = defineEmits(pageHeaderEmits)
+
+defineOptions({
+  name: 'ElPageHeader',
+})
+
+const slots = useSlots()
+
+const { t } = useLocale()
+const ns = useNamespace('page-header')
+const kls = computed(() => {
+  return [
+    ns.b(),
+    {
+      [ns.m('has-breadcrumb')]: !!slots.breadcrumb,
+      [ns.m('has-extra')]: !!slots.extra,
+      [ns.is('contentful')]: !!slots.default,
+    },
+  ]
+})
+
+function handleClick() {
+  emit('back')
+}
+</script>
+
+<style lang="css" src="../../../styles/components/el-page-header.css"></style>

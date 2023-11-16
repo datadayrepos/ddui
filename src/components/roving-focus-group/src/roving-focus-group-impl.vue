@@ -1,3 +1,7 @@
+<template>
+  <slot />
+</template>
+
 <script lang="ts">
 import {
   computed,
@@ -146,7 +150,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<template>
-  <slot />
-</template>

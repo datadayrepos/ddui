@@ -27,6 +27,8 @@ import Jumper from './components/jumper.vue'
 import Total from './components/total.vue'
 import Pager from './components/pager.vue'
 
+import '../../../styles/components/el-pagination.css'
+
 /**
  * It it user's responsibility to guarantee that the value of props.total... is number
  * (same as pageSize, defaultPageSize, currentPage, defaultCurrentPage, pageCount)

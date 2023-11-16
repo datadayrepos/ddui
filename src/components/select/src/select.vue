@@ -848,3 +848,5 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-select.css"></style>

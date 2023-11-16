@@ -1,3 +1,50 @@
+<template>
+  <div>
+    <UploadList
+      v-if="isPictureCard && showFileList"
+      :disabled="disabled"
+      :list-type="listType"
+      :files="uploadFiles"
+      :handle-preview="onPreview"
+      @remove="handleRemove"
+    >
+      <template v-if="$slots.file" #default="{ file }">
+        <slot name="file" :file="file" />
+      </template>
+      <template #append>
+        <UploadContent ref="uploadRef" v-bind="uploadContentProps">
+          <slot v-if="$slots.trigger" name="trigger" />
+          <slot v-if="!$slots.trigger && $slots.default" />
+        </UploadContent>
+      </template>
+    </UploadList>
+
+    <UploadContent
+      v-if="!isPictureCard || (isPictureCard && !showFileList)"
+      ref="uploadRef"
+      v-bind="uploadContentProps"
+    >
+      <slot v-if="$slots.trigger" name="trigger" />
+      <slot v-if="!$slots.trigger && $slots.default" />
+    </UploadContent>
+
+    <slot v-if="$slots.trigger" />
+    <slot name="tip" />
+    <UploadList
+      v-if="!isPictureCard && showFileList"
+      :disabled="disabled"
+      :list-type="listType"
+      :files="uploadFiles"
+      :handle-preview="onPreview"
+      @remove="handleRemove"
+    >
+      <template v-if="$slots.file" #default="{ file }">
+        <slot name="file" :file="file" />
+      </template>
+    </UploadList>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, provide, shallowRef, toRef } from 'vue'
 import { useFormDisabled } from '/@/components/form'
@@ -12,11 +59,11 @@ import type {
   UploadContentProps,
 } from './upload-content'
 
+const props = defineProps(uploadProps)
+
 defineOptions({
   name: 'ElUpload',
 })
-
-const props = defineProps(uploadProps)
 
 const disabled = useFormDisabled()
 
@@ -68,49 +115,4 @@ defineExpose({
 })
 </script>
 
-<template>
-  <div>
-    <UploadList
-      v-if="isPictureCard && showFileList"
-      :disabled="disabled"
-      :list-type="listType"
-      :files="uploadFiles"
-      :handle-preview="onPreview"
-      @remove="handleRemove"
-    >
-      <template v-if="$slots.file" #default="{ file }">
-        <slot name="file" :file="file" />
-      </template>
-      <template #append>
-        <UploadContent ref="uploadRef" v-bind="uploadContentProps">
-          <slot v-if="$slots.trigger" name="trigger" />
-          <slot v-if="!$slots.trigger && $slots.default" />
-        </UploadContent>
-      </template>
-    </UploadList>
-
-    <UploadContent
-      v-if="!isPictureCard || (isPictureCard && !showFileList)"
-      ref="uploadRef"
-      v-bind="uploadContentProps"
-    >
-      <slot v-if="$slots.trigger" name="trigger" />
-      <slot v-if="!$slots.trigger && $slots.default" />
-    </UploadContent>
-
-    <slot v-if="$slots.trigger" />
-    <slot name="tip" />
-    <UploadList
-      v-if="!isPictureCard && showFileList"
-      :disabled="disabled"
-      :list-type="listType"
-      :files="uploadFiles"
-      :handle-preview="onPreview"
-      @remove="handleRemove"
-    >
-      <template v-if="$slots.file" #default="{ file }">
-        <slot name="file" :file="file" />
-      </template>
-    </UploadList>
-  </div>
-</template>
+<style lang="css" src="../../../styles/components/el-upload.css"></style>

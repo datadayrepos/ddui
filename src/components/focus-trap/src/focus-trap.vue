@@ -1,3 +1,7 @@
+<template>
+  <slot :handle-keydown="onKeydown" />
+</template>
+
 <script lang="ts">
 import {
   defineComponent,
@@ -324,7 +328,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<template>
-  <slot :handle-keydown="onKeydown" />
-</template>

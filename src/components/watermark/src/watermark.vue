@@ -1,3 +1,9 @@
+<template>
+  <div ref="containerRef" :style="[style]">
+    <slot />
+  </div>
+</template>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -14,11 +20,11 @@ import { getPixelRatio, getStyleStr, reRendering } from './utils'
 import useClips, { FontGap } from './useClips'
 import type { WatermarkProps } from './watermark'
 
+const props = defineProps(watermarkProps)
+
 defineOptions({
   name: 'ElWatermark',
 })
-
-const props = defineProps(watermarkProps)
 
 const style: CSSProperties = {
   position: 'relative',
@@ -222,9 +228,3 @@ useMutationObserver(containerRef, onMutate, {
   attributes: true,
 })
 </script>
-
-<template>
-  <div ref="containerRef" :style="[style]">
-    <slot />
-  </div>
-</template>

@@ -1,3 +1,9 @@
+<template>
+  <component :is="tag" :class="colKls" :style="style">
+    <slot />
+  </component>
+</template>
+
 <script setup lang="ts">
 import { computed, inject } from 'vue'
 import { isNumber, isObject } from '/@/utils'
@@ -6,11 +12,11 @@ import { rowContextKey } from '/@/components/row'
 import type { CSSProperties } from 'vue'
 import { colProps } from './col'
 
+const props = defineProps(colProps)
+
 defineOptions({
   name: 'ElCol',
 })
-
-const props = defineProps(colProps)
 
 const { gutter } = inject(rowContextKey, { gutter: computed(() => 0) })
 const ns = useNamespace('col')
@@ -61,8 +67,4 @@ const colKls = computed(() => {
 })
 </script>
 
-<template>
-  <component :is="tag" :class="colKls" :style="style">
-    <slot />
-  </component>
-</template>
+<style lang="css" src="../../../styles/components/el-col.css"></style>

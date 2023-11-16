@@ -399,3 +399,5 @@ defineExpose({
   highlight,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-autocomplete.css"></style>

@@ -1,3 +1,12 @@
+<template>
+  <ForwardRef v-if="nowrap" :set-ref="setTriggerRef" only-child>
+    <slot />
+  </ForwardRef>
+  <button v-else ref="triggerRef" v-bind="$attrs">
+    <slot />
+  </button>
+</template>
+
 <script setup lang="ts">
 import { inject, onBeforeUnmount, watch } from 'vue'
 import { composeEventHandlers } from '/@/utils'
@@ -6,13 +15,13 @@ import ForwardRef from './forward-ref'
 import { tooltipV2TriggerProps } from './trigger'
 import { tooltipV2CommonProps } from './common'
 
-defineOptions({
-  name: 'ElTooltipV2Trigger',
-})
-
 const props = defineProps({
   ...tooltipV2CommonProps,
   ...tooltipV2TriggerProps,
+})
+
+defineOptions({
+  name: 'ElTooltipV2Trigger',
 })
 
 /**
@@ -85,12 +94,3 @@ onBeforeUnmount(() => {
   document.removeEventListener('mouseup', onMouseup)
 })
 </script>
-
-<template>
-  <ForwardRef v-if="nowrap" :set-ref="setTriggerRef" only-child>
-    <slot />
-  </ForwardRef>
-  <button v-else ref="triggerRef" v-bind="$attrs">
-    <slot />
-  </button>
-</template>

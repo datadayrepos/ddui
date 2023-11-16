@@ -1,27 +1,3 @@
-<script lang="ts" setup>
-import { nextTick } from 'vue'
-import { useNamespace } from '/@/hooks'
-import { radioEmits, radioProps } from './radio'
-import { useRadio } from './use-radio'
-
-defineOptions({
-  name: 'ElRadio',
-})
-
-const props = defineProps(radioProps)
-const emit = defineEmits(radioEmits)
-
-const ns = useNamespace('radio')
-const { radioRef, radioGroup, focus, size, disabled, modelValue } = useRadio(
-  props,
-  emit,
-)
-
-function handleChange() {
-  nextTick(() => emit('change', modelValue.value))
-}
-</script>
-
 <template>
   <label
     :class="[
@@ -62,3 +38,30 @@ function handleChange() {
     </span>
   </label>
 </template>
+
+<script lang="ts" setup>
+import { nextTick } from 'vue'
+import { useNamespace } from '/@/hooks'
+import { radioEmits, radioProps } from './radio'
+import { useRadio } from './use-radio'
+
+const props = defineProps(radioProps)
+
+const emit = defineEmits(radioEmits)
+
+defineOptions({
+  name: 'ElRadio',
+})
+
+const ns = useNamespace('radio')
+const { radioRef, radioGroup, focus, size, disabled, modelValue } = useRadio(
+  props,
+  emit,
+)
+
+function handleChange() {
+  nextTick(() => emit('change', modelValue.value))
+}
+</script>
+
+<style lang="css" src="../../../styles/components/el-radio.css"></style>

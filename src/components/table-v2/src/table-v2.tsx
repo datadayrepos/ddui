@@ -25,6 +25,8 @@ import type {
   TableV2RowCellRenderParam,
 } from './components'
 
+import '../../../styles/components/el-table-v2.css'
+
 const COMPONENT_NAME = 'ElTableV2'
 
 const TableV2 = defineComponent({

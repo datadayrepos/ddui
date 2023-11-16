@@ -1,3 +1,29 @@
+<template>
+  <div
+    ref="contentRef"
+    v-bind="contentAttrs"
+    :style="contentStyle"
+    :class="contentClass"
+    tabindex="-1"
+    @mouseenter="(e) => $emit('mouseenter', e)"
+    @mouseleave="(e) => $emit('mouseleave', e)"
+  >
+    <ElFocusTrap
+      :trapped="trapped"
+      :trap-on-focus-in="true"
+      :focus-trap-el="contentRef"
+      :focus-start-el="focusStartRef"
+      @focus-after-trapped="onFocusAfterTrapped"
+      @focus-after-released="onFocusAfterReleased"
+      @focusin="onFocusInTrap"
+      @focusout-prevented="onFocusoutPrevented"
+      @release-requested="onReleaseRequested"
+    >
+      <slot />
+    </ElFocusTrap>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import {
   inject,
@@ -22,13 +48,13 @@ import {
   usePopperContentFocusTrap,
 } from './composables'
 
-defineOptions({
-  name: 'ElPopperContent',
-})
-
 const props = defineProps(popperContentProps)
 
 const emit = defineEmits(popperContentEmits)
+
+defineOptions({
+  name: 'ElPopperContent',
+})
 
 const {
   focusStartRef,
@@ -153,29 +179,3 @@ defineExpose({
   contentStyle,
 })
 </script>
-
-<template>
-  <div
-    ref="contentRef"
-    v-bind="contentAttrs"
-    :style="contentStyle"
-    :class="contentClass"
-    tabindex="-1"
-    @mouseenter="(e) => $emit('mouseenter', e)"
-    @mouseleave="(e) => $emit('mouseleave', e)"
-  >
-    <ElFocusTrap
-      :trapped="trapped"
-      :trap-on-focus-in="true"
-      :focus-trap-el="contentRef"
-      :focus-start-el="focusStartRef"
-      @focus-after-trapped="onFocusAfterTrapped"
-      @focus-after-released="onFocusAfterReleased"
-      @focusin="onFocusInTrap"
-      @focusout-prevented="onFocusoutPrevented"
-      @release-requested="onReleaseRequested"
-    >
-      <slot />
-    </ElFocusTrap>
-  </div>
-</template>

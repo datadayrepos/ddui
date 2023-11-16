@@ -1,21 +1,3 @@
-<script lang="ts" setup>
-import { inject } from 'vue'
-
-import ElDescriptionsCell from './descriptions-cell'
-import { descriptionsKey } from './token'
-import { descriptionsRowProps } from './descriptions-row'
-
-import type { IDescriptionsInject } from './descriptions.type'
-
-defineOptions({
-  name: 'ElDescriptionsRow',
-})
-
-defineProps(descriptionsRowProps)
-
-const descriptions = inject(descriptionsKey, {} as IDescriptionsInject)
-</script>
-
 <template>
   <template v-if="descriptions.direction === 'vertical'">
     <tr>
@@ -39,3 +21,23 @@ const descriptions = inject(descriptionsKey, {} as IDescriptionsInject)
     </template>
   </tr>
 </template>
+
+<script lang="ts" setup>
+import { inject } from 'vue'
+
+import ElDescriptionsCell from './descriptions-cell'
+import { descriptionsKey } from './token'
+import { descriptionsRowProps } from './descriptions-row'
+
+import type { IDescriptionsInject } from './descriptions.type'
+
+defineProps(descriptionsRowProps)
+
+defineOptions({
+  name: 'ElDescriptionsRow',
+})
+
+const descriptions = inject(descriptionsKey, {} as IDescriptionsInject)
+</script>
+
+<style lang="css" src="../../../styles/components/el-descriptions-item.css"></style>

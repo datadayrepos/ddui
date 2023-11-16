@@ -1,84 +1,3 @@
-<script lang="ts">
-import {
-  computed,
-  defineComponent,
-  provide,
-  reactive,
-  toRefs,
-  vModelText,
-} from 'vue'
-import { isArray } from '/@/utils'
-import { ClickOutside } from '/@/directives'
-import ElTooltip from '/@/components/tooltip'
-import ElTag from '/@/components/tag'
-import ElIcon from '/@/components/icon'
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '/@/constants'
-import ElSelectMenu from './select-dropdown'
-import useSelect from './useSelect'
-import { selectV2InjectionKey } from './token'
-import { SelectProps } from './defaults'
-
-export default defineComponent({
-  name: 'ElSelectV2',
-  components: {
-    ElSelectMenu,
-    ElTag,
-    ElTooltip,
-    ElIcon,
-  },
-  directives: { ClickOutside, ModelText: vModelText },
-  props: SelectProps,
-  emits: [
-    UPDATE_MODEL_EVENT,
-    CHANGE_EVENT,
-    'remove-tag',
-    'clear',
-    'visible-change',
-    'focus',
-    'blur',
-  ],
-
-  setup(props, { emit }) {
-    const modelValue = computed(() => {
-      const { modelValue: rawModelValue, multiple } = props
-      const fallback = multiple ? [] : undefined
-      // When it is array, we check if this is multi-select.
-      // Based on the result we get
-      if (isArray(rawModelValue))
-        return multiple ? rawModelValue : fallback
-
-      return multiple ? fallback : rawModelValue
-    })
-
-    const API = useSelect(
-      reactive({
-        ...toRefs(props),
-        modelValue,
-      }),
-      emit,
-    )
-    // TODO, remove the any cast to align the actual API.
-    provide(selectV2InjectionKey, {
-      props: reactive({
-        ...toRefs(props),
-        height: API.popupHeight,
-        modelValue,
-      }),
-      popper: API.popper,
-      onSelect: API.onSelect,
-      onHover: API.onHover,
-      onKeyboardNavigate: API.onKeyboardNavigate,
-      onKeyboardSelect: API.onKeyboardSelect,
-    } as any)
-
-    return {
-      ...API,
-      modelValue,
-    }
-  },
-})
-</script>
-
 <template>
   <div
     ref="selectRef"
@@ -395,3 +314,86 @@ export default defineComponent({
     </ElTooltip>
   </div>
 </template>
+
+<script lang="ts">
+import {
+  computed,
+  defineComponent,
+  provide,
+  reactive,
+  toRefs,
+  vModelText,
+} from 'vue'
+import { isArray } from '/@/utils'
+import { ClickOutside } from '/@/directives'
+import ElTooltip from '/@/components/tooltip'
+import ElTag from '/@/components/tag'
+import ElIcon from '/@/components/icon'
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '/@/constants'
+import ElSelectMenu from './select-dropdown'
+import useSelect from './useSelect'
+import { selectV2InjectionKey } from './token'
+import { SelectProps } from './defaults'
+
+export default defineComponent({
+  name: 'ElSelectV2',
+  components: {
+    ElSelectMenu,
+    ElTag,
+    ElTooltip,
+    ElIcon,
+  },
+  directives: { ClickOutside, ModelText: vModelText },
+  props: SelectProps,
+  emits: [
+    UPDATE_MODEL_EVENT,
+    CHANGE_EVENT,
+    'remove-tag',
+    'clear',
+    'visible-change',
+    'focus',
+    'blur',
+  ],
+
+  setup(props, { emit }) {
+    const modelValue = computed(() => {
+      const { modelValue: rawModelValue, multiple } = props
+      const fallback = multiple ? [] : undefined
+      // When it is array, we check if this is multi-select.
+      // Based on the result we get
+      if (isArray(rawModelValue))
+        return multiple ? rawModelValue : fallback
+
+      return multiple ? fallback : rawModelValue
+    })
+
+    const API = useSelect(
+      reactive({
+        ...toRefs(props),
+        modelValue,
+      }),
+      emit,
+    )
+    // TODO, remove the any cast to align the actual API.
+    provide(selectV2InjectionKey, {
+      props: reactive({
+        ...toRefs(props),
+        height: API.popupHeight,
+        modelValue,
+      }),
+      popper: API.popper,
+      onSelect: API.onSelect,
+      onHover: API.onHover,
+      onKeyboardNavigate: API.onKeyboardNavigate,
+      onKeyboardSelect: API.onKeyboardSelect,
+    } as any)
+
+    return {
+      ...API,
+      modelValue,
+    }
+  },
+})
+</script>
+
+<style lang="css" src="../../../styles/components/el-select-v2.css"></style>

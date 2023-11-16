@@ -1,3 +1,35 @@
+<template>
+  <div
+    ref="button"
+    :class="[ns.e('button-wrapper'), { hover: hovering, dragging }]"
+    :style="wrapperStyle"
+    :tabindex="disabled ? -1 : 0"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+    @mousedown="onButtonDown"
+    @touchstart="onButtonDown"
+    @focus="handleMouseEnter"
+    @blur="handleMouseLeave"
+    @keydown="onKeyDown"
+  >
+    <ElTooltip
+      ref="tooltip"
+      :visible="tooltipVisible"
+      :placement="placement"
+      :fallback-placements="['top', 'bottom', 'right', 'left']"
+      :stop-popper-mouse-event="false"
+      :popper-class="tooltipClass"
+      :disabled="!showTooltip"
+      persistent
+    >
+      <template #content>
+        <span>{{ formatValue }}</span>
+      </template>
+      <div :class="[ns.e('button'), { hover: hovering, dragging }]" />
+    </ElTooltip>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { reactive, toRefs } from 'vue'
 import { ElTooltip } from '/@/components/tooltip'
@@ -6,12 +38,13 @@ import { useSliderButton } from './composables'
 import { sliderButtonEmits, sliderButtonProps } from './button'
 import type { SliderButtonInitData } from './button'
 
+const props = defineProps(sliderButtonProps)
+
+const emit = defineEmits(sliderButtonEmits)
+
 defineOptions({
   name: 'ElSliderButton',
 })
-
-const props = defineProps(sliderButtonProps)
-const emit = defineEmits(sliderButtonEmits)
 
 const ns = useNamespace('slider')
 
@@ -53,35 +86,3 @@ defineExpose({
   dragging,
 })
 </script>
-
-<template>
-  <div
-    ref="button"
-    :class="[ns.e('button-wrapper'), { hover: hovering, dragging }]"
-    :style="wrapperStyle"
-    :tabindex="disabled ? -1 : 0"
-    @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseLeave"
-    @mousedown="onButtonDown"
-    @touchstart="onButtonDown"
-    @focus="handleMouseEnter"
-    @blur="handleMouseLeave"
-    @keydown="onKeyDown"
-  >
-    <ElTooltip
-      ref="tooltip"
-      :visible="tooltipVisible"
-      :placement="placement"
-      :fallback-placements="['top', 'bottom', 'right', 'left']"
-      :stop-popper-mouse-event="false"
-      :popper-class="tooltipClass"
-      :disabled="!showTooltip"
-      persistent
-    >
-      <template #content>
-        <span>{{ formatValue }}</span>
-      </template>
-      <div :class="[ns.e('button'), { hover: hovering, dragging }]" />
-    </ElTooltip>
-  </div>
-</template>

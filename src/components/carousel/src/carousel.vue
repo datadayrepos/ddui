@@ -73,10 +73,11 @@ import { useCarousel } from './use-carousel'
 
 const props = defineProps(carouselProps)
 const emit = defineEmits(carouselEmits)
+const COMPONENT_NAME = 'ElCarousel'
 defineOptions({
   name: COMPONENT_NAME,
 })
-const COMPONENT_NAME = 'ElCarousel'
+
 const {
   root,
   activeIndex,
@@ -133,3 +134,5 @@ defineExpose({
   next,
 })
 </script>
+
+<style lang="css" src="../../../styles/components/el-carousel.css"></style>
