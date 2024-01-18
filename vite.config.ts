@@ -13,7 +13,9 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/components/index.ts'), // Entry point for your library
+      // entry: path.resolve(__dirname, 'src/components/index.ts'), // Entry point for your library
+      entry: path.resolve(__dirname, 'src/index.ts'), // Entry point for your library
+
       name: 'YourLibName',
       formats: ['es'], // Only generate ESM format
     },

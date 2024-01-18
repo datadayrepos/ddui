@@ -77,6 +77,7 @@ export default defineComponent({
     })
 
     const dropdownListWrapperRef = composeRefs(
+      // @ts-expect-error Element
       contentRef,
       dropdownCollectionRef,
       focusTrapRef,

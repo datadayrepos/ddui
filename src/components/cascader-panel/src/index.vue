@@ -114,6 +114,7 @@ export default defineComponent({
       if (expandingNode.value?.uid !== newExpandingNode?.uid) {
         expandingNode.value = node
         menus.value = newMenus
+        // eslint-disable-next-line vue/custom-event-name-casing
         !silent && emit('expand-change', node?.pathValues || [])
       }
     }
@@ -270,6 +271,7 @@ export default defineComponent({
       calculateCheckedValue()
       menus.value = menus.value.slice(0, 1)
       expandingNode.value = null
+      // eslint-disable-next-line vue/custom-event-name-casing
       emit('expand-change', [])
     }
 
@@ -307,6 +309,7 @@ export default defineComponent({
           e.preventDefault()
           const distance = code === EVENT_CODE.up ? -1 : 1
           focusNode(
+            // @ts-expect-error Element
             getSibling(target, distance, `.${ns.b('node')}[tabindex="-1"]`),
           )
           break

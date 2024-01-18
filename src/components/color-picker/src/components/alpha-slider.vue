@@ -13,12 +13,10 @@ import {
 } from '../composables/use-alpha-slider'
 
 const props = defineProps(alphaSliderProps)
-
+const COMPONENT_NAME = 'ElColorAlphaSlider'
 defineOptions({
   name: COMPONENT_NAME,
 })
-
-const COMPONENT_NAME = 'ElColorAlphaSlider'
 
 const { bar, thumb, handleDrag, handleClick } = useAlphaSlider(props)
 

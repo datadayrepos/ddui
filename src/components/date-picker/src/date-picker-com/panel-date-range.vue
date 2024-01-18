@@ -624,7 +624,7 @@ function handleTimeInput(value: string | null, type: ChangeType) {
   }
 }
 
-function handleTimeChange(value: string | null, type: ChangeType) {
+function handleTimeChange(_value: string | null, type: ChangeType) {
   timeUserInput.value[type] = null
   if (type === 'min') {
     leftDate.value = minDate.value!

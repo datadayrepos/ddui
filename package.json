@@ -33,6 +33,7 @@
     "dist"
   ],
   "scripts": {
+    "build-index": "node scripts/build_index.js",
     "lint-imports": "eslint .",
     "lint": "eslint --cache .",
     "lint:fix": "eslint . --fix",
@@ -41,7 +42,7 @@
     "typecheck": "tsc --noEmit",
     "typecheckVue": "vue-tsc --noEmit",
     "build": "vite build && vue-tsc --emitDeclarationOnly ",
-    "publish": "npm publish --access public"
+    "pub": "npm publish --access public"
   },
   "peerDependencies": {
     "@datadayrepos/usevuecore": "10.5.0-36",
