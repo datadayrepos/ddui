@@ -39,9 +39,10 @@
     "lint:fix": "eslint . --fix",
     "release": "bumpp -r && pnpm -r publish",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit  && vue-tsc --emitDeclarationOnly ",
     "typecheckVue": "vue-tsc --noEmit",
-    "build": "vite build && vue-tsc --emitDeclarationOnly ",
+    "buildvite": "rm -rf dist && vite build",
+    "build": "rm -rf dist && tsc",
     "pub": "npm publish --access public"
   },
   "peerDependencies": {

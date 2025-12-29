@@ -27,8 +27,11 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
         },
-        entryFileNames: 'index.js', // Set the output file name to index.js
-        assetFileNames: 'index.css', // Set the output CSS file name to index.css
+        // Preserve module structure
+        preserveModules: true, // Add this line
+        preserveModulesRoot: 'src', // Optionally, specify the root directory
+        entryFileNames: '[name].js',
+        assetFileNames: '[name].[ext]',
       },
     },
     assetsInlineLimit: 0, // Avoids asset hashing

@@ -5,4 +5,5 @@ export type ConfigProviderContext = Partial<ConfigProviderProps>
 
 export const configProviderContextKey: InjectionKey<
   Ref<ConfigProviderContext>
+// eslint-disable-next-line symbol-description
 > = Symbol()
