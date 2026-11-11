@@ -14,3 +14,6 @@ coverage
 .eslintcache
 .vitepress/cache
 imports
+
+# Verified npm archives, never commit.
+.npm-package/
